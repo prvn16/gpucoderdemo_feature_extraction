@@ -1,0 +1,110 @@
+<!-- saved from url=(0014)about:internet -->
+<html>
+<body>
+<script src="resources/eml_report_loadable_data.js"></script>
+<div class="dead">
+<pre class="code">
+<span class="srcline"><span class="lineno"><a href="77,1" id="srcline1"> 1</a></span><span class="line">function intPoints = NonMaxSuppression_gpu(intImage, responseMap) <span class="comment">%#codegen</span></span></span>
+<span class="srcline"><span class="lineno"><a href="77,2" id="srcline2"> 2</a></span><span class="line"></span></span>
+<span class="srcline"><span class="lineno"><a href="77,3" id="srcline3"> 3</a></span><span class="line"><span class="comment">%   Copyright 2017 The MathWorks, Inc.</span></span></span>
+<span class="srcline"><span class="lineno"><a href="77,4" id="srcline4"> 4</a></span><span class="line"><span class="comment">%</span></span></span>
+<span class="srcline"><span class="lineno"><a href="77,5" id="srcline5"> 5</a></span><span class="line"><span class="comment">% This function performs non-maximal suppression to filter out the useful</span></span></span>
+<span class="srcline"><span class="lineno"><a href="77,6" id="srcline6"> 6</a></span><span class="line"><span class="comment">% interest points in the image. For each octave, we examine a set of 3</span></span></span>
+<span class="srcline"><span class="lineno"><a href="77,7" id="srcline7"> 7</a></span><span class="line"><span class="comment">% layers (bottom, middle, top). A threshold is applied to the response of </span></span></span>
+<span class="srcline"><span class="lineno"><a href="77,8" id="srcline8"> 8</a></span><span class="line"><span class="comment">% each pixel and it is subsequently compared to its neighboring pixels in a </span></span></span>
+<span class="srcline"><span class="lineno"><a href="77,9" id="srcline9"> 9</a></span><span class="line"><span class="comment">% 3x3x3 neighborhood. If an interest point is detected, interpolation is </span></span></span>
+<span class="srcline"><span class="lineno"><a href="77,10" id="srcline10">10</a></span><span class="line"><span class="comment">% performed to determine its exact location in scale-space. The output of </span></span></span>
+<span class="srcline"><span class="lineno"><a href="77,11" id="srcline11">11</a></span><span class="line"><span class="comment">% this step is an array of interest points</span></span></span>
+<span class="srcline"><span class="lineno"><a href="77,12" id="srcline12">12</a></span><span class="line"></span></span>
+<span class="srcline"><span class="lineno"><a href="77,13" id="srcline13">13</a></span><span class="line">coder.gpu.kernelfun;</span></span>
+<span class="srcline"><span class="lineno"><a href="77,14" id="srcline14">14</a></span><span class="line"></span></span>
+<span class="srcline"><span class="lineno"><a href="77,15" id="srcline15">15</a></span><span class="line"><span class="comment">% Mapping responses to octaves based on filter sizes used for each octave</span></span></span>
+<span class="srcline"><span class="lineno"><a href="77,16" id="srcline16">16</a></span><span class="line">filter_map = [1,2,3,4; 2,4,5,6; 4,6,7,8; 6,8,9,10; 8,10,11,12];</span></span>
+<span class="srcline"><span class="lineno"><a href="77,17" id="srcline17">17</a></span><span class="line"></span></span>
+<span class="srcline"><span class="lineno"><a href="77,18" id="srcline18">18</a></span><span class="line"><span class="comment">% Image dimensions</span></span></span>
+<span class="srcline"><span class="lineno"><a href="77,19" id="srcline19">19</a></span><span class="line">imgDim    = size(intImage);</span></span>
+<span class="srcline"><span class="lineno"><a href="77,20" id="srcline20">20</a></span><span class="line">i_height  = imgDim(1);</span></span>
+<span class="srcline"><span class="lineno"><a href="77,21" id="srcline21">21</a></span><span class="line">i_width   = imgDim(2);</span></span>
+<span class="srcline"><span class="lineno"><a href="77,22" id="srcline22">22</a></span><span class="line">ipt = struct('x',single(0),'y',single(0),'scale',single(0),'orientation',single(0),'laplacian',int32(0));</span></span>
+<span class="srcline"><span class="lineno"><a href="77,23" id="srcline23">23</a></span><span class="line">coder.varsize( 'intPoints', [1,2000], [false, true]);</span></span>
+<span class="srcline"><span class="lineno"><a href="77,24" id="srcline24">24</a></span><span class="line">intPoints = repmat(ipt, 1, 2000);</span></span>
+<span class="srcline"><span class="lineno"><a href="77,25" id="srcline25">25</a></span><span class="line">ctr = int32(1);</span></span>
+<span class="srcline"><span class="lineno"><a href="77,26" id="srcline26">26</a></span><span class="line"></span></span>
+<span class="srcline"><span class="lineno"><a href="77,27" id="srcline27">27</a></span><span class="line"><span class="comment">% Iterate over a set of 3 layers within each octave</span></span></span>
+<span class="srcline"><span class="lineno"><a href="77,28" id="srcline28">28</a></span><span class="line">for o = coder.unroll(1:5)</span></span>
+<span class="srcline"><span class="lineno"><a href="77,29" id="srcline29">29</a></span><span class="line">    </span></span>
+<span class="srcline"><span class="lineno"><a href="77,30" id="srcline30">30</a></span><span class="line">    for i = coder.unroll(1:2)</span></span>
+<span class="srcline"><span class="lineno"><a href="77,31" id="srcline31">31</a></span><span class="line">        </span></span>
+<span class="srcline"><span class="lineno"><a href="77,32" id="srcline32">32</a></span><span class="line">        b = filter_map(o,i);</span></span>
+<span class="srcline"><span class="lineno"><a href="77,33" id="srcline33">33</a></span><span class="line">        m = filter_map(o,i+1);</span></span>
+<span class="srcline"><span class="lineno"><a href="77,34" id="srcline34">34</a></span><span class="line">        t = filter_map(o,i+2);</span></span>
+<span class="srcline"><span class="lineno"><a href="77,35" id="srcline35">35</a></span><span class="line">        </span></span>
+<span class="srcline"><span class="lineno"><a href="77,36" id="srcline36">36</a></span><span class="line">        b_filter    = responseMap(b).filter;</span></span>
+<span class="srcline"><span class="lineno"><a href="77,37" id="srcline37">37</a></span><span class="line">        m_filter    = responseMap(m).filter;</span></span>
+<span class="srcline"><span class="lineno"><a href="77,38" id="srcline38">38</a></span><span class="line">        t_filter    = responseMap(t).filter;</span></span>
+<span class="srcline"><span class="lineno"><a href="77,39" id="srcline39">39</a></span><span class="line">        t_step      = responseMap(t).step;</span></span>
+<span class="srcline"><span class="lineno"><a href="77,40" id="srcline40">40</a></span><span class="line">        filterStep  = m_filter - b_filter;</span></span>
+<span class="srcline"><span class="lineno"><a href="77,41" id="srcline41">41</a></span><span class="line">        </span></span>
+<span class="srcline"><span class="lineno"><a href="77,42" id="srcline42">42</a></span><span class="line">        b_responses = responseMap(b).responses;</span></span>
+<span class="srcline"><span class="lineno"><a href="77,43" id="srcline43">43</a></span><span class="line">        m_responses = responseMap(m).responses;</span></span>
+<span class="srcline"><span class="lineno"><a href="77,44" id="srcline44">44</a></span><span class="line">        t_responses = responseMap(t).responses;</span></span>
+<span class="srcline"><span class="lineno"><a href="77,45" id="srcline45">45</a></span><span class="line">        </span></span>
+<span class="srcline"><span class="lineno"><a href="77,46" id="srcline46">46</a></span><span class="line">        m_laplacian = responseMap(m).laplacian;</span></span>
+<span class="srcline"><span class="lineno"><a href="77,47" id="srcline47">47</a></span><span class="line">        m_width     = responseMap(m).width;</span></span>
+<span class="srcline"><span class="lineno"><a href="77,48" id="srcline48">48</a></span><span class="line">        t_width     = responseMap(t).width;</span></span>
+<span class="srcline"><span class="lineno"><a href="77,49" id="srcline49">49</a></span><span class="line">        </span></span>
+<span class="srcline"><span class="lineno"><a href="77,50" id="srcline50">50</a></span><span class="line">        <span class="comment">% Perform non-maximal suppression</span></span></span>
+<span class="srcline"><span class="lineno"><a href="77,51" id="srcline51">51</a></span><span class="line">        [keyMatrix, result_xi, result_xr, result_xc]  = NonMaxCalc(intImage, t_filter, t_step, ...</span></span>
+<span class="srcline"><span class="lineno"><a href="77,52" id="srcline52">52</a></span><span class="line">            b_responses, m_responses, t_responses);</span></span>
+<span class="srcline"><span class="lineno"><a href="77,53" id="srcline53">53</a></span><span class="line">              </span></span>
+<span class="srcline"><span class="lineno"><a href="77,54" id="srcline54">54</a></span><span class="line">        <span class="comment">% Accumulate interest points</span></span></span>
+<span class="srcline"><span class="lineno"><a href="77,55" id="srcline55">55</a></span><span class="line">        coder.gpu.kernel;</span></span>
+<span class="srcline"><span class="lineno"><a href="77,56" id="srcline56">56</a></span><span class="line">        for c = 0:i_width-1</span></span>
+<span class="srcline"><span class="lineno"><a href="77,57" id="srcline57">57</a></span><span class="line">            coder.gpu.kernel;</span></span>
+<span class="srcline"><span class="lineno"><a href="77,58" id="srcline58">58</a></span><span class="line">            for r = 0:i_height-1</span></span>
+<span class="srcline"><span class="lineno"><a href="77,59" id="srcline59">59</a></span><span class="line">                if(keyMatrix(r+1,c+1))</span></span>
+<span class="srcline"><span class="lineno"><a href="77,60" id="srcline60">60</a></span><span class="line">                    ctrVal = coder.nullcopy(int32(0));</span></span>
+<span class="srcline"><span class="lineno"><a href="77,61" id="srcline61">61</a></span><span class="line">                    ctrVal = coder.ceval('-gpudevicefcn', 'atomicAdd', coder.ref(ctr), int32(1));</span></span>
+<span class="srcline"><span class="lineno"><a href="77,62" id="srcline62">62</a></span><span class="line">                    if (ctrVal &lt;= 2000)</span></span>
+<span class="srcline"><span class="lineno"><a href="77,63" id="srcline63">63</a></span><span class="line">                    </span></span>
+<span class="srcline"><span class="lineno"><a href="77,64" id="srcline64">64</a></span><span class="line">                    xi = result_xi(r+1,c+1);</span></span>
+<span class="srcline"><span class="lineno"><a href="77,65" id="srcline65">65</a></span><span class="line">                    xr = result_xr(r+1,c+1);</span></span>
+<span class="srcline"><span class="lineno"><a href="77,66" id="srcline66">66</a></span><span class="line">                    xc = result_xc(r+1,c+1);</span></span>
+<span class="srcline"><span class="lineno"><a href="77,67" id="srcline67">67</a></span><span class="line"></span></span>
+<span class="srcline"><span class="lineno"><a href="77,68" id="srcline68">68</a></span><span class="line">                    intPoints(ctrVal).x = single((c + xc) * t_step);</span></span>
+<span class="srcline"><span class="lineno"><a href="77,69" id="srcline69">69</a></span><span class="line">                    intPoints(ctrVal).y = single((r + xr) * t_step);</span></span>
+<span class="srcline"><span class="lineno"><a href="77,70" id="srcline70">70</a></span><span class="line">                    intPoints(ctrVal).scale = single((0.1333) * (m_filter + xi * filterStep));</span></span>
+<span class="srcline"><span class="lineno"><a href="77,71" id="srcline71">71</a></span><span class="line">                    intPoints(ctrVal).laplacian = int32(getLaplacian(m_laplacian, m_width, r, c, t_width));</span></span>
+<span class="srcline"><span class="lineno"><a href="77,72" id="srcline72">72</a></span><span class="line">                    intPoints(ctrVal).orientation = single(0);</span></span>
+<span class="srcline"><span class="lineno"><a href="77,73" id="srcline73">73</a></span><span class="line">                    end</span></span>
+<span class="srcline"><span class="lineno"><a href="77,74" id="srcline74">74</a></span><span class="line">                end</span></span>
+<span class="srcline"><span class="lineno"><a href="77,75" id="srcline75">75</a></span><span class="line">            end</span></span>
+<span class="srcline"><span class="lineno"><a href="77,76" id="srcline76">76</a></span><span class="line">        end</span></span>
+<span class="srcline"><span class="lineno"><a href="77,77" id="srcline77">77</a></span><span class="line">        </span></span>
+<span class="srcline"><span class="lineno"><a href="77,78" id="srcline78">78</a></span><span class="line">    end</span></span>
+<span class="srcline"><span class="lineno"><a href="77,79" id="srcline79">79</a></span><span class="line">    </span></span>
+<span class="srcline"><span class="lineno"><a href="77,80" id="srcline80">80</a></span><span class="line">end</span></span>
+<span class="srcline"><span class="lineno"><a href="77,81" id="srcline81">81</a></span><span class="line"></span></span>
+<span class="srcline"><span class="lineno"><a href="77,82" id="srcline82">82</a></span><span class="line">    <span class="comment">% Return the first 2000 interest points detected</span></span></span>
+<span class="srcline"><span class="lineno"><a href="77,83" id="srcline83">83</a></span><span class="line">    if ctr &lt; 2001</span></span>
+<span class="srcline"><span class="lineno"><a href="77,84" id="srcline84">84</a></span><span class="line">        intPoints = intPoints(1:(ctr-1));</span></span>
+<span class="srcline"><span class="lineno"><a href="77,85" id="srcline85">85</a></span><span class="line">    end</span></span>
+<span class="srcline"><span class="lineno"><a href="77,86" id="srcline86">86</a></span><span class="line"></span></span>
+<span class="srcline"><span class="lineno"><a href="77,87" id="srcline87">87</a></span><span class="line">end</span></span>
+</pre>
+</div>
+<pre class="code">
+<span class="srcline"><span class="lineno"><a href="77,88" id="srcline88">88</a></span><span class="line"></span></span>
+<span class="srcline"><span class="lineno"><a href="77,89" id="srcline89">89</a></span><span class="line"><span class="keyword">function</span> <span class="var type1" id="S48T44U459">resp</span> = getLaplacian(<span class="var type1" id="S49T9U462">obj_lapl</span>, <span class="var type1" id="S50T7U463">obj_width</span>, <span class="var type1" id="S51T7U464">row</span>, <span class="var type1" id="S52T7U465">column</span>, <span class="var type1" id="S53T7U466">src_width</span>)</span></span>
+<span class="srcline"><span class="lineno"><a href="77,90" id="srcline90">90</a></span><span class="line"></span></span>
+<span class="srcline"><span class="lineno"><a href="77,91" id="srcline91">91</a></span><span class="line"><span class="keyword">if</span> nargin &lt; 5</span></span>
+<span class="srcline"><span class="lineno"><a href="77,92" id="srcline92">92</a></span><span class="line">    <span class="var type0" id="S48T0U475">resp</span> = <span class="var type0" id="S49T0U477">obj_lapl</span>(<span class="var type0" id="S51T0U479">row</span> + 1, <span class="var type0" id="S52T0U482">column</span> + 1);</span></span>
+<span class="srcline"><span class="lineno"><a href="77,93" id="srcline93">93</a></span><span class="line"><span class="keyword">else</span></span></span>
+<span class="srcline"><span class="lineno"><a href="77,94" id="srcline94">94</a></span><span class="line">    <span class="mxinfo " id="T7:U7"><span class="var type1" id="S55T7U487">scale</span> = <span class="mxinfo " id="T7:U9">floor(<span class="mxinfo " id="T7:U10"><span class="var type1" id="S50T7U491">obj_width</span> / <span class="var type1" id="S53T7U492">src_width</span></span>)</span></span>;</span></span>
+<span class="srcline"><span class="lineno"><a href="77,95" id="srcline95">95</a></span><span class="line">    <span class="mxinfo " id="T44:U13"><span class="var type1" id="S48T44U495">resp</span> = <span class="mxinfo " id="T44:U15"><span class="var type1" id="S49T9U497">obj_lapl</span>(<span class="mxinfo " id="T7:U17">(<span class="mxinfo " id="T7:U18"><span class="var type1" id="S55T7U501">scale</span> * <span class="var type1" id="S51T7U502">row</span></span>) + <span class="mxinfo " id="T7:U21">1</span></span>, <span class="mxinfo " id="T7:U22">(<span class="mxinfo " id="T7:U23"><span class="var type1" id="S55T7U507">scale</span> * <span class="var type1" id="S52T7U508">column</span></span>) + <span class="mxinfo " id="T7:U26">1</span></span>)</span></span>;</span></span>
+<span class="srcline"><span class="lineno"><a href="77,96" id="srcline96">96</a></span><span class="line"><span class="keyword">end</span></span></span>
+<span class="srcline"><span class="lineno"><a href="77,97" id="srcline97">97</a></span><span class="line"></span></span>
+<span class="srcline"><span class="lineno"><a href="77,98" id="srcline98">98</a></span><span class="line"><span class="keyword">end</span></span></span>
+</pre>
+</body>
+</html>
