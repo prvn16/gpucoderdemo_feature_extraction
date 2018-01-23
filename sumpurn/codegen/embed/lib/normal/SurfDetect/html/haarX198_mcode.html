@@ -1,0 +1,161 @@
+<!-- saved from url=(0014)about:internet -->
+<html>
+<body>
+<script src="resources/eml_report_loadable_data.js"></script>
+<div class="dead">
+<pre class="code">
+<span class="srcline"><span class="lineno"><a href="80,1" id="srcline1">  1</a></span><span class="line">function intPoints = OrientationCalc(intImage, intPoints) <span class="comment">%#codegen</span></span></span>
+<span class="srcline"><span class="lineno"><a href="80,2" id="srcline2">  2</a></span><span class="line"></span></span>
+<span class="srcline"><span class="lineno"><a href="80,3" id="srcline3">  3</a></span><span class="line"><span class="comment">%   Copyright 2017 The MathWorks, Inc.</span></span></span>
+<span class="srcline"><span class="lineno"><a href="80,4" id="srcline4">  4</a></span><span class="line"><span class="comment">%</span></span></span>
+<span class="srcline"><span class="lineno"><a href="80,5" id="srcline5">  5</a></span><span class="line"><span class="comment">% This function computes orientation needed for rotation invariance for</span></span></span>
+<span class="srcline"><span class="lineno"><a href="80,6" id="srcline6">  6</a></span><span class="line"><span class="comment">% each of the extracted interest point. The orientation is computed by</span></span></span>
+<span class="srcline"><span class="lineno"><a href="80,7" id="srcline7">  7</a></span><span class="line"><span class="comment">% convolution with Haar wavelets of size 4s for pixels that are within a</span></span></span>
+<span class="srcline"><span class="lineno"><a href="80,8" id="srcline8">  8</a></span><span class="line"><span class="comment">% radius of 6s where 's' is the scale at which the interest point was detected</span></span></span>
+<span class="srcline"><span class="lineno"><a href="80,9" id="srcline9">  9</a></span><span class="line"></span></span>
+<span class="srcline"><span class="lineno"><a href="80,10" id="srcline10"> 10</a></span><span class="line">coder.gpu.kernelfun();</span></span>
+<span class="srcline"><span class="lineno"><a href="80,11" id="srcline11"> 11</a></span><span class="line"></span></span>
+<span class="srcline"><span class="lineno"><a href="80,12" id="srcline12"> 12</a></span><span class="line">numPoints = length(intPoints);</span></span>
+<span class="srcline"><span class="lineno"><a href="80,13" id="srcline13"> 13</a></span><span class="line"></span></span>
+<span class="srcline"><span class="lineno"><a href="80,14" id="srcline14"> 14</a></span><span class="line">for i = 1:numPoints</span></span>
+<span class="srcline"><span class="lineno"><a href="80,15" id="srcline15"> 15</a></span><span class="line">    ipt = intPoints(i);</span></span>
+<span class="srcline"><span class="lineno"><a href="80,16" id="srcline16"> 16</a></span><span class="line">    intPoints(i).orientation = getOrientation(intImage, ipt);</span></span>
+<span class="srcline"><span class="lineno"><a href="80,17" id="srcline17"> 17</a></span><span class="line">end</span></span>
+<span class="srcline"><span class="lineno"><a href="80,18" id="srcline18"> 18</a></span><span class="line"></span></span>
+<span class="srcline"><span class="lineno"><a href="80,19" id="srcline19"> 19</a></span><span class="line">end</span></span>
+<span class="srcline"><span class="lineno"><a href="80,20" id="srcline20"> 20</a></span><span class="line"></span></span>
+<span class="srcline"><span class="lineno"><a href="80,21" id="srcline21"> 21</a></span><span class="line">function orient = getOrientation(intImage, obj)</span></span>
+<span class="srcline"><span class="lineno"><a href="80,22" id="srcline22"> 22</a></span><span class="line"></span></span>
+<span class="srcline"><span class="lineno"><a href="80,23" id="srcline23"> 23</a></span><span class="line"><span class="comment">% Calculate orientation for a given interest point</span></span></span>
+<span class="srcline"><span class="lineno"><a href="80,24" id="srcline24"> 24</a></span><span class="line">fRound = @(value) double(floor(value+single(0.5)));</span></span>
+<span class="srcline"><span class="lineno"><a href="80,25" id="srcline25"> 25</a></span><span class="line">orient = single(0);</span></span>
+<span class="srcline"><span class="lineno"><a href="80,26" id="srcline26"> 26</a></span><span class="line"></span></span>
+<span class="srcline"><span class="lineno"><a href="80,27" id="srcline27"> 27</a></span><span class="line">gauss25 = ...</span></span>
+<span class="srcline"><span class="lineno"><a href="80,28" id="srcline28"> 28</a></span><span class="line">    [ 0.02546481,	0.02350698,	0.01849125,	0.01239505,	0.00708017,	0.00344629,	0.00142946;</span></span>
+<span class="srcline"><span class="lineno"><a href="80,29" id="srcline29"> 29</a></span><span class="line">    0.02350698,	0.02169968,	0.01706957,	0.01144208,	0.00653582,	0.00318132,	0.00131956;</span></span>
+<span class="srcline"><span class="lineno"><a href="80,30" id="srcline30"> 30</a></span><span class="line">    0.01849125,	0.01706957,	0.01342740,	0.00900066,	0.00514126,	0.00250252,	0.00103800;</span></span>
+<span class="srcline"><span class="lineno"><a href="80,31" id="srcline31"> 31</a></span><span class="line">    0.01239505,	0.01144208,	0.00900066,	0.00603332,	0.00344629,	0.00167749,	0.00069579;</span></span>
+<span class="srcline"><span class="lineno"><a href="80,32" id="srcline32"> 32</a></span><span class="line">    0.00708017,	0.00653582,	0.00514126,	0.00344629,	0.00196855,	0.00095820,	0.00039744;</span></span>
+<span class="srcline"><span class="lineno"><a href="80,33" id="srcline33"> 33</a></span><span class="line">    0.00344629,	0.00318132,	0.00250252,	0.00167749,	0.00095820,	0.00046640,	0.00019346;</span></span>
+<span class="srcline"><span class="lineno"><a href="80,34" id="srcline34"> 34</a></span><span class="line">    0.00142946,	0.00131956,	0.00103800,	0.00069579,	0.00039744,	0.00019346,	0.00008024];</span></span>
+<span class="srcline"><span class="lineno"><a href="80,35" id="srcline35"> 35</a></span><span class="line"></span></span>
+<span class="srcline"><span class="lineno"><a href="80,36" id="srcline36"> 36</a></span><span class="line">or_s = fRound(obj.scale);</span></span>
+<span class="srcline"><span class="lineno"><a href="80,37" id="srcline37"> 37</a></span><span class="line">or_r = fRound(obj.y);</span></span>
+<span class="srcline"><span class="lineno"><a href="80,38" id="srcline38"> 38</a></span><span class="line">or_c = fRound(obj.x);</span></span>
+<span class="srcline"><span class="lineno"><a href="80,39" id="srcline39"> 39</a></span><span class="line"></span></span>
+<span class="srcline"><span class="lineno"><a href="80,40" id="srcline40"> 40</a></span><span class="line">id = [6,5,4,3,2,1,0,1,2,3,4,5,6];</span></span>
+<span class="srcline"><span class="lineno"><a href="80,41" id="srcline41"> 41</a></span><span class="line">idx = 1;</span></span>
+<span class="srcline"><span class="lineno"><a href="80,42" id="srcline42"> 42</a></span><span class="line"></span></span>
+<span class="srcline"><span class="lineno"><a href="80,43" id="srcline43"> 43</a></span><span class="line">resX = zeros(1,109);</span></span>
+<span class="srcline"><span class="lineno"><a href="80,44" id="srcline44"> 44</a></span><span class="line">resY = zeros(1,109);</span></span>
+<span class="srcline"><span class="lineno"><a href="80,45" id="srcline45"> 45</a></span><span class="line">Ang  = zeros(1,109);</span></span>
+<span class="srcline"><span class="lineno"><a href="80,46" id="srcline46"> 46</a></span><span class="line"></span></span>
+<span class="srcline"><span class="lineno"><a href="80,47" id="srcline47"> 47</a></span><span class="line"><span class="comment">% calculate haar wavelet responses for points within radius of 6*scale</span></span></span>
+<span class="srcline"><span class="lineno"><a href="80,48" id="srcline48"> 48</a></span><span class="line">for ii = -6:6</span></span>
+<span class="srcline"><span class="lineno"><a href="80,49" id="srcline49"> 49</a></span><span class="line">    for jj = -6:6</span></span>
+<span class="srcline"><span class="lineno"><a href="80,50" id="srcline50"> 50</a></span><span class="line">        if(ii*ii + jj*jj &lt; 36)</span></span>
+<span class="srcline"><span class="lineno"><a href="80,51" id="srcline51"> 51</a></span><span class="line">            gauss = single(gauss25(id(ii+7)+1,id(jj+7)+1));</span></span>
+<span class="srcline"><span class="lineno"><a href="80,52" id="srcline52"> 52</a></span><span class="line">            resX(idx) = gauss * haarX(intImage, or_r + jj * or_s, or_c +ii * or_s, 4 * or_s);</span></span>
+<span class="srcline"><span class="lineno"><a href="80,53" id="srcline53"> 53</a></span><span class="line">            resY(idx) = gauss * haarY(intImage, or_r + jj * or_s, or_c +ii * or_s, 4 * or_s);</span></span>
+<span class="srcline"><span class="lineno"><a href="80,54" id="srcline54"> 54</a></span><span class="line">            Ang(idx) = getAngle(resX(idx), resY(idx));</span></span>
+<span class="srcline"><span class="lineno"><a href="80,55" id="srcline55"> 55</a></span><span class="line">            idx = idx + 1;</span></span>
+<span class="srcline"><span class="lineno"><a href="80,56" id="srcline56"> 56</a></span><span class="line">        end</span></span>
+<span class="srcline"><span class="lineno"><a href="80,57" id="srcline57"> 57</a></span><span class="line">    end</span></span>
+<span class="srcline"><span class="lineno"><a href="80,58" id="srcline58"> 58</a></span><span class="line">end</span></span>
+<span class="srcline"><span class="lineno"><a href="80,59" id="srcline59"> 59</a></span><span class="line"></span></span>
+<span class="srcline"><span class="lineno"><a href="80,60" id="srcline60"> 60</a></span><span class="line"><span class="comment">% Calculate the dominant direction by rotating a pi/3 sector window around interest point</span></span></span>
+<span class="srcline"><span class="lineno"><a href="80,61" id="srcline61"> 61</a></span><span class="line">len = length(Ang);</span></span>
+<span class="srcline"><span class="lineno"><a href="80,62" id="srcline62"> 62</a></span><span class="line">ang1 = single(0);</span></span>
+<span class="srcline"><span class="lineno"><a href="80,63" id="srcline63"> 63</a></span><span class="line">max = single(0);</span></span>
+<span class="srcline"><span class="lineno"><a href="80,64" id="srcline64"> 64</a></span><span class="line"></span></span>
+<span class="srcline"><span class="lineno"><a href="80,65" id="srcline65"> 65</a></span><span class="line">while ang1 &lt; 2 * pi</span></span>
+<span class="srcline"><span class="lineno"><a href="80,66" id="srcline66"> 66</a></span><span class="line">    if (ang1 + pi/single(3.0) &gt; 2 * pi)</span></span>
+<span class="srcline"><span class="lineno"><a href="80,67" id="srcline67"> 67</a></span><span class="line">        ang2 = ang1 - single(5.0) * pi/single(3.0);</span></span>
+<span class="srcline"><span class="lineno"><a href="80,68" id="srcline68"> 68</a></span><span class="line">    else</span></span>
+<span class="srcline"><span class="lineno"><a href="80,69" id="srcline69"> 69</a></span><span class="line">        ang2 = ang1 + pi/single(3.0);</span></span>
+<span class="srcline"><span class="lineno"><a href="80,70" id="srcline70"> 70</a></span><span class="line">    end</span></span>
+<span class="srcline"><span class="lineno"><a href="80,71" id="srcline71"> 71</a></span><span class="line">    </span></span>
+<span class="srcline"><span class="lineno"><a href="80,72" id="srcline72"> 72</a></span><span class="line">    sumX = single(0);</span></span>
+<span class="srcline"><span class="lineno"><a href="80,73" id="srcline73"> 73</a></span><span class="line">    sumY = single(0);</span></span>
+<span class="srcline"><span class="lineno"><a href="80,74" id="srcline74"> 74</a></span><span class="line">    </span></span>
+<span class="srcline"><span class="lineno"><a href="80,75" id="srcline75"> 75</a></span><span class="line">    for k = 1:len</span></span>
+<span class="srcline"><span class="lineno"><a href="80,76" id="srcline76"> 76</a></span><span class="line">        <span class="comment">%  get angle of the interest point</span></span></span>
+<span class="srcline"><span class="lineno"><a href="80,77" id="srcline77"> 77</a></span><span class="line">        ang = Ang(k);</span></span>
+<span class="srcline"><span class="lineno"><a href="80,78" id="srcline78"> 78</a></span><span class="line">        </span></span>
+<span class="srcline"><span class="lineno"><a href="80,79" id="srcline79"> 79</a></span><span class="line">        <span class="comment">% determine whether the point is within the window</span></span></span>
+<span class="srcline"><span class="lineno"><a href="80,80" id="srcline80"> 80</a></span><span class="line">        if (ang1 &lt; ang2 &amp;&amp; ang1 &lt; ang &amp;&amp; ang &lt; ang2)</span></span>
+<span class="srcline"><span class="lineno"><a href="80,81" id="srcline81"> 81</a></span><span class="line">            sumX = sumX + resX(k);</span></span>
+<span class="srcline"><span class="lineno"><a href="80,82" id="srcline82"> 82</a></span><span class="line">            sumY = sumY + resY(k);</span></span>
+<span class="srcline"><span class="lineno"><a href="80,83" id="srcline83"> 83</a></span><span class="line">        else</span></span>
+<span class="srcline"><span class="lineno"><a href="80,84" id="srcline84"> 84</a></span><span class="line">            if (ang2 &lt; ang1 &amp;&amp; ...</span></span>
+<span class="srcline"><span class="lineno"><a href="80,85" id="srcline85"> 85</a></span><span class="line">                    ((ang &gt; 0 &amp;&amp; ang &lt; ang2) || (ang &gt; ang1 &amp;&amp; ang &lt; 2*pi) ))</span></span>
+<span class="srcline"><span class="lineno"><a href="80,86" id="srcline86"> 86</a></span><span class="line">                sumX = sumX + resX(k);</span></span>
+<span class="srcline"><span class="lineno"><a href="80,87" id="srcline87"> 87</a></span><span class="line">                sumY = sumY + resY(k);</span></span>
+<span class="srcline"><span class="lineno"><a href="80,88" id="srcline88"> 88</a></span><span class="line">            end</span></span>
+<span class="srcline"><span class="lineno"><a href="80,89" id="srcline89"> 89</a></span><span class="line">        end</span></span>
+<span class="srcline"><span class="lineno"><a href="80,90" id="srcline90"> 90</a></span><span class="line">        </span></span>
+<span class="srcline"><span class="lineno"><a href="80,91" id="srcline91"> 91</a></span><span class="line">    end</span></span>
+<span class="srcline"><span class="lineno"><a href="80,92" id="srcline92"> 92</a></span><span class="line">    </span></span>
+<span class="srcline"><span class="lineno"><a href="80,93" id="srcline93"> 93</a></span><span class="line">    </span></span>
+<span class="srcline"><span class="lineno"><a href="80,94" id="srcline94"> 94</a></span><span class="line">    <span class="comment">% if the vector produced from this window is longer than all previous vectors then this forms the new dominant direction</span></span></span>
+<span class="srcline"><span class="lineno"><a href="80,95" id="srcline95"> 95</a></span><span class="line">    if (sumX*sumX + sumY*sumY &gt; max)</span></span>
+<span class="srcline"><span class="lineno"><a href="80,96" id="srcline96"> 96</a></span><span class="line">        <span class="comment">% store largest orientation</span></span></span>
+<span class="srcline"><span class="lineno"><a href="80,97" id="srcline97"> 97</a></span><span class="line">        max = sumX*sumX + sumY*sumY;</span></span>
+<span class="srcline"><span class="lineno"><a href="80,98" id="srcline98"> 98</a></span><span class="line">        orient = getAngle(sumX,sumY);</span></span>
+<span class="srcline"><span class="lineno"><a href="80,99" id="srcline99"> 99</a></span><span class="line">    end</span></span>
+<span class="srcline"><span class="lineno"><a href="80,100" id="srcline100">100</a></span><span class="line">    </span></span>
+<span class="srcline"><span class="lineno"><a href="80,101" id="srcline101">101</a></span><span class="line">    ang1 = ang1 + single(0.15);</span></span>
+<span class="srcline"><span class="lineno"><a href="80,102" id="srcline102">102</a></span><span class="line">end</span></span>
+<span class="srcline"><span class="lineno"><a href="80,103" id="srcline103">103</a></span><span class="line"></span></span>
+<span class="srcline"><span class="lineno"><a href="80,104" id="srcline104">104</a></span><span class="line">end</span></span>
+</pre>
+</div>
+<pre class="code">
+<span class="srcline"><span class="lineno"><a href="80,105" id="srcline105">105</a></span><span class="line"></span></span>
+<span class="srcline"><span class="lineno"><a href="80,106" id="srcline106">106</a></span><span class="line"></span></span>
+<span class="srcline"><span class="lineno"><a href="80,107" id="srcline107">107</a></span><span class="line"><span class="keyword">function</span> <span class="var type1" id="S45T2U516">res</span> = haarX(<span class="var type1" id="S46T5U519">intImage</span>, <span class="var type1" id="S47T7U520">row</span>,<span class="var type1" id="S48T7U521">column</span>,<span class="var type1" id="S49T7U522">s</span>)</span></span>
+<span class="srcline"><span class="lineno"><a href="80,108" id="srcline108">108</a></span><span class="line"><span class="mxinfo " id="T2:U6"><span class="var type1" id="S45T2U525">res</span> = <span class="mxinfo " id="T2:U8"><span class="mxinfo " id="T2:U9"><span class="fcn" id="F113N2:B528">BoxIntegral</span>(<span class="var type1" id="S46T5U529">intImage</span>, <span class="mxinfo " id="T7:U11"><span class="var type1" id="S47T7U531">row</span>-<span class="mxinfo " id="T7:U13"><span class="var type1" id="S49T7U533">s</span>/<span class="mxinfo " id="T7:U15">2</span></span></span>, <span class="var type1" id="S48T7U535">column</span>, <span class="var type1" id="S49T7U536">s</span>, <span class="mxinfo " id="T7:U18"><span class="var type1" id="S49T7U538">s</span>/<span class="mxinfo " id="T7:U20">2</span></span>)</span> <span class="keyword">...</span></span></span>
+<span class="srcline"><span class="lineno"><a href="80,109" id="srcline109">109</a></span><span class="line">    -<span class="mxinfo " id="T2:U21">1 * <span class="mxinfo " id="T2:U22"><span class="fcn" id="F113N2:B543">BoxIntegral</span>(<span class="var type1" id="S46T5U544">intImage</span>, <span class="mxinfo " id="T7:U24"><span class="var type1" id="S47T7U546">row</span>-<span class="mxinfo " id="T7:U26"><span class="var type1" id="S49T7U548">s</span>/<span class="mxinfo " id="T7:U28">2</span></span></span>, <span class="mxinfo " id="T7:U29"><span class="var type1" id="S48T7U551">column</span>-<span class="mxinfo " id="T7:U31"><span class="var type1" id="S49T7U553">s</span>/<span class="mxinfo " id="T7:U33">2</span></span></span>, <span class="var type1" id="S49T7U555">s</span>, <span class="mxinfo " id="T7:U35"><span class="var type1" id="S49T7U557">s</span>/<span class="mxinfo " id="T7:U37">2</span></span>)</span></span></span></span>;</span></span>
+<span class="srcline"><span class="lineno"><a href="80,110" id="srcline110">110</a></span><span class="line"><span class="keyword">end</span></span></span>
+<span class="srcline"><span class="lineno"><a href="80,111" id="srcline111">111</a></span><span class="line"></span></span>
+</pre>
+<div class="dead">
+<pre class="code">
+<span class="srcline"><span class="lineno"><a href="80,112" id="srcline112">112</a></span><span class="line">function res = haarY(intImage, row,column,s)</span></span>
+<span class="srcline"><span class="lineno"><a href="80,113" id="srcline113">113</a></span><span class="line">res = BoxIntegral(intImage, row, column-s/2, s/2, s) ...</span></span>
+<span class="srcline"><span class="lineno"><a href="80,114" id="srcline114">114</a></span><span class="line">    -1 * BoxIntegral(intImage, row-s/2, column-s/2, s/2, s);</span></span>
+<span class="srcline"><span class="lineno"><a href="80,115" id="srcline115">115</a></span><span class="line">end</span></span>
+<span class="srcline"><span class="lineno"><a href="80,116" id="srcline116">116</a></span><span class="line"></span></span>
+<span class="srcline"><span class="lineno"><a href="80,117" id="srcline117">117</a></span><span class="line">function result = getAngle(X,Y)</span></span>
+<span class="srcline"><span class="lineno"><a href="80,118" id="srcline118">118</a></span><span class="line">if(X &gt; 0 &amp;&amp; Y &gt;= 0)</span></span>
+<span class="srcline"><span class="lineno"><a href="80,119" id="srcline119">119</a></span><span class="line">    result =  atan(Y/X);</span></span>
+<span class="srcline"><span class="lineno"><a href="80,120" id="srcline120">120</a></span><span class="line">    result = single(result);</span></span>
+<span class="srcline"><span class="lineno"><a href="80,121" id="srcline121">121</a></span><span class="line">    return;</span></span>
+<span class="srcline"><span class="lineno"><a href="80,122" id="srcline122">122</a></span><span class="line">end</span></span>
+<span class="srcline"><span class="lineno"><a href="80,123" id="srcline123">123</a></span><span class="line"></span></span>
+<span class="srcline"><span class="lineno"><a href="80,124" id="srcline124">124</a></span><span class="line">if(X &lt; 0 &amp;&amp; Y &gt;= 0)</span></span>
+<span class="srcline"><span class="lineno"><a href="80,125" id="srcline125">125</a></span><span class="line">    result =  pi - atan(-Y/X);</span></span>
+<span class="srcline"><span class="lineno"><a href="80,126" id="srcline126">126</a></span><span class="line">    result = single(result);</span></span>
+<span class="srcline"><span class="lineno"><a href="80,127" id="srcline127">127</a></span><span class="line">    return;</span></span>
+<span class="srcline"><span class="lineno"><a href="80,128" id="srcline128">128</a></span><span class="line">end</span></span>
+<span class="srcline"><span class="lineno"><a href="80,129" id="srcline129">129</a></span><span class="line"></span></span>
+<span class="srcline"><span class="lineno"><a href="80,130" id="srcline130">130</a></span><span class="line">if(X &lt; 0 &amp;&amp; Y &lt; 0)</span></span>
+<span class="srcline"><span class="lineno"><a href="80,131" id="srcline131">131</a></span><span class="line">    result =  pi + atan(Y/X);</span></span>
+<span class="srcline"><span class="lineno"><a href="80,132" id="srcline132">132</a></span><span class="line">    result = single(result);</span></span>
+<span class="srcline"><span class="lineno"><a href="80,133" id="srcline133">133</a></span><span class="line">    return;</span></span>
+<span class="srcline"><span class="lineno"><a href="80,134" id="srcline134">134</a></span><span class="line">end</span></span>
+<span class="srcline"><span class="lineno"><a href="80,135" id="srcline135">135</a></span><span class="line"></span></span>
+<span class="srcline"><span class="lineno"><a href="80,136" id="srcline136">136</a></span><span class="line">if(X &gt; 0 &amp;&amp; Y &lt; 0)</span></span>
+<span class="srcline"><span class="lineno"><a href="80,137" id="srcline137">137</a></span><span class="line">    result =  2*pi - atan(-Y/X);</span></span>
+<span class="srcline"><span class="lineno"><a href="80,138" id="srcline138">138</a></span><span class="line">    result = single(result);</span></span>
+<span class="srcline"><span class="lineno"><a href="80,139" id="srcline139">139</a></span><span class="line">    return;</span></span>
+<span class="srcline"><span class="lineno"><a href="80,140" id="srcline140">140</a></span><span class="line">end</span></span>
+<span class="srcline"><span class="lineno"><a href="80,141" id="srcline141">141</a></span><span class="line"></span></span>
+<span class="srcline"><span class="lineno"><a href="80,142" id="srcline142">142</a></span><span class="line">result = single(0);</span></span>
+<span class="srcline"><span class="lineno"><a href="80,143" id="srcline143">143</a></span><span class="line"></span></span>
+<span class="srcline"><span class="lineno"><a href="80,144" id="srcline144">144</a></span><span class="line">end</span></span>
+<span class="srcline"><span class="lineno"><a href="80,145" id="srcline145">145</a></span><span class="line"> </span></span>
+</pre>
+</div>
+</body>
+</html>

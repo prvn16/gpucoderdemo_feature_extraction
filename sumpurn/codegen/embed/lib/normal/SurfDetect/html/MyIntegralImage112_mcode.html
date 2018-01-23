@@ -1,0 +1,43 @@
+<!-- saved from url=(0014)about:internet -->
+<html>
+<body>
+<script src="resources/eml_report_loadable_data.js"></script>
+<pre class="code">
+<span class="srcline"><span class="lineno"><a href="60,1" id="srcline1"> 1</a></span><span class="line"><span class="keyword">function</span> <span class="var type1" id="S2T5U3">intImage</span> = MyIntegralImage(<span class="var type1" id="S3T5U6">grayImage</span>) <span class="comment">%#codegen</span></span></span>
+<span class="srcline"><span class="lineno"><a href="60,2" id="srcline2"> 2</a></span><span class="line"></span></span>
+<span class="srcline"><span class="lineno"><a href="60,3" id="srcline3"> 3</a></span><span class="line"><span class="comment">%   Copyright 2017 The MathWorks, Inc.</span></span></span>
+<span class="srcline"><span class="lineno"><a href="60,4" id="srcline4"> 4</a></span><span class="line"><span class="comment">%</span></span></span>
+<span class="srcline"><span class="lineno"><a href="60,5" id="srcline5"> 5</a></span><span class="line"><span class="comment">% The integral image representation for the 32-bit floating point grayscale</span></span></span>
+<span class="srcline"><span class="lineno"><a href="60,6" id="srcline6"> 6</a></span><span class="line"><span class="comment">% image is computed in two steps. First, the integral sum is computed</span></span></span>
+<span class="srcline"><span class="lineno"><a href="60,7" id="srcline7"> 7</a></span><span class="line"><span class="comment">% along the rows and next, the integral sum is computed along the columns</span></span></span>
+<span class="srcline"><span class="lineno"><a href="60,8" id="srcline8"> 8</a></span><span class="line"></span></span>
+<span class="srcline"><span class="lineno"><a href="60,9" id="srcline9"> 9</a></span><span class="line">coder.gpu.kernelfun();</span></span>
+<span class="srcline"><span class="lineno"><a href="60,10" id="srcline10">10</a></span><span class="line"></span></span>
+<span class="srcline"><span class="lineno"><a href="60,11" id="srcline11">11</a></span><span class="line"><span class="mxinfo " id="T44:U3"><span class="var type1" id="S5T44U16">dims</span> = <span class="mxinfo " id="T44:U5">size(<span class="var type1" id="S3T5U19">grayImage</span>)</span></span>;</span></span>
+<span class="srcline"><span class="lineno"><a href="60,12" id="srcline12">12</a></span><span class="line"> <span class="mxinfo " id="T5:U7"><span class="var type1" id="S2T5U22">intImage</span> = coder.nullcopy(zeros(<span class="mxinfo " id="T7:U9"><span class="var type1" id="S5T44U30">dims</span>(1)</span>,<span class="mxinfo " id="T7:U11"><span class="var type1" id="S5T44U33">dims</span>(2)</span>,<span class="string">'single'</span>))</span>;</span></span>
+<span class="srcline"><span class="lineno"><a href="60,13" id="srcline13">13</a></span><span class="line"></span></span>
+<span class="srcline"><span class="lineno"><a href="60,14" id="srcline14">14</a></span><span class="line"> <span class="comment">% Calculate integral sum along rows</span></span></span>
+<span class="srcline"><span class="lineno"><a href="60,15" id="srcline15">15</a></span><span class="line"> coder.gpu.kernel();</span></span>
+<span class="srcline"><span class="lineno"><a href="60,16" id="srcline16">16</a></span><span class="line"> <span class="keyword">for</span> <span class="var type1" id="S8T7U45">i</span>=<span class="mxinfo " id="T7:U14">1</span>:<span class="var type1" id="S5T44U49">dims</span>(1)</span></span>
+<span class="srcline"><span class="lineno"><a href="60,17" id="srcline17">17</a></span><span class="line">     <span class="mxinfo " id="T2:U16"><span class="var type1" id="S9T2U53">sum</span> = <span class="mxinfo " id="T2:U18">single(<span class="mxinfo " id="T7:U19">0</span>)</span></span>;</span></span>
+<span class="srcline"><span class="lineno"><a href="60,18" id="srcline18">18</a></span><span class="line">     <span class="keyword">for</span> <span class="var type1" id="S11T7U59">j</span>=<span class="mxinfo " id="T7:U21">1</span>:<span class="var type1" id="S5T44U63">dims</span>(2)</span></span>
+<span class="srcline"><span class="lineno"><a href="60,19" id="srcline19">19</a></span><span class="line">         <span class="mxinfo " id="T2:U23"><span class="var type1" id="S9T2U67">sum</span> = <span class="mxinfo " id="T2:U25"><span class="var type1" id="S9T2U69">sum</span> + <span class="mxinfo " id="T2:U27"><span class="var type1" id="S3T5U71">grayImage</span>(<span class="var type1" id="S8T7U72">i</span>,<span class="var type1" id="S11T7U73">j</span>)</span></span></span>;</span></span>
+<span class="srcline"><span class="lineno"><a href="60,20" id="srcline20">20</a></span><span class="line">         <span class="mxinfo " id="T2:U31"><span class="mxinfo " id="T2:U32"><span class="var type1" id="S2T5U77">intImage</span>(<span class="var type1" id="S8T7U78">i</span>,<span class="var type1" id="S11T7U79">j</span>)</span> = <span class="var type1" id="S9T2U80">sum</span></span>;</span></span>
+<span class="srcline"><span class="lineno"><a href="60,21" id="srcline21">21</a></span><span class="line">     <span class="keyword">end</span></span></span>
+<span class="srcline"><span class="lineno"><a href="60,22" id="srcline22">22</a></span><span class="line"> <span class="keyword">end</span></span></span>
+<span class="srcline"><span class="lineno"><a href="60,23" id="srcline23">23</a></span><span class="line"> </span></span>
+<span class="srcline"><span class="lineno"><a href="60,24" id="srcline24">24</a></span><span class="line"> <span class="comment">% Calculate integral sum along cols</span></span></span>
+<span class="srcline"><span class="lineno"><a href="60,25" id="srcline25">25</a></span><span class="line"> coder.gpu.kernel();</span></span>
+<span class="srcline"><span class="lineno"><a href="60,26" id="srcline26">26</a></span><span class="line"> <span class="keyword">for</span> <span class="var type1" id="S8T7U90">i</span>=<span class="mxinfo " id="T7:U38">1</span>:<span class="var type1" id="S5T44U94">dims</span>(2)</span></span>
+<span class="srcline"><span class="lineno"><a href="60,27" id="srcline27">27</a></span><span class="line">     <span class="mxinfo " id="T2:U40"><span class="var type1" id="S9T2U98">sum</span> = <span class="mxinfo " id="T2:U42">single(<span class="mxinfo " id="T7:U43">0</span>)</span></span>;</span></span>
+<span class="srcline"><span class="lineno"><a href="60,28" id="srcline28">28</a></span><span class="line">     <span class="keyword">for</span> <span class="var type1" id="S11T7U104">j</span>=<span class="mxinfo " id="T7:U45">1</span>:<span class="var type1" id="S5T44U108">dims</span>(1)        </span></span>
+<span class="srcline"><span class="lineno"><a href="60,29" id="srcline29">29</a></span><span class="line">         <span class="mxinfo " id="T2:U47"><span class="message info" id="M12F112C"><span class="var type1" id="S9T2U112">sum</span> = <span class="mxinfo " id="T2:U49"><span class="var type1" id="S9T2U114">sum</span> + <span class="mxinfo " id="T2:U51"><span class="var type1" id="S2T5U116">intImage</span>(<span class="var type1" id="S11T7U117">j</span>,<span class="var type1" id="S8T7U118">i</span>)</span></span></span></span>;</span></span>
+<span class="srcline"><span class="lineno"><a href="60,30" id="srcline30">30</a></span><span class="line">         <span class="mxinfo " id="T2:U55"><span class="message info" id="M13F112C"><span class="mxinfo " id="T2:U56"><span class="var type1" id="S2T5U122">intImage</span>(<span class="var type1" id="S11T7U123">j</span>,<span class="var type1" id="S8T7U124">i</span>)</span> = <span class="var type1" id="S9T2U125">sum</span></span></span>;</span></span>
+<span class="srcline"><span class="lineno"><a href="60,31" id="srcline31">31</a></span><span class="line">     <span class="keyword">end</span></span></span>
+<span class="srcline"><span class="lineno"><a href="60,32" id="srcline32">32</a></span><span class="line"> <span class="keyword">end</span></span></span>
+<span class="srcline"><span class="lineno"><a href="60,33" id="srcline33">33</a></span><span class="line"> </span></span>
+<span class="srcline"><span class="lineno"><a href="60,34" id="srcline34">34</a></span><span class="line"><span class="keyword">end</span></span></span>
+<span class="srcline"><span class="lineno"><a href="60,35" id="srcline35">35</a></span><span class="line"></span></span>
+</pre>
+</body>
+</html>

@@ -1,0 +1,56 @@
+<!-- saved from url=(0014)about:internet -->
+<html>
+<body>
+<script src="resources/eml_report_loadable_data.js"></script>
+<pre class="code">
+<span class="srcline"><span class="lineno"><a href="1,1" id="srcline1"> 1</a></span><span class="line"><span class="keyword">function</span> <span class="var type1" id="S2T1U3">intPoints</span> = SurfDetect(<span class="var type1" id="S3T4U6">inputImage</span>) <span class="comment">%#codegen</span></span></span>
+<span class="srcline"><span class="lineno"><a href="1,2" id="srcline2"> 2</a></span><span class="line"></span></span>
+<span class="srcline"><span class="lineno"><a href="1,3" id="srcline3"> 3</a></span><span class="line"><span class="comment">%                   Copyright 2017 The MathWorks, Inc.</span></span></span>
+<span class="srcline"><span class="lineno"><a href="1,4" id="srcline4"> 4</a></span><span class="line"><span class="comment">%</span></span></span>
+<span class="srcline"><span class="lineno"><a href="1,5" id="srcline5"> 5</a></span><span class="line"><span class="comment">%                   FEATURE EXTRACTION USING SURF</span></span></span>
+<span class="srcline"><span class="lineno"><a href="1,6" id="srcline6"> 6</a></span><span class="line"><span class="comment">% </span></span></span>
+<span class="srcline"><span class="lineno"><a href="1,7" id="srcline7"> 7</a></span><span class="line"><span class="comment">% DESCRIPTION:</span></span></span>
+<span class="srcline"><span class="lineno"><a href="1,8" id="srcline8"> 8</a></span><span class="line"><span class="comment">% This code performs feature extraction, which is the first part of the SURF </span></span></span>
+<span class="srcline"><span class="lineno"><a href="1,9" id="srcline9"> 9</a></span><span class="line"><span class="comment">% (Speeded-Up Robust Features) algorithm for object recognition. </span></span></span>
+<span class="srcline"><span class="lineno"><a href="1,10" id="srcline10">10</a></span><span class="line"><span class="comment">%</span></span></span>
+<span class="srcline"><span class="lineno"><a href="1,11" id="srcline11">11</a></span><span class="line"><span class="comment">% INPUT:  The input image provided should be an 8-bit RGB or 8-bit grayscale image. </span></span></span>
+<span class="srcline"><span class="lineno"><a href="1,12" id="srcline12">12</a></span><span class="line"><span class="comment">% OUTPUT: The output of this code is an array of extracted interest points. These </span></span></span>
+<span class="srcline"><span class="lineno"><a href="1,13" id="srcline13">13</a></span><span class="line"><span class="comment">%         interest points are also depicted over the input image in a figure window.</span></span></span>
+<span class="srcline"><span class="lineno"><a href="1,14" id="srcline14">14</a></span><span class="line"><span class="comment">%</span></span></span>
+<span class="srcline"><span class="lineno"><a href="1,15" id="srcline15">15</a></span><span class="line"><span class="comment">% REFERENCES:</span></span></span>
+<span class="srcline"><span class="lineno"><a href="1,16" id="srcline16">16</a></span><span class="line"><span class="comment">% 1. SURF: Speeded-Up Robust Features by Herbert Bay, Tinne Tuytelaars and Luc Van Gool</span></span></span>
+<span class="srcline"><span class="lineno"><a href="1,17" id="srcline17">17</a></span><span class="line"><span class="comment">% 2. Notes on the OpenSURF Library by Christopher Evans</span></span></span>
+<span class="srcline"><span class="lineno"><a href="1,18" id="srcline18">18</a></span><span class="line"></span></span>
+<span class="srcline"><span class="lineno"><a href="1,19" id="srcline19">19</a></span><span class="line">coder.gpu.kernelfun();</span></span>
+<span class="srcline"><span class="lineno"><a href="1,20" id="srcline20">20</a></span><span class="line"></span></span>
+<span class="srcline"><span class="lineno"><a href="1,21" id="srcline21">21</a></span><span class="line"><span class="comment">% Convert the input image to 32-bit floating point grayscale image</span></span></span>
+<span class="srcline"><span class="lineno"><a href="1,22" id="srcline22">22</a></span><span class="line"><span class="mxinfo " id="T5:U3"><span class="var type1" id="S5T5U16">grayImage</span> = <span class="mxinfo " id="T5:U5"><span class="fcn" id="F109N3:B18">Convert32bitFPGray</span>(<span class="var type1" id="S3T4U19">inputImage</span>)</span></span>;</span></span>
+<span class="srcline"><span class="lineno"><a href="1,23" id="srcline23">23</a></span><span class="line"></span></span>
+<span class="srcline"><span class="lineno"><a href="1,24" id="srcline24">24</a></span><span class="line"></span></span>
+<span class="srcline"><span class="lineno"><a href="1,25" id="srcline25">25</a></span><span class="line"><span class="comment">% Calculate the integral image of the grayscale image obtained above</span></span></span>
+<span class="srcline"><span class="lineno"><a href="1,26" id="srcline26">26</a></span><span class="line"><span class="mxinfo " id="T5:U7"><span class="var type1" id="S7T5U22">intImage</span> = <span class="mxinfo " id="T5:U9"><span class="fcn" id="F112N6:B24">MyIntegralImage</span>(<span class="var type1" id="S5T5U25">grayImage</span>)</span></span>;</span></span>
+<span class="srcline"><span class="lineno"><a href="1,27" id="srcline27">27</a></span><span class="line"></span></span>
+<span class="srcline"><span class="lineno"><a href="1,28" id="srcline28">28</a></span><span class="line"></span></span>
+<span class="srcline"><span class="lineno"><a href="1,29" id="srcline29">29</a></span><span class="line"><span class="comment">% Perform convolution with box filters of various sizes and capture responses</span></span></span>
+<span class="srcline"><span class="lineno"><a href="1,30" id="srcline30">30</a></span><span class="line"><span class="mxinfo " id="T6:U11"><span class="var type1" id="S9T6U28">responseMap</span> = <span class="mxinfo " id="T6:U13"><span class="fcn" id="F125N4:B30">FastHessian</span>(<span class="var type1" id="S7T5U31">intImage</span>)</span></span>;</span></span>
+<span class="srcline"><span class="lineno"><a href="1,31" id="srcline31">31</a></span><span class="line"></span></span>
+<span class="srcline"><span class="lineno"><a href="1,32" id="srcline32">32</a></span><span class="line"></span></span>
+<span class="srcline"><span class="lineno"><a href="1,33" id="srcline33">33</a></span><span class="line"><span class="comment">% Process upto 2000 interest points and set the maximum bound of 'intPoints' to 2000</span></span></span>
+<span class="srcline"><span class="lineno"><a href="1,34" id="srcline34">34</a></span><span class="line">coder.varsize( <span class="string">'intPoints'</span>, [1,2000], [false, true]);</span></span>
+<span class="srcline"><span class="lineno"><a href="1,35" id="srcline35">35</a></span><span class="line"></span></span>
+<span class="srcline"><span class="lineno"><a href="1,36" id="srcline36">36</a></span><span class="line"></span></span>
+<span class="srcline"><span class="lineno"><a href="1,37" id="srcline37">37</a></span><span class="line"><span class="comment">% Perform non-maximal suppression to filter out useful and strongest interest points</span></span></span>
+<span class="srcline"><span class="lineno"><a href="1,38" id="srcline38">38</a></span><span class="line"><span class="keyword">if</span> coder.gpu.isGpuEnabled</span></span>
+<span class="srcline"><span class="lineno"><a href="1,39" id="srcline39">39</a></span><span class="line">    <span class="mxinfo " id="T1:U15"><span class="var type1" id="S2T1U57">intPoints</span> = <span class="mxinfo " id="T1:U17"><span class="fcn" id="F188N10:B59">NonMaxSuppression_gpu</span>(<span class="var type1" id="S7T5U60">intImage</span>, <span class="var type1" id="S9T6U61">responseMap</span>)</span></span>;</span></span>
+<span class="srcline"><span class="lineno"><a href="1,40" id="srcline40">40</a></span><span class="line"><span class="keyword">else</span></span></span>
+<span class="srcline"><span class="lineno"><a href="1,41" id="srcline41">41</a></span><span class="line">    <span class="var type0" id="S2T0U65">intPoints</span> = NonMaxSuppression(<span class="var type0" id="S7T0U68">intImage</span>, <span class="var type0" id="S9T0U69">responseMap</span>);</span></span>
+<span class="srcline"><span class="lineno"><a href="1,42" id="srcline42">42</a></span><span class="line"><span class="keyword">end</span></span></span>
+<span class="srcline"><span class="lineno"><a href="1,43" id="srcline43">43</a></span><span class="line"></span></span>
+<span class="srcline"><span class="lineno"><a href="1,44" id="srcline44">44</a></span><span class="line"></span></span>
+<span class="srcline"><span class="lineno"><a href="1,45" id="srcline45">45</a></span><span class="line"><span class="comment">% Calculate orientation for each of the extracted interest points</span></span></span>
+<span class="srcline"><span class="lineno"><a href="1,46" id="srcline46">46</a></span><span class="line"><span class="mxinfo " id="T1:U20"><span class="mxinfo " id="T1:U21"><span class="var type1" id="S2T1U72"><span class="potentialdiff PD2">intPoints</span></span></span> = <span class="mxinfo " id="T1:U22"><span class="fcn" id="F219N12:B74">OrientationCalc</span>(<span class="var type1" id="S7T5U75">intImage</span>, <span class="var type1" id="S2T1U76">intPoints</span>)</span></span>;</span></span>
+<span class="srcline"><span class="lineno"><a href="1,47" id="srcline47">47</a></span><span class="line"></span></span>
+<span class="srcline"><span class="lineno"><a href="1,48" id="srcline48">48</a></span><span class="line"><span class="keyword">end</span></span></span>
+</pre>
+</body>
+</html>

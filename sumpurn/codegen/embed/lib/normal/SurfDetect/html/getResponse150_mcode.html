@@ -1,0 +1,139 @@
+<!-- saved from url=(0014)about:internet -->
+<html>
+<body>
+<script src="resources/eml_report_loadable_data.js"></script>
+<div class="dead">
+<pre class="code">
+<span class="srcline"><span class="lineno"><a href="72,1" id="srcline1">  1</a></span><span class="line">function [keyMatrix, result_xi, result_xr, result_xc] = NonMaxCalc(intImage, t_filter, t_step, ...</span></span>
+<span class="srcline"><span class="lineno"><a href="72,2" id="srcline2">  2</a></span><span class="line">                                                        b_responses, m_responses, t_responses) <span class="comment">%#codegen</span></span></span>
+<span class="srcline"><span class="lineno"><a href="72,3" id="srcline3">  3</a></span><span class="line"></span></span>
+<span class="srcline"><span class="lineno"><a href="72,4" id="srcline4">  4</a></span><span class="line"><span class="comment">%   Copyright 2017 The MathWorks, Inc.</span></span></span>
+<span class="srcline"><span class="lineno"><a href="72,5" id="srcline5">  5</a></span><span class="line">     </span></span>
+<span class="srcline"><span class="lineno"><a href="72,6" id="srcline6">  6</a></span><span class="line">imgDim    = size(intImage);</span></span>
+<span class="srcline"><span class="lineno"><a href="72,7" id="srcline7">  7</a></span><span class="line">i_height  = imgDim(1);</span></span>
+<span class="srcline"><span class="lineno"><a href="72,8" id="srcline8">  8</a></span><span class="line">i_width   = imgDim(2);  </span></span>
+<span class="srcline"><span class="lineno"><a href="72,9" id="srcline9">  9</a></span><span class="line"></span></span>
+<span class="srcline"><span class="lineno"><a href="72,10" id="srcline10"> 10</a></span><span class="line">keyMatrix = zeros(i_height, i_width,'uint8');</span></span>
+<span class="srcline"><span class="lineno"><a href="72,11" id="srcline11"> 11</a></span><span class="line">result_xi = zeros(i_height, i_width,'single');</span></span>
+<span class="srcline"><span class="lineno"><a href="72,12" id="srcline12"> 12</a></span><span class="line">result_xr = zeros(i_height, i_width,'single');</span></span>
+<span class="srcline"><span class="lineno"><a href="72,13" id="srcline13"> 13</a></span><span class="line">result_xc = zeros(i_height, i_width,'single');</span></span>
+<span class="srcline"><span class="lineno"><a href="72,14" id="srcline14"> 14</a></span><span class="line"></span></span>
+<span class="srcline"><span class="lineno"><a href="72,15" id="srcline15"> 15</a></span><span class="line"><span class="comment">% Perform non-maximal suppression</span></span></span>
+<span class="srcline"><span class="lineno"><a href="72,16" id="srcline16"> 16</a></span><span class="line">coder.gpu.kernel()</span></span>
+<span class="srcline"><span class="lineno"><a href="72,17" id="srcline17"> 17</a></span><span class="line">for c = 0:i_width-1</span></span>
+<span class="srcline"><span class="lineno"><a href="72,18" id="srcline18"> 18</a></span><span class="line">    </span></span>
+<span class="srcline"><span class="lineno"><a href="72,19" id="srcline19"> 19</a></span><span class="line">    for r = 0:i_height-1</span></span>
+<span class="srcline"><span class="lineno"><a href="72,20" id="srcline20"> 20</a></span><span class="line">        </span></span>
+<span class="srcline"><span class="lineno"><a href="72,21" id="srcline21"> 21</a></span><span class="line">        [keyMatrix(r+1,c+1), result_xi(r+1,c+1), result_xr(r+1,c+1), result_xc(r+1,c+1)] = isExtremum(r, c, t_filter, t_step, ...</span></span>
+<span class="srcline"><span class="lineno"><a href="72,22" id="srcline22"> 22</a></span><span class="line">                                                                                           b_responses, m_responses, t_responses);</span></span>
+<span class="srcline"><span class="lineno"><a href="72,23" id="srcline23"> 23</a></span><span class="line">    end</span></span>
+<span class="srcline"><span class="lineno"><a href="72,24" id="srcline24"> 24</a></span><span class="line">    </span></span>
+<span class="srcline"><span class="lineno"><a href="72,25" id="srcline25"> 25</a></span><span class="line">end</span></span>
+<span class="srcline"><span class="lineno"><a href="72,26" id="srcline26"> 26</a></span><span class="line"></span></span>
+<span class="srcline"><span class="lineno"><a href="72,27" id="srcline27"> 27</a></span><span class="line">end</span></span>
+<span class="srcline"><span class="lineno"><a href="72,28" id="srcline28"> 28</a></span><span class="line"></span></span>
+<span class="srcline"><span class="lineno"><a href="72,29" id="srcline29"> 29</a></span><span class="line">function [isext, xi, xr, xc] = isExtremum(r, c, t_filter, t_step, b_responses, m_responses, t_responses)</span></span>
+<span class="srcline"><span class="lineno"><a href="72,30" id="srcline30"> 30</a></span><span class="line"></span></span>
+<span class="srcline"><span class="lineno"><a href="72,31" id="srcline31"> 31</a></span><span class="line">isext = 1;</span></span>
+<span class="srcline"><span class="lineno"><a href="72,32" id="srcline32"> 32</a></span><span class="line">xi = single(0);</span></span>
+<span class="srcline"><span class="lineno"><a href="72,33" id="srcline33"> 33</a></span><span class="line">xr = single(0);</span></span>
+<span class="srcline"><span class="lineno"><a href="72,34" id="srcline34"> 34</a></span><span class="line">xc = single(0);</span></span>
+<span class="srcline"><span class="lineno"><a href="72,35" id="srcline35"> 35</a></span><span class="line"></span></span>
+<span class="srcline"><span class="lineno"><a href="72,36" id="srcline36"> 36</a></span><span class="line">thresh = single(0.0004);</span></span>
+<span class="srcline"><span class="lineno"><a href="72,37" id="srcline37"> 37</a></span><span class="line">layerBorder = floor((t_filter + 1) / (2 * t_step));</span></span>
+<span class="srcline"><span class="lineno"><a href="72,38" id="srcline38"> 38</a></span><span class="line"></span></span>
+<span class="srcline"><span class="lineno"><a href="72,39" id="srcline39"> 39</a></span><span class="line">size_b    = size(b_responses);</span></span>
+<span class="srcline"><span class="lineno"><a href="72,40" id="srcline40"> 40</a></span><span class="line">b_width   = size_b(2);</span></span>
+<span class="srcline"><span class="lineno"><a href="72,41" id="srcline41"> 41</a></span><span class="line"></span></span>
+<span class="srcline"><span class="lineno"><a href="72,42" id="srcline42"> 42</a></span><span class="line">size_m    = size(m_responses);</span></span>
+<span class="srcline"><span class="lineno"><a href="72,43" id="srcline43"> 43</a></span><span class="line">m_width   = size_m(2);</span></span>
+<span class="srcline"><span class="lineno"><a href="72,44" id="srcline44"> 44</a></span><span class="line"></span></span>
+<span class="srcline"><span class="lineno"><a href="72,45" id="srcline45"> 45</a></span><span class="line">size_t    = size(t_responses);</span></span>
+<span class="srcline"><span class="lineno"><a href="72,46" id="srcline46"> 46</a></span><span class="line">t_height  = size_t(1);</span></span>
+<span class="srcline"><span class="lineno"><a href="72,47" id="srcline47"> 47</a></span><span class="line">t_width   = size_t(2);</span></span>
+<span class="srcline"><span class="lineno"><a href="72,48" id="srcline48"> 48</a></span><span class="line"></span></span>
+<span class="srcline"><span class="lineno"><a href="72,49" id="srcline49"> 49</a></span><span class="line"><span class="comment">% Eliminate border pixels</span></span></span>
+<span class="srcline"><span class="lineno"><a href="72,50" id="srcline50"> 50</a></span><span class="line">if (r &lt;= layerBorder || r &gt;= t_height - layerBorder || c &lt;= layerBorder || c &gt;= t_width - layerBorder)</span></span>
+<span class="srcline"><span class="lineno"><a href="72,51" id="srcline51"> 51</a></span><span class="line">    isext = 0;</span></span>
+<span class="srcline"><span class="lineno"><a href="72,52" id="srcline52"> 52</a></span><span class="line">else</span></span>
+<span class="srcline"><span class="lineno"><a href="72,53" id="srcline53"> 53</a></span><span class="line">    </span></span>
+<span class="srcline"><span class="lineno"><a href="72,54" id="srcline54"> 54</a></span><span class="line">    <span class="comment">% Threshold the pixel response</span></span></span>
+<span class="srcline"><span class="lineno"><a href="72,55" id="srcline55"> 55</a></span><span class="line">    candidate = getResponse(m_responses, m_width, r, c, t_width);</span></span>
+<span class="srcline"><span class="lineno"><a href="72,56" id="srcline56"> 56</a></span><span class="line">    if (candidate &lt; thresh)</span></span>
+<span class="srcline"><span class="lineno"><a href="72,57" id="srcline57"> 57</a></span><span class="line">        isext = 0;</span></span>
+<span class="srcline"><span class="lineno"><a href="72,58" id="srcline58"> 58</a></span><span class="line">    else</span></span>
+<span class="srcline"><span class="lineno"><a href="72,59" id="srcline59"> 59</a></span><span class="line">        </span></span>
+<span class="srcline"><span class="lineno"><a href="72,60" id="srcline60"> 60</a></span><span class="line">        <span class="comment">% Compare pixel responses within 3x3x3 neighborhood</span></span></span>
+<span class="srcline"><span class="lineno"><a href="72,61" id="srcline61"> 61</a></span><span class="line">        for rr = -1:1</span></span>
+<span class="srcline"><span class="lineno"><a href="72,62" id="srcline62"> 62</a></span><span class="line">            for cc = -1:1</span></span>
+<span class="srcline"><span class="lineno"><a href="72,63" id="srcline63"> 63</a></span><span class="line">                if ( getResponse(t_responses, t_width, r+rr, c+cc) &gt;= candidate || ...</span></span>
+<span class="srcline"><span class="lineno"><a href="72,64" id="srcline64"> 64</a></span><span class="line">                        ((rr ~= 0 || cc ~= 0) &amp;&amp; getResponse(m_responses, m_width, r+rr, c+cc, t_width) &gt;= candidate) || ...</span></span>
+<span class="srcline"><span class="lineno"><a href="72,65" id="srcline65"> 65</a></span><span class="line">                        getResponse(b_responses, b_width, r+rr, c+cc, t_width) &gt;= candidate)</span></span>
+<span class="srcline"><span class="lineno"><a href="72,66" id="srcline66"> 66</a></span><span class="line">                    isext = 0;</span></span>
+<span class="srcline"><span class="lineno"><a href="72,67" id="srcline67"> 67</a></span><span class="line">                end</span></span>
+<span class="srcline"><span class="lineno"><a href="72,68" id="srcline68"> 68</a></span><span class="line">            end</span></span>
+<span class="srcline"><span class="lineno"><a href="72,69" id="srcline69"> 69</a></span><span class="line">        end</span></span>
+<span class="srcline"><span class="lineno"><a href="72,70" id="srcline70"> 70</a></span><span class="line">        </span></span>
+<span class="srcline"><span class="lineno"><a href="72,71" id="srcline71"> 71</a></span><span class="line">    end</span></span>
+<span class="srcline"><span class="lineno"><a href="72,72" id="srcline72"> 72</a></span><span class="line">    </span></span>
+<span class="srcline"><span class="lineno"><a href="72,73" id="srcline73"> 73</a></span><span class="line">end</span></span>
+<span class="srcline"><span class="lineno"><a href="72,74" id="srcline74"> 74</a></span><span class="line"></span></span>
+<span class="srcline"><span class="lineno"><a href="72,75" id="srcline75"> 75</a></span><span class="line"></span></span>
+<span class="srcline"><span class="lineno"><a href="72,76" id="srcline76"> 76</a></span><span class="line"><span class="comment">% Perform interpolation to determine exact location of the interest point</span></span></span>
+<span class="srcline"><span class="lineno"><a href="72,77" id="srcline77"> 77</a></span><span class="line">if isext</span></span>
+<span class="srcline"><span class="lineno"><a href="72,78" id="srcline78"> 78</a></span><span class="line">    </span></span>
+<span class="srcline"><span class="lineno"><a href="72,79" id="srcline79"> 79</a></span><span class="line">    isext = 0;</span></span>
+<span class="srcline"><span class="lineno"><a href="72,80" id="srcline80"> 80</a></span><span class="line">  </span></span>
+<span class="srcline"><span class="lineno"><a href="72,81" id="srcline81"> 81</a></span><span class="line">    dx  = (getResponse(m_responses, m_width, r, c + 1, t_width) - getResponse(m_responses, m_width, r, c - 1, t_width)) / 2.0;</span></span>
+<span class="srcline"><span class="lineno"><a href="72,82" id="srcline82"> 82</a></span><span class="line">    dy  = (getResponse(m_responses, m_width, r + 1, c, t_width) - getResponse(m_responses, m_width, r - 1, c, t_width)) / 2.0;</span></span>
+<span class="srcline"><span class="lineno"><a href="72,83" id="srcline83"> 83</a></span><span class="line">    ds  = (getResponse(t_responses, t_width, r, c) - getResponse(b_responses, b_width, r, c, t_width)) / 2.0;</span></span>
+<span class="srcline"><span class="lineno"><a href="72,84" id="srcline84"> 84</a></span><span class="line"></span></span>
+<span class="srcline"><span class="lineno"><a href="72,85" id="srcline85"> 85</a></span><span class="line">    dD = [dx ; dy ; ds];</span></span>
+<span class="srcline"><span class="lineno"><a href="72,86" id="srcline86"> 86</a></span><span class="line">    </span></span>
+<span class="srcline"><span class="lineno"><a href="72,87" id="srcline87"> 87</a></span><span class="line">    v   = getResponse(m_responses, m_width, r, c, t_width);</span></span>
+<span class="srcline"><span class="lineno"><a href="72,88" id="srcline88"> 88</a></span><span class="line"></span></span>
+<span class="srcline"><span class="lineno"><a href="72,89" id="srcline89"> 89</a></span><span class="line">    dxx = getResponse(m_responses, m_width, r, c + 1, t_width) + getResponse(m_responses, m_width, r, c - 1, t_width) - 2 * v;</span></span>
+<span class="srcline"><span class="lineno"><a href="72,90" id="srcline90"> 90</a></span><span class="line">    dyy = getResponse(m_responses, m_width, r + 1, c, t_width) + getResponse(m_responses, m_width, r - 1, c, t_width) - 2 * v;</span></span>
+<span class="srcline"><span class="lineno"><a href="72,91" id="srcline91"> 91</a></span><span class="line">    dss = getResponse(t_responses, t_width, r, c) + getResponse(b_responses, b_width, r, c, t_width) - 2 * v;</span></span>
+<span class="srcline"><span class="lineno"><a href="72,92" id="srcline92"> 92</a></span><span class="line"></span></span>
+<span class="srcline"><span class="lineno"><a href="72,93" id="srcline93"> 93</a></span><span class="line">    dxy = ( getResponse(m_responses, m_width, r + 1, c + 1, t_width) - getResponse(m_responses, m_width, r + 1, c - 1, t_width) - ...</span></span>
+<span class="srcline"><span class="lineno"><a href="72,94" id="srcline94"> 94</a></span><span class="line">        getResponse(m_responses, m_width, r - 1, c + 1, t_width) + getResponse(m_responses, m_width, r - 1, c - 1, t_width) ) / 4.0;</span></span>
+<span class="srcline"><span class="lineno"><a href="72,95" id="srcline95"> 95</a></span><span class="line"></span></span>
+<span class="srcline"><span class="lineno"><a href="72,96" id="srcline96"> 96</a></span><span class="line">    dxs = ( getResponse(t_responses, t_width, r, c + 1) - getResponse(t_responses, t_width, r, c - 1) -  ...</span></span>
+<span class="srcline"><span class="lineno"><a href="72,97" id="srcline97"> 97</a></span><span class="line">        getResponse(b_responses, b_width, r, c + 1, t_width) + getResponse(b_responses, b_width, r, c - 1, t_width) ) / 4.0;</span></span>
+<span class="srcline"><span class="lineno"><a href="72,98" id="srcline98"> 98</a></span><span class="line"></span></span>
+<span class="srcline"><span class="lineno"><a href="72,99" id="srcline99"> 99</a></span><span class="line">    dys = ( getResponse(t_responses, t_width, r + 1, c) - getResponse(t_responses, t_width, r - 1, c) - ...</span></span>
+<span class="srcline"><span class="lineno"><a href="72,100" id="srcline100">100</a></span><span class="line">        getResponse(b_responses, b_width, r + 1, c, t_width) + getResponse(b_responses, b_width, r - 1, c, t_width) ) / 4.0;</span></span>
+<span class="srcline"><span class="lineno"><a href="72,101" id="srcline101">101</a></span><span class="line">    </span></span>
+<span class="srcline"><span class="lineno"><a href="72,102" id="srcline102">102</a></span><span class="line">     H = [dxx, dxy, dxs; dxy, dyy, dys; dxs, dys, dss];</span></span>
+<span class="srcline"><span class="lineno"><a href="72,103" id="srcline103">103</a></span><span class="line"></span></span>
+<span class="srcline"><span class="lineno"><a href="72,104" id="srcline104">104</a></span><span class="line">    xres = -1 * (H\dD);</span></span>
+<span class="srcline"><span class="lineno"><a href="72,105" id="srcline105">105</a></span><span class="line">    </span></span>
+<span class="srcline"><span class="lineno"><a href="72,106" id="srcline106">106</a></span><span class="line">    xi = xres(3);</span></span>
+<span class="srcline"><span class="lineno"><a href="72,107" id="srcline107">107</a></span><span class="line">    xr = xres(2);</span></span>
+<span class="srcline"><span class="lineno"><a href="72,108" id="srcline108">108</a></span><span class="line">    xc = xres(1);</span></span>
+<span class="srcline"><span class="lineno"><a href="72,109" id="srcline109">109</a></span><span class="line">    </span></span>
+<span class="srcline"><span class="lineno"><a href="72,110" id="srcline110">110</a></span><span class="line">    if(abs(xi) &lt; 0.5  &amp;&amp;  abs(xr) &lt; 0.5  &amp;&amp;  abs(xc) &lt; 0.5)</span></span>
+<span class="srcline"><span class="lineno"><a href="72,111" id="srcline111">111</a></span><span class="line">        isext = 1;</span></span>
+<span class="srcline"><span class="lineno"><a href="72,112" id="srcline112">112</a></span><span class="line">    end</span></span>
+<span class="srcline"><span class="lineno"><a href="72,113" id="srcline113">113</a></span><span class="line">      </span></span>
+<span class="srcline"><span class="lineno"><a href="72,114" id="srcline114">114</a></span><span class="line">end</span></span>
+<span class="srcline"><span class="lineno"><a href="72,115" id="srcline115">115</a></span><span class="line"></span></span>
+<span class="srcline"><span class="lineno"><a href="72,116" id="srcline116">116</a></span><span class="line">end</span></span>
+</pre>
+</div>
+<pre class="code">
+<span class="srcline"><span class="lineno"><a href="72,117" id="srcline117">117</a></span><span class="line"></span></span>
+<span class="srcline"><span class="lineno"><a href="72,118" id="srcline118">118</a></span><span class="line"><span class="keyword">function</span> <span class="var type1" id="S64T2U729">resp</span> = getResponse(<span class="var type1" id="S65T8U732">obj_resp</span>, <span class="var type1" id="S66T7U733">obj_width</span>, <span class="var type1" id="S67T7U734">row</span>, <span class="var type1" id="S68T7U735">column</span>, <span class="var type0" id="S69T0U736">src_width</span>)</span></span>
+<span class="srcline"><span class="lineno"><a href="72,119" id="srcline119">119</a></span><span class="line"></span></span>
+<span class="srcline"><span class="lineno"><a href="72,120" id="srcline120">120</a></span><span class="line"><span class="keyword">if</span> nargin &lt; 5</span></span>
+<span class="srcline"><span class="lineno"><a href="72,121" id="srcline121">121</a></span><span class="line">    <span class="mxinfo " id="T2:U6"><span class="var type1" id="S64T2U745">resp</span> = <span class="mxinfo " id="T2:U8"><span class="var type1" id="S65T8U747">obj_resp</span>(<span class="mxinfo " id="T7:U10"><span class="var type1" id="S67T7U749">row</span> + <span class="mxinfo " id="T7:U12">1</span></span>, <span class="mxinfo " id="T7:U13"><span class="var type1" id="S68T7U752">column</span> + <span class="mxinfo " id="T7:U15">1</span></span>)</span></span>;</span></span>
+<span class="srcline"><span class="lineno"><a href="72,122" id="srcline122">122</a></span><span class="line"><span class="keyword">else</span></span></span>
+<span class="srcline"><span class="lineno"><a href="72,123" id="srcline123">123</a></span><span class="line">    <span class="var type0" id="S71T0U757">scale</span> = floor(<span class="var type0" id="S66T0U761">obj_width</span> / <span class="var type0" id="S69T0U762">src_width</span>);</span></span>
+<span class="srcline"><span class="lineno"><a href="72,124" id="srcline124">124</a></span><span class="line">    <span class="var type0" id="S64T0U765">resp</span> = <span class="var type0" id="S65T0U767">obj_resp</span>((<span class="var type0" id="S71T0U771">scale</span> * <span class="var type0" id="S67T0U772">row</span>) + 1, (<span class="var type0" id="S71T0U777">scale</span> * <span class="var type0" id="S68T0U778">column</span>) + 1);</span></span>
+<span class="srcline"><span class="lineno"><a href="72,125" id="srcline125">125</a></span><span class="line"><span class="keyword">end</span></span></span>
+<span class="srcline"><span class="lineno"><a href="72,126" id="srcline126">126</a></span><span class="line"></span></span>
+<span class="srcline"><span class="lineno"><a href="72,127" id="srcline127">127</a></span><span class="line"><span class="keyword">end</span></span></span>
+</pre>
+</body>
+</html>

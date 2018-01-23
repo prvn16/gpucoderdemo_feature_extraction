@@ -1,0 +1,1083 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- saved from url=(0014)about:internet -->
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+<title>Code Generation Report</title>
+<link rel="stylesheet" type="text/css" href="resources/eml_report.css" />
+<link rel="stylesheet" type="text/css" href="resources/jQuery/ui.resizable.css" />
+<link rel="stylesheet" type="text/css" href="index.css" />
+<style>
+	pre.code{
+		-moz-tab-size: 4; /* For Firefox */
+		-o-tab-size: 4; /* For Opera 10.6-12.1 */
+		tab-size: 4; /* For Chrome */
+	}
+</style>
+<script type="text/javascript" src="resources/jQuery/jquery-1.3.2.min.js"></script>
+<script type="text/javascript" src="resources/jQuery/jquery-ui-1.7.custom.min.js"></script>
+<script type="text/javascript" src="resources/jQuery/jquery.tablesorter.mod.js"></script>
+<script type="text/javascript" src="resources/jQuery/jquery.hotkeys-0.7.8.js"></script>
+<script type="text/javascript" src="resources/eml_report_interactions.js"></script>
+<script type="text/javascript" src="resources/eml_report_layout.js"></script>
+<script type="text/javascript" src="rtwshrink.js"></script>
+<script type="text/javascript">
+var localizedMessages = {
+    callSelectPrompt: "Select a function call:",
+    callSelectSource: "Calls from this function",
+    callSelectTarget: "Calls to this function",
+    infoForExpression: "Information for the selected expression:",
+    infoForVarType: "Information for the selected variable:",
+    infoForVarConst: "Information for the selected compile-time constant:",
+    infoForVarNone: "This variable does not have information associated with it.",
+    infoForFilter: "Matched {0}/{1} functions, {2}/{3} methods",
+    autoExtrinsicCall: "Only supported within the MATLAB environment."
+};
+var keyBindings = {
+        selectMCodeTab: "Ctrl+m",
+    selectCallStackTab: "Ctrl+k",
+        selectCCodeTab: "Ctrl+c",
+       selectReportTab: "Ctrl+r",
+     selectCenterPanel: "Ctrl+w",
+      selectSummaryTab: "Ctrl+s",
+     selectMessagesTab: "Ctrl+a",
+    selectWatchListTab: "Ctrl+v",
+     selectBuildLogTab: "Ctrl+t",
+    clearAllHighlights: "Esc"
+};
+var functionInfoTable = {
+ MATLABcode1: "SurfDetect1_mcode.html",
+ fpath1: "C:/Sumpurn/Projects/GPU/gpucoderdemo_feature_extraction/SurfDetect.m",
+ lines1: [1, 1, 49],
+ watch1: "SurfDetect1_watch.html",
+ title1: "Function: <span class='functionname'><a title='C:&nbsp;\\Sumpurn\\Projects\\GPU\\gpucoderdemo_feature_extraction\\SurfDetect.m' class='functionlink' href=\"matlab: open('C:\\Sumpurn\\Projects\\GPU\\gpucoderdemo_feature_extraction\\SurfDetect.m')\">SurfDetect</a></span>",
+ tcall1: [  ],
+ scall1: [ [ "From line 22 to Convert32bitFPGray", "109#srcline1" ], [ "From line 26 to MyIntegralImage", "112#srcline1" ], [ "From line 30 to FastHessian", "125#srcline1" ], [ "From line 39 to NonMaxSuppression_gpu", "188#srcline1" ], [ "From line 46 to OrientationCalc", "219#srcline1" ] ],
+ MATLABcode109: "Convert32bitFPGray109_mcode.html",
+ fpath109: "C:/Sumpurn/Projects/GPU/gpucoderdemo_feature_extraction/Convert32bitFPGray.m",
+ lines109: [1, 1, 20],
+ watch109: "Convert32bitFPGray109_watch.html",
+ title109: "Function: <span class='functionname'><a title='C:&nbsp;\\Sumpurn\\Projects\\GPU\\gpucoderdemo_feature_extraction\\Convert32bitFPGray.m' class='functionlink' href=\"matlab: open('C:\\Sumpurn\\Projects\\GPU\\gpucoderdemo_feature_extraction\\Convert32bitFPGray.m')\">Convert32bitFPGray</a></span>",
+ tcall109: [ [ "From SurfDetect line 22", "1#F109N3:B18" ] ],
+ scall109: [  ],
+ MATLABcode112: "MyIntegralImage112_mcode.html",
+ fpath112: "C:/Sumpurn/Projects/GPU/gpucoderdemo_feature_extraction/MyIntegralImage.m",
+ lines112: [1, 1, 36],
+ watch112: "MyIntegralImage112_watch.html",
+ title112: "Function: <span class='functionname'><a title='C:&nbsp;\\Sumpurn\\Projects\\GPU\\gpucoderdemo_feature_extraction\\MyIntegralImage.m' class='functionlink' href=\"matlab: open('C:\\Sumpurn\\Projects\\GPU\\gpucoderdemo_feature_extraction\\MyIntegralImage.m')\">MyIntegralImage</a></span>",
+ tcall112: [ [ "From SurfDetect line 26", "1#F112N6:B24" ] ],
+ scall112: [  ],
+ MATLABcode113: "BoxIntegral113_mcode.html",
+ fpath113: "C:/Sumpurn/Projects/GPU/gpucoderdemo_feature_extraction/BoxIntegral.m",
+ lines113: [1, 1, 65],
+ watch113: "BoxIntegral113_watch.html",
+ title113: "Function: <span class='functionname'><a title='C:&nbsp;\\Sumpurn\\Projects\\GPU\\gpucoderdemo_feature_extraction\\BoxIntegral.m' class='functionlink' href=\"matlab: open('C:\\Sumpurn\\Projects\\GPU\\gpucoderdemo_feature_extraction\\BoxIntegral.m')\">BoxIntegral</a></span>",
+ tcall113: [ [ "From FastHessianCalc > 1 line 23", "120#F113N2:B96" ], [ "From FastHessianCalc > 1 line 24", "120#F113N2:B114" ], [ "From FastHessianCalc > 1 line 26", "120#F113N2:B140" ], [ "From FastHessianCalc > 1 line 27", "120#F113N2:B158" ], [ "From FastHessianCalc > 1 line 29", "120#F113N2:B186" ], [ "From FastHessianCalc > 1 line 30", "120#F113N2:B197" ], [ "From FastHessianCalc > 1 line 31", "120#F113N2:B208" ], [ "From FastHessianCalc > 1 line 32", "120#F113N2:B219" ], [ "From FastHessianCalc > 2 line 23", "121#F113N2:B96" ], [ "From FastHessianCalc > 2 line 24", "121#F113N2:B114" ], [ "From FastHessianCalc > 2 line 26", "121#F113N2:B140" ], [ "From FastHessianCalc > 2 line 27", "121#F113N2:B158" ], [ "From FastHessianCalc > 2 line 29", "121#F113N2:B186" ], [ "From FastHessianCalc > 2 line 30", "121#F113N2:B197" ], [ "From FastHessianCalc > 2 line 31", "121#F113N2:B208" ], [ "From FastHessianCalc > 2 line 32", "121#F113N2:B219" ], [ "From FastHessianCalc > 3 line 23", "122#F113N2:B96" ], [ "From FastHessianCalc > 3 line 24", "122#F113N2:B114" ], [ "From FastHessianCalc > 3 line 26", "122#F113N2:B140" ], [ "From FastHessianCalc > 3 line 27", "122#F113N2:B158" ], [ "From FastHessianCalc > 3 line 29", "122#F113N2:B186" ], [ "From FastHessianCalc > 3 line 30", "122#F113N2:B197" ], [ "From FastHessianCalc > 3 line 31", "122#F113N2:B208" ], [ "From FastHessianCalc > 3 line 32", "122#F113N2:B219" ], [ "From FastHessianCalc > 4 line 23", "123#F113N2:B96" ], [ "From FastHessianCalc > 4 line 24", "123#F113N2:B114" ], [ "From FastHessianCalc > 4 line 26", "123#F113N2:B140" ], [ "From FastHessianCalc > 4 line 27", "123#F113N2:B158" ], [ "From FastHessianCalc > 4 line 29", "123#F113N2:B186" ], [ "From FastHessianCalc > 4 line 30", "123#F113N2:B197" ], [ "From FastHessianCalc > 4 line 31", "123#F113N2:B208" ], [ "From FastHessianCalc > 4 line 32", "123#F113N2:B219" ], [ "From FastHessianCalc > 5 line 23", "124#F113N2:B96" ], [ "From FastHessianCalc > 5 line 24", "124#F113N2:B114" ], [ "From FastHessianCalc > 5 line 26", "124#F113N2:B140" ], [ "From FastHessianCalc > 5 line 27", "124#F113N2:B158" ], [ "From FastHessianCalc > 5 line 29", "124#F113N2:B186" ], [ "From FastHessianCalc > 5 line 30", "124#F113N2:B197" ], [ "From FastHessianCalc > 5 line 31", "124#F113N2:B208" ], [ "From FastHessianCalc > 5 line 32", "124#F113N2:B219" ], [ "From OrientationCalc > haarX line 108", "198#F113N2:B528" ], [ "From OrientationCalc > haarX line 109", "198#F113N2:B543" ], [ "From OrientationCalc > haarY line 113", "199#F113N2:B573" ], [ "From OrientationCalc > haarY line 114", "199#F113N2:B588" ] ],
+ scall113: [  ],
+ MATLABcode120: "FastHessianCalc120_mcode.html",
+ fpath120: "C:/Sumpurn/Projects/GPU/gpucoderdemo_feature_extraction/FastHessianCalc.m",
+ lines120: [1, 1, 53],
+ watch120: "FastHessianCalc120_watch.html",
+ title120: "Function: <span class='functionname'><a title='C:&nbsp;\\Sumpurn\\Projects\\GPU\\gpucoderdemo_feature_extraction\\FastHessianCalc.m' class='functionlink' href=\"matlab: open('C:\\Sumpurn\\Projects\\GPU\\gpucoderdemo_feature_extraction\\FastHessianCalc.m')\">FastHessianCalc &gt; 1</a></span>",
+ tcall120: [ [ "From FastHessian line 81", "125#F120N5:B1135" ], [ "From FastHessian line 81", "125#F120N5:B1135" ], [ "From FastHessian line 81", "125#F120N5:B1135" ], [ "From FastHessian line 81", "125#F120N5:B1135" ] ],
+ scall120: [ [ "From line 23 to BoxIntegral", "113#srcline1" ], [ "From line 24 to BoxIntegral", "113#srcline1" ], [ "From line 26 to BoxIntegral", "113#srcline1" ], [ "From line 27 to BoxIntegral", "113#srcline1" ], [ "From line 29 to BoxIntegral", "113#srcline1" ], [ "From line 30 to BoxIntegral", "113#srcline1" ], [ "From line 31 to BoxIntegral", "113#srcline1" ], [ "From line 32 to BoxIntegral", "113#srcline1" ] ],
+ MATLABcode121: "FastHessianCalc121_mcode.html",
+ fpath121: "C:/Sumpurn/Projects/GPU/gpucoderdemo_feature_extraction/FastHessianCalc.m",
+ lines121: [1, 1, 53],
+ watch121: "FastHessianCalc121_watch.html",
+ title121: "Function: <span class='functionname'><a title='C:&nbsp;\\Sumpurn\\Projects\\GPU\\gpucoderdemo_feature_extraction\\FastHessianCalc.m' class='functionlink' href=\"matlab: open('C:\\Sumpurn\\Projects\\GPU\\gpucoderdemo_feature_extraction\\FastHessianCalc.m')\">FastHessianCalc &gt; 2</a></span>",
+ tcall121: [ [ "From FastHessian line 81", "125#F121N5:B1135" ], [ "From FastHessian line 81", "125#F121N5:B1135" ] ],
+ scall121: [ [ "From line 23 to BoxIntegral", "113#srcline1" ], [ "From line 24 to BoxIntegral", "113#srcline1" ], [ "From line 26 to BoxIntegral", "113#srcline1" ], [ "From line 27 to BoxIntegral", "113#srcline1" ], [ "From line 29 to BoxIntegral", "113#srcline1" ], [ "From line 30 to BoxIntegral", "113#srcline1" ], [ "From line 31 to BoxIntegral", "113#srcline1" ], [ "From line 32 to BoxIntegral", "113#srcline1" ] ],
+ MATLABcode122: "FastHessianCalc122_mcode.html",
+ fpath122: "C:/Sumpurn/Projects/GPU/gpucoderdemo_feature_extraction/FastHessianCalc.m",
+ lines122: [1, 1, 53],
+ watch122: "FastHessianCalc122_watch.html",
+ title122: "Function: <span class='functionname'><a title='C:&nbsp;\\Sumpurn\\Projects\\GPU\\gpucoderdemo_feature_extraction\\FastHessianCalc.m' class='functionlink' href=\"matlab: open('C:\\Sumpurn\\Projects\\GPU\\gpucoderdemo_feature_extraction\\FastHessianCalc.m')\">FastHessianCalc &gt; 3</a></span>",
+ tcall122: [ [ "From FastHessian line 81", "125#F122N5:B1135" ], [ "From FastHessian line 81", "125#F122N5:B1135" ] ],
+ scall122: [ [ "From line 23 to BoxIntegral", "113#srcline1" ], [ "From line 24 to BoxIntegral", "113#srcline1" ], [ "From line 26 to BoxIntegral", "113#srcline1" ], [ "From line 27 to BoxIntegral", "113#srcline1" ], [ "From line 29 to BoxIntegral", "113#srcline1" ], [ "From line 30 to BoxIntegral", "113#srcline1" ], [ "From line 31 to BoxIntegral", "113#srcline1" ], [ "From line 32 to BoxIntegral", "113#srcline1" ] ],
+ MATLABcode123: "FastHessianCalc123_mcode.html",
+ fpath123: "C:/Sumpurn/Projects/GPU/gpucoderdemo_feature_extraction/FastHessianCalc.m",
+ lines123: [1, 1, 53],
+ watch123: "FastHessianCalc123_watch.html",
+ title123: "Function: <span class='functionname'><a title='C:&nbsp;\\Sumpurn\\Projects\\GPU\\gpucoderdemo_feature_extraction\\FastHessianCalc.m' class='functionlink' href=\"matlab: open('C:\\Sumpurn\\Projects\\GPU\\gpucoderdemo_feature_extraction\\FastHessianCalc.m')\">FastHessianCalc &gt; 4</a></span>",
+ tcall123: [ [ "From FastHessian line 81", "125#F123N5:B1135" ], [ "From FastHessian line 81", "125#F123N5:B1135" ] ],
+ scall123: [ [ "From line 23 to BoxIntegral", "113#srcline1" ], [ "From line 24 to BoxIntegral", "113#srcline1" ], [ "From line 26 to BoxIntegral", "113#srcline1" ], [ "From line 27 to BoxIntegral", "113#srcline1" ], [ "From line 29 to BoxIntegral", "113#srcline1" ], [ "From line 30 to BoxIntegral", "113#srcline1" ], [ "From line 31 to BoxIntegral", "113#srcline1" ], [ "From line 32 to BoxIntegral", "113#srcline1" ] ],
+ MATLABcode124: "FastHessianCalc124_mcode.html",
+ fpath124: "C:/Sumpurn/Projects/GPU/gpucoderdemo_feature_extraction/FastHessianCalc.m",
+ lines124: [1, 1, 53],
+ watch124: "FastHessianCalc124_watch.html",
+ title124: "Function: <span class='functionname'><a title='C:&nbsp;\\Sumpurn\\Projects\\GPU\\gpucoderdemo_feature_extraction\\FastHessianCalc.m' class='functionlink' href=\"matlab: open('C:\\Sumpurn\\Projects\\GPU\\gpucoderdemo_feature_extraction\\FastHessianCalc.m')\">FastHessianCalc &gt; 5</a></span>",
+ tcall124: [ [ "From FastHessian line 81", "125#F124N5:B1135" ], [ "From FastHessian line 81", "125#F124N5:B1135" ] ],
+ scall124: [ [ "From line 23 to BoxIntegral", "113#srcline1" ], [ "From line 24 to BoxIntegral", "113#srcline1" ], [ "From line 26 to BoxIntegral", "113#srcline1" ], [ "From line 27 to BoxIntegral", "113#srcline1" ], [ "From line 29 to BoxIntegral", "113#srcline1" ], [ "From line 30 to BoxIntegral", "113#srcline1" ], [ "From line 31 to BoxIntegral", "113#srcline1" ], [ "From line 32 to BoxIntegral", "113#srcline1" ] ],
+ MATLABcode125: "FastHessian125_mcode.html",
+ fpath125: "C:/Sumpurn/Projects/GPU/gpucoderdemo_feature_extraction/FastHessian.m",
+ lines125: [1, 1, 92],
+ watch125: "FastHessian125_watch.html",
+ title125: "Function: <span class='functionname'><a title='C:&nbsp;\\Sumpurn\\Projects\\GPU\\gpucoderdemo_feature_extraction\\FastHessian.m' class='functionlink' href=\"matlab: open('C:\\Sumpurn\\Projects\\GPU\\gpucoderdemo_feature_extraction\\FastHessian.m')\">FastHessian</a></span>",
+ tcall125: [ [ "From SurfDetect line 30", "1#F125N4:B30" ] ],
+ scall125: [ [ "From line 81 to FastHessianCalc > 1", "120#srcline1" ], [ "From line 81 to FastHessianCalc > 1", "120#srcline1" ], [ "From line 81 to FastHessianCalc > 1", "120#srcline1" ], [ "From line 81 to FastHessianCalc > 1", "120#srcline1" ], [ "From line 81 to FastHessianCalc > 2", "121#srcline1" ], [ "From line 81 to FastHessianCalc > 2", "121#srcline1" ], [ "From line 81 to FastHessianCalc > 3", "122#srcline1" ], [ "From line 81 to FastHessianCalc > 3", "122#srcline1" ], [ "From line 81 to FastHessianCalc > 4", "123#srcline1" ], [ "From line 81 to FastHessianCalc > 4", "123#srcline1" ], [ "From line 81 to FastHessianCalc > 5", "124#srcline1" ], [ "From line 81 to FastHessianCalc > 5", "124#srcline1" ] ],
+ MATLABcode149: "getResponse149_mcode.html",
+ fpath149: "C:/Sumpurn/Projects/GPU/gpucoderdemo_feature_extraction/NonMaxCalc.m",
+ lines149: [117, 118, 128],
+ watch149: "getResponse149_watch.html",
+ title149: "Function: <span class='functionname'><a title='C:&nbsp;\\Sumpurn\\Projects\\GPU\\gpucoderdemo_feature_extraction\\NonMaxCalc.m' class='functionlink' href=\"matlab: open('C:\\Sumpurn\\Projects\\GPU\\gpucoderdemo_feature_extraction\\NonMaxCalc.m')\">NonMaxCalc &gt; getResponse &gt; 1</a></span>",
+ tcall149: [ [ "From NonMaxCalc > isExtremum line 55", "184#F149N8:B262" ], [ "From NonMaxCalc > isExtremum line 64", "184#F149N8:B322" ], [ "From NonMaxCalc > isExtremum line 65", "184#F149N8:B335" ], [ "From NonMaxCalc > isExtremum line 81", "184#F149N8:B364" ], [ "From NonMaxCalc > isExtremum line 81", "184#F149N8:B373" ], [ "From NonMaxCalc > isExtremum line 82", "184#F149N8:B389" ], [ "From NonMaxCalc > isExtremum line 82", "184#F149N8:B398" ], [ "From NonMaxCalc > isExtremum line 83", "184#F149N8:B420" ], [ "From NonMaxCalc > isExtremum line 87", "184#F149N8:B441" ], [ "From NonMaxCalc > isExtremum line 89", "184#F149N8:B453" ], [ "From NonMaxCalc > isExtremum line 89", "184#F149N8:B462" ], [ "From NonMaxCalc > isExtremum line 90", "184#F149N8:B479" ], [ "From NonMaxCalc > isExtremum line 90", "184#F149N8:B488" ], [ "From NonMaxCalc > isExtremum line 91", "184#F149N8:B511" ], [ "From NonMaxCalc > isExtremum line 93", "184#F149N8:B529" ], [ "From NonMaxCalc > isExtremum line 93", "184#F149N8:B540" ], [ "From NonMaxCalc > isExtremum line 94", "184#F149N8:B551" ], [ "From NonMaxCalc > isExtremum line 94", "184#F149N8:B562" ], [ "From NonMaxCalc > isExtremum line 97", "184#F149N8:B598" ], [ "From NonMaxCalc > isExtremum line 97", "184#F149N8:B607" ], [ "From NonMaxCalc > isExtremum line 100", "184#F149N8:B641" ], [ "From NonMaxCalc > isExtremum line 100", "184#F149N8:B650" ] ],
+ scall149: [  ],
+ MATLABcode150: "getResponse150_mcode.html",
+ fpath150: "C:/Sumpurn/Projects/GPU/gpucoderdemo_feature_extraction/NonMaxCalc.m",
+ lines150: [117, 118, 128],
+ watch150: "getResponse150_watch.html",
+ title150: "Function: <span class='functionname'><a title='C:&nbsp;\\Sumpurn\\Projects\\GPU\\gpucoderdemo_feature_extraction\\NonMaxCalc.m' class='functionlink' href=\"matlab: open('C:\\Sumpurn\\Projects\\GPU\\gpucoderdemo_feature_extraction\\NonMaxCalc.m')\">NonMaxCalc &gt; getResponse &gt; 2</a></span>",
+ tcall150: [ [ "From NonMaxCalc > isExtremum line 63", "184#F150N8:B300" ], [ "From NonMaxCalc > isExtremum line 83", "184#F150N8:B414" ], [ "From NonMaxCalc > isExtremum line 91", "184#F150N8:B505" ], [ "From NonMaxCalc > isExtremum line 96", "184#F150N8:B582" ], [ "From NonMaxCalc > isExtremum line 96", "184#F150N8:B590" ], [ "From NonMaxCalc > isExtremum line 99", "184#F150N8:B625" ], [ "From NonMaxCalc > isExtremum line 99", "184#F150N8:B633" ] ],
+ scall150: [  ],
+ MATLABcode184: "isExtremum184_mcode.html",
+ fpath184: "C:/Sumpurn/Projects/GPU/gpucoderdemo_feature_extraction/NonMaxCalc.m",
+ lines184: [28, 29, 118],
+ watch184: "isExtremum184_watch.html",
+ title184: "Function: <span class='functionname'><a title='C:&nbsp;\\Sumpurn\\Projects\\GPU\\gpucoderdemo_feature_extraction\\NonMaxCalc.m' class='functionlink' href=\"matlab: open('C:\\Sumpurn\\Projects\\GPU\\gpucoderdemo_feature_extraction\\NonMaxCalc.m')\">NonMaxCalc &gt; isExtremum</a></span>",
+ tcall184: [ [ "From NonMaxCalc line 21", "185#F184N9:B124" ] ],
+ scall184: [ [ "From line 55 to NonMaxCalc > getResponse > 1", "149#srcline118" ], [ "From line 63 to NonMaxCalc > getResponse > 2", "150#srcline118" ], [ "From line 64 to NonMaxCalc > getResponse > 1", "149#srcline118" ], [ "From line 65 to NonMaxCalc > getResponse > 1", "149#srcline118" ], [ "From line 81 to NonMaxCalc > getResponse > 1", "149#srcline118" ], [ "From line 81 to NonMaxCalc > getResponse > 1", "149#srcline118" ], [ "From line 82 to NonMaxCalc > getResponse > 1", "149#srcline118" ], [ "From line 82 to NonMaxCalc > getResponse > 1", "149#srcline118" ], [ "From line 83 to NonMaxCalc > getResponse > 2", "150#srcline118" ], [ "From line 83 to NonMaxCalc > getResponse > 1", "149#srcline118" ], [ "From line 87 to NonMaxCalc > getResponse > 1", "149#srcline118" ], [ "From line 89 to NonMaxCalc > getResponse > 1", "149#srcline118" ], [ "From line 89 to NonMaxCalc > getResponse > 1", "149#srcline118" ], [ "From line 90 to NonMaxCalc > getResponse > 1", "149#srcline118" ], [ "From line 90 to NonMaxCalc > getResponse > 1", "149#srcline118" ], [ "From line 91 to NonMaxCalc > getResponse > 2", "150#srcline118" ], [ "From line 91 to NonMaxCalc > getResponse > 1", "149#srcline118" ], [ "From line 93 to NonMaxCalc > getResponse > 1", "149#srcline118" ], [ "From line 93 to NonMaxCalc > getResponse > 1", "149#srcline118" ], [ "From line 94 to NonMaxCalc > getResponse > 1", "149#srcline118" ], [ "From line 94 to NonMaxCalc > getResponse > 1", "149#srcline118" ], [ "From line 96 to NonMaxCalc > getResponse > 2", "150#srcline118" ], [ "From line 96 to NonMaxCalc > getResponse > 2", "150#srcline118" ], [ "From line 97 to NonMaxCalc > getResponse > 1", "149#srcline118" ], [ "From line 97 to NonMaxCalc > getResponse > 1", "149#srcline118" ], [ "From line 99 to NonMaxCalc > getResponse > 2", "150#srcline118" ], [ "From line 99 to NonMaxCalc > getResponse > 2", "150#srcline118" ], [ "From line 100 to NonMaxCalc > getResponse > 1", "149#srcline118" ], [ "From line 100 to NonMaxCalc > getResponse > 1", "149#srcline118" ] ],
+ MATLABcode185: "NonMaxCalc185_mcode.html",
+ fpath185: "C:/Sumpurn/Projects/GPU/gpucoderdemo_feature_extraction/NonMaxCalc.m",
+ lines185: [1, 1, 29],
+ watch185: "NonMaxCalc185_watch.html",
+ title185: "Function: <span class='functionname'><a title='C:&nbsp;\\Sumpurn\\Projects\\GPU\\gpucoderdemo_feature_extraction\\NonMaxCalc.m' class='functionlink' href=\"matlab: open('C:\\Sumpurn\\Projects\\GPU\\gpucoderdemo_feature_extraction\\NonMaxCalc.m')\">NonMaxCalc</a></span>",
+ tcall185: [ [ "From NonMaxSuppression_gpu line 51", "188#F185N7:B255" ], [ "From NonMaxSuppression_gpu line 51", "188#F185N7:B255" ], [ "From NonMaxSuppression_gpu line 51", "188#F185N7:B255" ], [ "From NonMaxSuppression_gpu line 51", "188#F185N7:B255" ], [ "From NonMaxSuppression_gpu line 51", "188#F185N7:B255" ], [ "From NonMaxSuppression_gpu line 51", "188#F185N7:B255" ], [ "From NonMaxSuppression_gpu line 51", "188#F185N7:B255" ], [ "From NonMaxSuppression_gpu line 51", "188#F185N7:B255" ], [ "From NonMaxSuppression_gpu line 51", "188#F185N7:B255" ], [ "From NonMaxSuppression_gpu line 51", "188#F185N7:B255" ] ],
+ scall185: [ [ "From line 21 to NonMaxCalc > isExtremum", "184#srcline29" ] ],
+ MATLABcode187: "getLaplacian187_mcode.html",
+ fpath187: "C:/Sumpurn/Projects/GPU/gpucoderdemo_feature_extraction/NonMaxSuppression_gpu.m",
+ lines187: [88, 89, 99],
+ watch187: "getLaplacian187_watch.html",
+ title187: "Function: <span class='functionname'><a title='C:&nbsp;\\Sumpurn\\Projects\\GPU\\gpucoderdemo_feature_extraction\\NonMaxSuppression_gpu.m' class='functionlink' href=\"matlab: open('C:\\Sumpurn\\Projects\\GPU\\gpucoderdemo_feature_extraction\\NonMaxSuppression_gpu.m')\">NonMaxSuppression_gpu &gt; getLaplacian</a></span>",
+ tcall187: [ [ "From NonMaxSuppression_gpu line 71", "188#F187N11:B425" ], [ "From NonMaxSuppression_gpu line 71", "188#F187N11:B425" ], [ "From NonMaxSuppression_gpu line 71", "188#F187N11:B425" ], [ "From NonMaxSuppression_gpu line 71", "188#F187N11:B425" ], [ "From NonMaxSuppression_gpu line 71", "188#F187N11:B425" ], [ "From NonMaxSuppression_gpu line 71", "188#F187N11:B425" ], [ "From NonMaxSuppression_gpu line 71", "188#F187N11:B425" ], [ "From NonMaxSuppression_gpu line 71", "188#F187N11:B425" ], [ "From NonMaxSuppression_gpu line 71", "188#F187N11:B425" ], [ "From NonMaxSuppression_gpu line 71", "188#F187N11:B425" ] ],
+ scall187: [  ],
+ MATLABcode188: "NonMaxSuppression_gpu188_mcode.html",
+ fpath188: "C:/Sumpurn/Projects/GPU/gpucoderdemo_feature_extraction/NonMaxSuppression_gpu.m",
+ lines188: [1, 1, 89],
+ watch188: "NonMaxSuppression_gpu188_watch.html",
+ title188: "Function: <span class='functionname'><a title='C:&nbsp;\\Sumpurn\\Projects\\GPU\\gpucoderdemo_feature_extraction\\NonMaxSuppression_gpu.m' class='functionlink' href=\"matlab: open('C:\\Sumpurn\\Projects\\GPU\\gpucoderdemo_feature_extraction\\NonMaxSuppression_gpu.m')\">NonMaxSuppression_gpu</a></span>",
+ tcall188: [ [ "From SurfDetect line 39", "1#F188N10:B59" ] ],
+ scall188: [ [ "From line 51 to NonMaxCalc", "185#srcline1" ], [ "From line 71 to NonMaxSuppression_gpu > getLaplacian", "187#srcline89" ], [ "From line 51 to NonMaxCalc", "185#srcline1" ], [ "From line 71 to NonMaxSuppression_gpu > getLaplacian", "187#srcline89" ], [ "From line 51 to NonMaxCalc", "185#srcline1" ], [ "From line 71 to NonMaxSuppression_gpu > getLaplacian", "187#srcline89" ], [ "From line 51 to NonMaxCalc", "185#srcline1" ], [ "From line 71 to NonMaxSuppression_gpu > getLaplacian", "187#srcline89" ], [ "From line 51 to NonMaxCalc", "185#srcline1" ], [ "From line 71 to NonMaxSuppression_gpu > getLaplacian", "187#srcline89" ], [ "From line 51 to NonMaxCalc", "185#srcline1" ], [ "From line 71 to NonMaxSuppression_gpu > getLaplacian", "187#srcline89" ], [ "From line 51 to NonMaxCalc", "185#srcline1" ], [ "From line 71 to NonMaxSuppression_gpu > getLaplacian", "187#srcline89" ], [ "From line 51 to NonMaxCalc", "185#srcline1" ], [ "From line 71 to NonMaxSuppression_gpu > getLaplacian", "187#srcline89" ], [ "From line 51 to NonMaxCalc", "185#srcline1" ], [ "From line 71 to NonMaxSuppression_gpu > getLaplacian", "187#srcline89" ], [ "From line 51 to NonMaxCalc", "185#srcline1" ], [ "From line 71 to NonMaxSuppression_gpu > getLaplacian", "187#srcline89" ] ],
+ MATLABcode196: "_anonymousFunction1_196_mcode.html",
+ fpath196: "C:/Sumpurn/Projects/GPU/gpucoderdemo_feature_extraction/OrientationCalc.m",
+ lines196: [0, 0, 0],
+ watch196: "_anonymousFunction1_196_watch.html",
+ title196: "Function: <span class='functionname'><a title='C:&nbsp;\\Sumpurn\\Projects\\GPU\\gpucoderdemo_feature_extraction\\OrientationCalc.m' class='functionlink' href=\"matlab: open('C:\\Sumpurn\\Projects\\GPU\\gpucoderdemo_feature_extraction\\OrientationCalc.m')\">OrientationCalc &gt; @(value) double(floor(value+single(0.5)))</a></span>",
+ tcall196: [ [ "From OrientationCalc > getOrientation line 36", "218#F196N13:B75" ], [ "From OrientationCalc > getOrientation line 37", "218#F196N13:B75" ], [ "From OrientationCalc > getOrientation line 38", "218#F196N13:B75" ] ],
+ scall196: [  ],
+ MATLABcode198: "haarX198_mcode.html",
+ fpath198: "C:/Sumpurn/Projects/GPU/gpucoderdemo_feature_extraction/OrientationCalc.m",
+ lines198: [105, 107, 112],
+ watch198: "haarX198_watch.html",
+ title198: "Function: <span class='functionname'><a title='C:&nbsp;\\Sumpurn\\Projects\\GPU\\gpucoderdemo_feature_extraction\\OrientationCalc.m' class='functionlink' href=\"matlab: open('C:\\Sumpurn\\Projects\\GPU\\gpucoderdemo_feature_extraction\\OrientationCalc.m')\">OrientationCalc &gt; haarX</a></span>",
+ tcall198: [ [ "From OrientationCalc > getOrientation line 52", "218#F198N16:B253" ] ],
+ scall198: [ [ "From line 108 to BoxIntegral", "113#srcline1" ], [ "From line 109 to BoxIntegral", "113#srcline1" ] ],
+ MATLABcode199: "haarY199_mcode.html",
+ fpath199: "C:/Sumpurn/Projects/GPU/gpucoderdemo_feature_extraction/OrientationCalc.m",
+ lines199: [111, 112, 117],
+ watch199: "haarY199_watch.html",
+ title199: "Function: <span class='functionname'><a title='C:&nbsp;\\Sumpurn\\Projects\\GPU\\gpucoderdemo_feature_extraction\\OrientationCalc.m' class='functionlink' href=\"matlab: open('C:\\Sumpurn\\Projects\\GPU\\gpucoderdemo_feature_extraction\\OrientationCalc.m')\">OrientationCalc &gt; haarY</a></span>",
+ tcall199: [ [ "From OrientationCalc > getOrientation line 53", "218#F199N17:B276" ] ],
+ scall199: [ [ "From line 113 to BoxIntegral", "113#srcline1" ], [ "From line 114 to BoxIntegral", "113#srcline1" ] ],
+ MATLABcode203: "getAngle203_mcode.html",
+ fpath203: "C:/Sumpurn/Projects/GPU/gpucoderdemo_feature_extraction/OrientationCalc.m",
+ lines203: [116, 117, 145],
+ watch203: "getAngle203_watch.html",
+ title203: "Function: <span class='functionname'><a title='C:&nbsp;\\Sumpurn\\Projects\\GPU\\gpucoderdemo_feature_extraction\\OrientationCalc.m' class='functionlink' href=\"matlab: open('C:\\Sumpurn\\Projects\\GPU\\gpucoderdemo_feature_extraction\\OrientationCalc.m')\">OrientationCalc &gt; getAngle &gt; 1</a></span>",
+ tcall203: [ [ "From OrientationCalc > getOrientation line 54", "218#F203N14:B297" ] ],
+ scall203: [  ],
+ MATLABcode217: "getAngle217_mcode.html",
+ fpath217: "C:/Sumpurn/Projects/GPU/gpucoderdemo_feature_extraction/OrientationCalc.m",
+ lines217: [116, 117, 145],
+ watch217: "getAngle217_watch.html",
+ title217: "Function: <span class='functionname'><a title='C:&nbsp;\\Sumpurn\\Projects\\GPU\\gpucoderdemo_feature_extraction\\OrientationCalc.m' class='functionlink' href=\"matlab: open('C:\\Sumpurn\\Projects\\GPU\\gpucoderdemo_feature_extraction\\OrientationCalc.m')\">OrientationCalc &gt; getAngle &gt; 2</a></span>",
+ tcall217: [ [ "From OrientationCalc > getOrientation line 98", "218#F217N14:B503" ] ],
+ scall217: [  ],
+ MATLABcode218: "getOrientation218_mcode.html",
+ fpath218: "C:/Sumpurn/Projects/GPU/gpucoderdemo_feature_extraction/OrientationCalc.m",
+ lines218: [20, 21, 107],
+ watch218: "getOrientation218_watch.html",
+ title218: "Function: <span class='functionname'><a title='C:&nbsp;\\Sumpurn\\Projects\\GPU\\gpucoderdemo_feature_extraction\\OrientationCalc.m' class='functionlink' href=\"matlab: open('C:\\Sumpurn\\Projects\\GPU\\gpucoderdemo_feature_extraction\\OrientationCalc.m')\">OrientationCalc &gt; getOrientation</a></span>",
+ tcall218: [ [ "From OrientationCalc line 16", "219#F218N15:B41" ] ],
+ scall218: [ [ "From line 36 to OrientationCalc > @(value) double(floor(value+single(0.5)))", "196#srcline0" ], [ "From line 37 to OrientationCalc > @(value) double(floor(value+single(0.5)))", "196#srcline0" ], [ "From line 38 to OrientationCalc > @(value) double(floor(value+single(0.5)))", "196#srcline0" ], [ "From line 52 to OrientationCalc > haarX", "198#srcline107" ], [ "From line 53 to OrientationCalc > haarY", "199#srcline112" ], [ "From line 54 to OrientationCalc > getAngle > 1", "203#srcline117" ], [ "From line 98 to OrientationCalc > getAngle > 2", "217#srcline117" ] ],
+ MATLABcode219: "OrientationCalc219_mcode.html",
+ fpath219: "C:/Sumpurn/Projects/GPU/gpucoderdemo_feature_extraction/OrientationCalc.m",
+ lines219: [1, 1, 21],
+ watch219: "OrientationCalc219_watch.html",
+ title219: "Function: <span class='functionname'><a title='C:&nbsp;\\Sumpurn\\Projects\\GPU\\gpucoderdemo_feature_extraction\\OrientationCalc.m' class='functionlink' href=\"matlab: open('C:\\Sumpurn\\Projects\\GPU\\gpucoderdemo_feature_extraction\\OrientationCalc.m')\">OrientationCalc</a></span>",
+ tcall219: [ [ "From SurfDetect line 46", "1#F219N12:B74" ] ],
+ scall219: [ [ "From line 16 to OrientationCalc > getOrientation", "218#srcline21" ] ],
+ rootFcnID: "1",
+ firstPage: "SurfDetect_cu.html",
+ htmlRoot: "C:/Sumpurn/Projects/GPU/gpucoderdemo_feature_extraction/sumpurn/codegen/embed/lib/normal/SurfDetect/html/"
+};
+var scriptInfoTable = {
+ fpath1: "C:/Sumpurn/Projects/GPU/gpucoderdemo_feature_extraction/SurfDetect.m",
+ fpath2: "C:/Program Files/MATLAB/R2017b/toolbox/shared/coder/coder/+coder/+gpu/kernelfun.m",
+ fpath3: "C:/Program Files/MATLAB/R2017b/toolbox/eml/eml/+coder/+internal/isBuiltInNumeric.m",
+ fpath4: "C:/Program Files/MATLAB/R2017b/toolbox/eml/eml/+coder/+internal/+scalar/floor.m",
+ fpath5: "C:/Program Files/MATLAB/R2017b/toolbox/eml/eml/+coder/+internal/applyScalarFunctionInPlace.m",
+ fpath6: "C:/Program Files/MATLAB/R2017b/toolbox/eml/lib/matlab/elfun/floor.m",
+ fpath7: "C:/Program Files/MATLAB/R2017b/toolbox/shared/coder/coder/+coder/+internal/narginchk.m",
+ fpath8: "C:/Program Files/MATLAB/R2017b/toolbox/eml/lib/matlab/lang/validateattributes.m",
+ fpath9: "C:/Program Files/MATLAB/R2017b/toolbox/eml/lib/matlab/strfun/char.m",
+ fpath10: "C:/Program Files/MATLAB/R2017b/toolbox/eml/lib/matlab/elmat/ismatrix.m",
+ fpath11: "C:/Program Files/MATLAB/R2017b/toolbox/eml/eml/+coder/+internal/+scalar/abs.m",
+ fpath12: "C:/Program Files/MATLAB/R2017b/toolbox/eml/eml/+coder/+internal/applyScalarFunction.m",
+ fpath13: "C:/Program Files/MATLAB/R2017b/toolbox/eml/lib/matlab/elfun/abs.m",
+ fpath14: "C:/Program Files/MATLAB/R2017b/toolbox/eml/eml/+coder/+internal/div.m",
+ fpath15: "C:/Program Files/MATLAB/R2017b/toolbox/eml/eml/+coder/+internal/indexPlus.m",
+ fpath16: "C:/Program Files/MATLAB/R2017b/toolbox/eml/lib/matlab/matfun/inv.m",
+ fpath17: "C:/Program Files/MATLAB/R2017b/toolbox/eml/lib/matlab/elmat/isnan.m",
+ fpath18: "C:/Program Files/MATLAB/R2017b/toolbox/eml/lib/matlab/matfun/norm.m",
+ fpath19: "C:/Program Files/MATLAB/R2017b/toolbox/eml/eml/+coder/+internal/nan.m",
+ fpath20: "C:/Program Files/MATLAB/R2017b/toolbox/shared/coder/coder/+coder/+internal/warning.m",
+ fpath21: "C:/Program Files/MATLAB/R2017b/toolbox/eml/eml/+coder/+internal/isFloatClass.m",
+ fpath22: "C:/Program Files/MATLAB/R2017b/toolbox/eml/eml/+coder/+internal/floatModel.m",
+ fpath23: "C:/Program Files/MATLAB/R2017b/toolbox/eml/lib/matlab/elmat/private/eml_eps.m",
+ fpath24: "C:/Program Files/MATLAB/R2017b/toolbox/eml/lib/matlab/elmat/eps.m",
+ fpath25: "C:/Program Files/MATLAB/R2017b/toolbox/eml/eml/+coder/+internal/flt2str.m",
+ fpath26: "C:/Program Files/MATLAB/R2017b/toolbox/matlab/images/+images/+internal/+coder/useSingleThread.m",
+ fpath27: "C:/Program Files/MATLAB/R2017b/toolbox/matlab/images/+images/+internal/+coder/isCodegenForHost.m",
+ fpath28: "C:/Program Files/MATLAB/R2017b/toolbox/eml/eml/+coder/+internal/scalexpCompatible.m",
+ fpath29: "C:/Program Files/MATLAB/R2017b/toolbox/eml/lib/matlab/ops/rdivide.m",
+ fpath30: "C:/Program Files/MATLAB/R2017b/toolbox/eml/lib/matlab/ops/mrdivide.p",
+ fpath31: "C:/Program Files/MATLAB/R2017b/toolbox/shared/coder/coder/+coder/+gpu/+internal/kernelImpl.p",
+ fpath32: "C:/Program Files/MATLAB/R2017b/toolbox/eml/lib/matlab/ops/eml_mtimes_helper.m",
+ fpath33: "C:/Program Files/MATLAB/R2017b/toolbox/eml/eml/+coder/+internal/scalarEg.m",
+ fpath34: "C:/Program Files/MATLAB/R2017b/toolbox/eml/lib/fixedpoint/isnumerictype.m",
+ fpath35: "C:/Program Files/MATLAB/R2017b/toolbox/eml/lib/fixedpoint/isfimath.m",
+ fpath36: "C:/Program Files/MATLAB/R2017b/toolbox/eml/lib/fixedpoint/isfi.m",
+ fpath37: "C:/Program Files/MATLAB/R2017b/toolbox/eml/lib/matlab/elmat/intmax.m",
+ fpath38: "C:/Program Files/MATLAB/R2017b/toolbox/eml/lib/matlab/elmat/intmin.m",
+ fpath39: "C:/Program Files/MATLAB/R2017b/toolbox/eml/lib/matlab/eml/eml_int_forloop_overflow_check.m",
+ fpath40: "C:/Program Files/MATLAB/R2017b/toolbox/eml/eml/+coder/+internal/+blas/use_refblas.m",
+ fpath41: "C:/Program Files/MATLAB/R2017b/toolbox/eml/eml/+coder/+internal/+blas/inline.m",
+ fpath42: "C:/Program Files/MATLAB/R2017b/toolbox/eml/eml/+coder/+internal/+blas/threshold.m",
+ fpath43: "C:/Program Files/MATLAB/R2017b/toolbox/eml/eml/+coder/+internal/+blas/xdot.m",
+ fpath44: "C:/Program Files/MATLAB/R2017b/toolbox/eml/eml/+coder/+internal/indexMinus.m",
+ fpath45: "C:/Program Files/MATLAB/R2017b/toolbox/eml/eml/+coder/+internal/indexTimes.m",
+ fpath46: "C:/Program Files/MATLAB/R2017b/toolbox/eml/eml/+coder/+internal/+refblas/xdotx.m",
+ fpath47: "C:/Program Files/MATLAB/R2017b/toolbox/eml/eml/+coder/+internal/+refblas/xdot.m",
+ fpath48: "C:/Program Files/MATLAB/R2017b/toolbox/eml/eml/+coder/+internal/+blas/xdotu.m",
+ fpath49: "C:/Program Files/MATLAB/R2017b/toolbox/eml/lib/matlab/images/rgb2gray.m",
+ fpath50: "C:/Program Files/MATLAB/R2017b/toolbox/eml/lib/matlab/elmat/isinf.m",
+ fpath51: "C:/Program Files/MATLAB/R2017b/toolbox/eml/lib/matlab/elmat/isfinite.m",
+ fpath52: "C:/Program Files/MATLAB/R2017b/toolbox/eml/lib/matlab/elmat/private/eml_realmin.m",
+ fpath53: "C:/Program Files/MATLAB/R2017b/toolbox/eml/lib/matlab/elmat/realmin.m",
+ fpath54: "C:/Program Files/MATLAB/R2017b/toolbox/eml/eml/+coder/+internal/mantissa_nbits.m",
+ fpath55: "C:/Program Files/MATLAB/R2017b/toolbox/eml/lib/matlab/elmat/private/eml_realmin_denormal.m",
+ fpath56: "C:/Program Files/MATLAB/R2017b/toolbox/eml/lib/matlab/elmat/private/eml_realmax.m",
+ fpath57: "C:/Program Files/MATLAB/R2017b/toolbox/eml/lib/matlab/elmat/realmax.m",
+ fpath58: "C:/Sumpurn/Projects/GPU/gpucoderdemo_feature_extraction/Convert32bitFPGray.m",
+ fpath59: "C:/Program Files/MATLAB/R2017b/toolbox/shared/coder/coder/+coder/+gpu/kernel.m",
+ fpath60: "C:/Sumpurn/Projects/GPU/gpucoderdemo_feature_extraction/MyIntegralImage.m",
+ fpath61: "C:/Sumpurn/Projects/GPU/gpucoderdemo_feature_extraction/BoxIntegral.m",
+ fpath62: "C:/Program Files/MATLAB/R2017b/toolbox/eml/eml/+coder/+internal/+scalar/ceil.m",
+ fpath63: "C:/Program Files/MATLAB/R2017b/toolbox/eml/lib/matlab/elfun/ceil.m",
+ fpath64: "C:/Sumpurn/Projects/GPU/gpucoderdemo_feature_extraction/FastHessianCalc.m",
+ fpath65: "C:/Sumpurn/Projects/GPU/gpucoderdemo_feature_extraction/FastHessian.m",
+ fpath66: "C:/Program Files/MATLAB/R2017b/toolbox/shared/coder/coder/+coder/+gpu/isGpuEnabled.m",
+ fpath67: "C:/Program Files/MATLAB/R2017b/toolbox/eml/eml/+coder/+internal/scalexpAllocNoCheck.m",
+ fpath68: "C:/Program Files/MATLAB/R2017b/toolbox/eml/eml/+coder/+internal/scalexpAlloc.m",
+ fpath69: "C:/Program Files/MATLAB/R2017b/toolbox/eml/eml/+coder/+internal/minOrMax.m",
+ fpath70: "C:/Program Files/MATLAB/R2017b/toolbox/eml/lib/matlab/datafun/max.m",
+ fpath71: "C:/Program Files/MATLAB/R2017b/toolbox/eml/lib/matlab/elmat/repmat.m",
+ fpath72: "C:/Sumpurn/Projects/GPU/gpucoderdemo_feature_extraction/NonMaxCalc.m",
+ fpath73: "C:/Program Files/MATLAB/R2017b/toolbox/shared/coder/coder/+coder/+internal/error.m",
+ fpath74: "C:/Program Files/MATLAB/R2017b/toolbox/eml/eml/+coder/+internal/toLogicalCheck.m",
+ fpath75: "C:/Program Files/MATLAB/R2017b/toolbox/eml/eml/+coder/+internal/+refblas/xcabs1.m",
+ fpath76: "C:/Program Files/MATLAB/R2017b/toolbox/eml/eml/+coder/+internal/lusolve.m",
+ fpath77: "C:/Program Files/MATLAB/R2017b/toolbox/eml/lib/matlab/ops/mldivide.p",
+ fpath78: "C:/Sumpurn/Projects/GPU/gpucoderdemo_feature_extraction/NonMaxSuppression_gpu.m",
+ fpath79: "C:/Program Files/MATLAB/R2017b/toolbox/eml/eml/+coder/+internal/length.m",
+ fpath80: "C:/Sumpurn/Projects/GPU/gpucoderdemo_feature_extraction/OrientationCalc.m",
+ fpath81: "C:/Program Files/MATLAB/R2017b/toolbox/eml/eml/+coder/+internal/+scalar/atan.m",
+ fpath82: "C:/Program Files/MATLAB/R2017b/toolbox/eml/lib/matlab/elfun/atan.m"
+};
+</script>
+</head>
+<body>
+
+<div class="west">
+<ul class="ui-tabs-nav">
+<li class="ui-tabs-nav-item ui-tabs-selected"><span class="tab-link" id="MATLABcode"><span>MATLAB code</span></span></li>
+<li class="ui-tabs-nav-item"><span class="tab-link" id="callstack"><span>Call stack</span></span></li>
+<li class="ui-tabs-nav-item"><span class="tab-link" id="ccode"><span>C code</span></span></li>
+</ul>
+<div id="MATLABcodebody" class="ui-tabs-panel">
+<!-- Begin Filter -->
+<div class="grayline methodset" onclick="filterClick(event);">
+<a class="collapsed">Filter</a>
+</div>
+<div id="filterbody" class="hidden">
+<table class="myfunc-filter-tbl">
+<tr>
+<td title="Use this filter to display only functions and methods that contain variables or expressions with the specified attributes." colspan="2" class="checkbox">
+<div class="myfunc-filterby-chk"><input type="checkbox" class="filterenable" />
+<div class="filter-enable-lbl">Filter functions and methods</div></div></td></tr><tr>
+<td class="label"><div class="myfunc-filterby-lbl">Filter by:</div></td>
+<td class="select">
+<div class="filters">
+<select class="myfunc-filterby">
+<option id="size">Size</option>
+<option id="complex">Complexity</option>
+<option id="class">Class</option>
+</select>
+</div>
+</td>
+</tr>
+
+<tr>
+<td class="label"><div class="myfunc-filterstr-lbl">Filter:</div></td>
+<td class="input"><div>
+
+<div class="size">
+<select class="myfunc-filter size">
+<option value="1 112 113 120 121 122 123 124 125 149 150 184 185 187 188 198 199 203 217 218 219">1 x 1</option>
+<option value="218">1 x 109</option>
+<option value="1 125 188">1 x 12</option>
+<option value="218">1 x 13</option>
+<option value="112 113 125 184 185 188">1 x 2</option>
+<option value="125">1 x 5</option>
+<option value="1 188 219">1 x <b>:</b>2000</option>
+<option value="124 125">12 x 16</option>
+<option value="120">192 x 256</option>
+<option value="123">24 x 32</option>
+<option value="184">3 x 1</option>
+<option value="184">3 x 3</option>
+<option value="1 109 112 113 120 121 122 123 124 125 185 188 198 199 218 219">384 x 512</option>
+<option value="1 109">384 x 512 x 3</option>
+<option value="122">48 x 64</option>
+<option value="188">5 x 4</option>
+<option value="218">7 x 7</option>
+<option value="121">96 x 128</option>
+<option value="1 125 149 150 184 185 187 188"><b>:</b>192 x <b>:</b>256</option>
+</select>
+</div>
+
+<div class="complex">
+<select class="myfunc-filter complex">
+<option value="">Complex values</option>
+<option value="1 109 112 113 120 121 122 123 124 125 149 150 184 185 187 188 198 199 203 217 218 219">Real values</option>
+</select>
+</div>
+<!-- Begin Class Filter -->
+<div class="class">
+<select class="myfunc-filter class">
+<option value="1 112 113 120 121 122 123 124 125 149 150 184 185 187 188 198 199 203 218 219">double</option>
+<option value="218">function_handle</option>
+<option value="1 188 218 219">int32</option>
+<option value="1 109 112 113 120 121 122 123 124 125 149 150 184 185 188 198 199 203 217 218 219">single</option>
+<option value="1 125 188 218 219">struct</option>
+<option value="1 109 120 121 122 123 124 125 185 187 188">uint8</option>
+</select>
+</div>
+<!-- End Class Filter -->
+</div>
+</td>
+</tr>
+</table>
+<div class="myfunc-count"></div>
+</div>
+<!-- End Filter -->
+<div class="grayline methodset" onmouseover="callTreeMouseOver(event);" onmouseout="callTreeMouseOut(event);" onclick="functionSetClick(event);">
+<a class="expanded">Functions</a>
+</div>
+<!-- Begin Function Tree -->
+<div id="functiontreebody">
+<div class="functionwrapper" onmouseover="callTreeMouseOver(event);" onmouseout="callTreeMouseOut(event);" onclick="functionTreeClick(event);">
+<ol class="tree">
+<!-- Begin Function Tree Roots -->
+<li class="leaf  passed"><a href="#" class="fcn  PD3 " id="F113N2:F1">BoxIntegral</a></li>
+<li class="leaf  passed"><a href="#" class="fcn  " id="F109N3:F2">Convert32bitFPGray</a></li>
+<li class="leaf  passed"><a href="#" class="fcn  " id="F125N4:F3">FastHessian</a></li>
+<li class="leaf  passed"><a href="#" class="fcn  " id="F120N5:F4">FastHessianCalc &gt; 1</a></li>
+<li class="leaf  passed"><a href="#" class="fcn  " id="F121N5:F5">FastHessianCalc &gt; 2</a></li>
+<li class="leaf  passed"><a href="#" class="fcn  " id="F122N5:F6">FastHessianCalc &gt; 3</a></li>
+<li class="leaf  passed"><a href="#" class="fcn  " id="F123N5:F7">FastHessianCalc &gt; 4</a></li>
+<li class="leaf  passed"><a href="#" class="fcn  " id="F124N5:F8">FastHessianCalc &gt; 5</a></li>
+<li class="leaf  info"><a href="#" class="fcn  PD12 PD13 " id="F112N6:F9">MyIntegralImage</a></li>
+<li class="leaf  info"><a href="#" class="fcn  PD2 PD3 PD4 PD5 PD6 PD7 PD8 PD9 PD10 PD11 " id="F185N7:F10">NonMaxCalc</a></li>
+<li class="leaf  passed"><a href="#" class="fcn  " id="F149N8:F11">NonMaxCalc &gt; getResponse &gt; 1</a></li>
+<li class="leaf  passed"><a href="#" class="fcn  " id="F150N8:F12">NonMaxCalc &gt; getResponse &gt; 2</a></li>
+<li class="leaf  passed"><a href="#" class="fcn  " id="F184N9:F13">NonMaxCalc &gt; isExtremum</a></li>
+<li class="leaf  passed"><a href="#" class="fcn  PD1 PD2 " id="F188N10:F14">NonMaxSuppression_gpu</a></li>
+<li class="leaf  passed"><a href="#" class="fcn  " id="F187N11:F15">NonMaxSuppression_gpu &gt; getLaplacian</a></li>
+<li class="leaf  info"><a href="#" class="fcn  PD1 " id="F219N12:F16">OrientationCalc</a></li>
+<li class="leaf  passed"><a href="#" class="fcn  " id="F196N13:F17">OrientationCalc &gt; @(value) double(floor(value+single(0.5)))</a></li>
+<li class="leaf  passed"><a href="#" class="fcn  " id="F203N14:F18">OrientationCalc &gt; getAngle &gt; 1</a></li>
+<li class="leaf  passed"><a href="#" class="fcn  " id="F217N14:F19">OrientationCalc &gt; getAngle &gt; 2</a></li>
+<li class="leaf  passed"><a href="#" class="fcn  PD1 " id="F218N15:F20">OrientationCalc &gt; getOrientation</a></li>
+<li class="leaf  passed"><a href="#" class="fcn  " id="F198N16:F21">OrientationCalc &gt; haarX</a></li>
+<li class="leaf  passed"><a href="#" class="fcn  " id="F199N17:F22">OrientationCalc &gt; haarY</a></li>
+<li class="leaf  passed"><a href="#" class="fcn  PD2 " id="F1N18:F23">SurfDetect</a></li>
+<!-- End Function Tree Roots -->
+</ol>
+<!-- Function Tree Nodes -->
+<div class="functiontreenodes hidden">
+</div>
+<!-- End Function Tree Nodes -->
+</div>
+</div>
+<!-- End Function Tree -->
+</div>
+<!-- Begin Call Tree -->
+<div id="callstackbody" class="ui-tabs-panel hidden">
+<div class="treewrapper" onmouseover="callTreeMouseOver(event);" onmouseout="callTreeMouseOut(event);" onclick="callTreeClick(event);">
+<ol class="tree">
+<!-- Call Tree Root -->
+<li class="node collapsed passed"><a href="#" class="fcn  PD2 " id="F1N18:L1">SurfDetect</a>
+<ul>
+<li class="leaf passed"><a href="#" class="fcn  " id="F109N3:L2">Convert32bitFPGray</a></li>
+<li class="leaf info"><a href="#" class="fcn  PD12 PD13 " id="F112N6:L3">MyIntegralImage</a></li>
+<li class="node collapsed passed"><a href="#" class="fcn  " id="F125N4:L4">FastHessian</a></li>
+<li class="node collapsed passed"><a href="#" class="fcn  PD1 PD2 " id="F188N10:L5">NonMaxSuppression_gpu</a></li>
+<li class="node collapsed info"><a href="#" class="fcn  PD1 " id="F219N12:L6">OrientationCalc</a></li>
+</ul>
+</li>
+</ol>
+<!-- Call Tree Nodes -->
+<div class="callstacknodes hidden">
+<ol class="callstacknode" id="callstacknode1">
+
+<li class="node collapsed passed"><a href="#" class="fcn  PD2 " id="F1N18:l1">SurfDetect</a>
+<ul>
+<li class="leaf passed"><a href="#" class="fcn  " id="F109N3:l2">Convert32bitFPGray</a></li>
+<li class="leaf info"><a href="#" class="fcn  PD12 PD13 " id="F112N6:l3">MyIntegralImage</a></li>
+<li class="node collapsed passed"><a href="#" class="fcn  " id="F125N4:l4">FastHessian</a></li>
+<li class="node collapsed passed"><a href="#" class="fcn  PD1 PD2 " id="F188N10:l5">NonMaxSuppression_gpu</a></li>
+<li class="node collapsed info"><a href="#" class="fcn  PD1 " id="F219N12:l6">OrientationCalc</a></li>
+</ul>
+</li>
+</ol>
+<ol class="callstacknode" id="callstacknode109">
+
+<li class="leaf passed"><a href="#" class="fcn  " id="F109N3:l7">Convert32bitFPGray</a>
+</li>
+</ol>
+<ol class="callstacknode" id="callstacknode112">
+
+<li class="leaf info"><a href="#" class="fcn  PD12 PD13 " id="F112N6:l8">MyIntegralImage</a>
+</li>
+</ol>
+<ol class="callstacknode" id="callstacknode113">
+
+<li class="leaf passed"><a href="#" class="fcn  PD3 " id="F113N2:l9">BoxIntegral</a>
+</li>
+</ol>
+<ol class="callstacknode" id="callstacknode120">
+
+<li class="node collapsed passed"><a href="#" class="fcn  " id="F120N5:l10">FastHessianCalc &gt; 1</a>
+<ul>
+<li class="leaf passed"><a href="#" class="fcn  PD3 " id="F113N2:l11">BoxIntegral</a></li>
+</ul>
+</li>
+</ol>
+<ol class="callstacknode" id="callstacknode121">
+
+<li class="node collapsed passed"><a href="#" class="fcn  " id="F121N5:l12">FastHessianCalc &gt; 2</a>
+<ul>
+<li class="leaf passed"><a href="#" class="fcn  PD3 " id="F113N2:l13">BoxIntegral</a></li>
+</ul>
+</li>
+</ol>
+<ol class="callstacknode" id="callstacknode122">
+
+<li class="node collapsed passed"><a href="#" class="fcn  " id="F122N5:l14">FastHessianCalc &gt; 3</a>
+<ul>
+<li class="leaf passed"><a href="#" class="fcn  PD3 " id="F113N2:l15">BoxIntegral</a></li>
+</ul>
+</li>
+</ol>
+<ol class="callstacknode" id="callstacknode123">
+
+<li class="node collapsed passed"><a href="#" class="fcn  " id="F123N5:l16">FastHessianCalc &gt; 4</a>
+<ul>
+<li class="leaf passed"><a href="#" class="fcn  PD3 " id="F113N2:l17">BoxIntegral</a></li>
+</ul>
+</li>
+</ol>
+<ol class="callstacknode" id="callstacknode124">
+
+<li class="node collapsed passed"><a href="#" class="fcn  " id="F124N5:l18">FastHessianCalc &gt; 5</a>
+<ul>
+<li class="leaf passed"><a href="#" class="fcn  PD3 " id="F113N2:l19">BoxIntegral</a></li>
+</ul>
+</li>
+</ol>
+<ol class="callstacknode" id="callstacknode125">
+
+<li class="node collapsed passed"><a href="#" class="fcn  " id="F125N4:l20">FastHessian</a>
+<ul>
+<li class="node collapsed passed"><a href="#" class="fcn  " id="F120N5:l21">FastHessianCalc &gt; 1</a></li>
+<li class="node collapsed passed"><a href="#" class="fcn  " id="F121N5:l22">FastHessianCalc &gt; 2</a></li>
+<li class="node collapsed passed"><a href="#" class="fcn  " id="F122N5:l23">FastHessianCalc &gt; 3</a></li>
+<li class="node collapsed passed"><a href="#" class="fcn  " id="F123N5:l24">FastHessianCalc &gt; 4</a></li>
+<li class="node collapsed passed"><a href="#" class="fcn  " id="F124N5:l25">FastHessianCalc &gt; 5</a></li>
+</ul>
+</li>
+</ol>
+<ol class="callstacknode" id="callstacknode149">
+
+<li class="leaf passed"><a href="#" class="fcn  " id="F149N8:l26">NonMaxCalc &gt; getResponse &gt; 1</a>
+</li>
+</ol>
+<ol class="callstacknode" id="callstacknode150">
+
+<li class="leaf passed"><a href="#" class="fcn  " id="F150N8:l27">NonMaxCalc &gt; getResponse &gt; 2</a>
+</li>
+</ol>
+<ol class="callstacknode" id="callstacknode184">
+
+<li class="node collapsed passed"><a href="#" class="fcn  " id="F184N9:l28">NonMaxCalc &gt; isExtremum</a>
+<ul>
+<li class="leaf passed"><a href="#" class="fcn  " id="F149N8:l29">NonMaxCalc &gt; getResponse &gt; 1</a></li>
+<li class="leaf passed"><a href="#" class="fcn  " id="F150N8:l30">NonMaxCalc &gt; getResponse &gt; 2</a></li>
+</ul>
+</li>
+</ol>
+<ol class="callstacknode" id="callstacknode185">
+
+<li class="node collapsed info"><a href="#" class="fcn  PD2 PD3 PD4 PD5 PD6 PD7 PD8 PD9 PD10 PD11 " id="F185N7:l31">NonMaxCalc</a>
+<ul>
+<li class="node collapsed passed"><a href="#" class="fcn  " id="F184N9:l32">NonMaxCalc &gt; isExtremum</a></li>
+</ul>
+</li>
+</ol>
+<ol class="callstacknode" id="callstacknode187">
+
+<li class="leaf passed"><a href="#" class="fcn  " id="F187N11:l33">NonMaxSuppression_gpu &gt; getLaplacian</a>
+</li>
+</ol>
+<ol class="callstacknode" id="callstacknode188">
+
+<li class="node collapsed passed"><a href="#" class="fcn  PD1 PD2 " id="F188N10:l34">NonMaxSuppression_gpu</a>
+<ul>
+<li class="node collapsed info"><a href="#" class="fcn  PD2 PD3 PD4 PD5 PD6 PD7 PD8 PD9 PD10 PD11 " id="F185N7:l35">NonMaxCalc</a></li>
+<li class="leaf passed"><a href="#" class="fcn  " id="F187N11:l36">NonMaxSuppression_gpu &gt; getLaplacian</a></li>
+</ul>
+</li>
+</ol>
+<ol class="callstacknode" id="callstacknode196">
+
+<li class="leaf passed"><a href="#" class="fcn  " id="F196N13:l37">OrientationCalc &gt; @(value) double(floor(value+single(0.5)))</a>
+</li>
+</ol>
+<ol class="callstacknode" id="callstacknode198">
+
+<li class="node collapsed passed"><a href="#" class="fcn  " id="F198N16:l38">OrientationCalc &gt; haarX</a>
+<ul>
+<li class="leaf passed"><a href="#" class="fcn  PD3 " id="F113N2:l39">BoxIntegral</a></li>
+</ul>
+</li>
+</ol>
+<ol class="callstacknode" id="callstacknode199">
+
+<li class="node collapsed passed"><a href="#" class="fcn  " id="F199N17:l40">OrientationCalc &gt; haarY</a>
+<ul>
+<li class="leaf passed"><a href="#" class="fcn  PD3 " id="F113N2:l41">BoxIntegral</a></li>
+</ul>
+</li>
+</ol>
+<ol class="callstacknode" id="callstacknode203">
+
+<li class="leaf passed"><a href="#" class="fcn  " id="F203N14:l42">OrientationCalc &gt; getAngle &gt; 1</a>
+</li>
+</ol>
+<ol class="callstacknode" id="callstacknode217">
+
+<li class="leaf passed"><a href="#" class="fcn  " id="F217N14:l43">OrientationCalc &gt; getAngle &gt; 2</a>
+</li>
+</ol>
+<ol class="callstacknode" id="callstacknode218">
+
+<li class="node collapsed passed"><a href="#" class="fcn  PD1 " id="F218N15:l44">OrientationCalc &gt; getOrientation</a>
+<ul>
+<li class="leaf passed"><a href="#" class="fcn  " id="F196N13:l45">OrientationCalc &gt; @(value) double(floor(value+single(0.5)))</a></li>
+<li class="node collapsed passed"><a href="#" class="fcn  " id="F198N16:l46">OrientationCalc &gt; haarX</a></li>
+<li class="node collapsed passed"><a href="#" class="fcn  " id="F199N17:l47">OrientationCalc &gt; haarY</a></li>
+<li class="leaf passed"><a href="#" class="fcn  " id="F203N14:l48">OrientationCalc &gt; getAngle &gt; 1</a></li>
+<li class="leaf passed"><a href="#" class="fcn  " id="F217N14:l49">OrientationCalc &gt; getAngle &gt; 2</a></li>
+</ul>
+</li>
+</ol>
+<ol class="callstacknode" id="callstacknode219">
+
+<li class="node collapsed info"><a href="#" class="fcn  PD1 " id="F219N12:l50">OrientationCalc</a>
+<ul>
+<li class="node collapsed passed"><a href="#" class="fcn  PD1 " id="F218N15:l51">OrientationCalc &gt; getOrientation</a></li>
+</ul>
+</li>
+</ol>
+
+</div>
+</div>
+</div>
+<!-- End Call Tree -->
+<!-- Begin C Code -->
+<div id="ccodebody" class="ui-tabs-panel hidden">
+<div class="grayline methodset" onclick="ccodeClick(event,1);">
+<a class="expanded">Target Source Files</a>
+</div>
+<!-- Begin C Code List -->
+<div id="ccodelistbody1" class="visible">
+<table class="myfunc-list" cellspacing="0" cellpadding="0" onclick="cFileClick(event);">
+<tbody>
+<tr class="ccode" id="SurfDetect_cu.html"><td class="ccode"><a href="#">SurfDetect.cu</a></td></tr>
+<tr class="ccode" id="SurfDetect_h.html"><td class="ccode"><a href="#">SurfDetect.h</a></td></tr>
+<tr class="ccode" id="SurfDetect_initialize_cu.html"><td class="ccode"><a href="#">SurfDetect_initialize.cu</a></td></tr>
+<tr class="ccode" id="SurfDetect_initialize_h.html"><td class="ccode"><a href="#">SurfDetect_initialize.h</a></td></tr>
+<tr class="ccode" id="SurfDetect_terminate_cu.html"><td class="ccode"><a href="#">SurfDetect_terminate.cu</a></td></tr>
+<tr class="ccode" id="SurfDetect_terminate_h.html"><td class="ccode"><a href="#">SurfDetect_terminate.h</a></td></tr>
+<tr class="ccode" id="SurfDetect_types_h.html"><td class="ccode"><a href="#">SurfDetect_types.h</a></td></tr>
+<tr class="ccode" id="rtGetInf_cu.html"><td class="ccode"><a href="#">rtGetInf.cu</a></td></tr>
+<tr class="ccode" id="rtGetInf_h.html"><td class="ccode"><a href="#">rtGetInf.h</a></td></tr>
+<tr class="ccode" id="rtGetNaN_cu.html"><td class="ccode"><a href="#">rtGetNaN.cu</a></td></tr>
+<tr class="ccode" id="rtGetNaN_h.html"><td class="ccode"><a href="#">rtGetNaN.h</a></td></tr>
+<tr class="ccode" id="rt_nonfinite_cu.html"><td class="ccode"><a href="#">rt_nonfinite.cu</a></td></tr>
+<tr class="ccode" id="rt_nonfinite_h.html"><td class="ccode"><a href="#">rt_nonfinite.h</a></td></tr>
+<tr class="ccode" id="rtwtypes_h.html"><td class="ccode"><a href="#">rtwtypes.h</a></td></tr>
+</tbody>
+</table>
+</div>
+<!-- End C Code List -->
+<div class="grayline methodset" onclick="ccodeClick(event);"></div><table class="myfunc-list" cellspacing="0" cellpadding="0" onclick="reportFileClick(event);"><tbody><tr class="report" id="gpu_metrics.html"><td class="report"><a href="#">GPU Static Metrics Report</a></td></tr></tbody></table><div class="grayline methodset" onclick="ccodeClick(event,5);">
+<a class="expanded">GPU Kernels</a>
+</div>
+<!-- Begin GPU Kernel List -->
+<div id="ccodelistbody5" class="visible">
+<table class="mykernel-list" cellspacing="0" cellpadding="0" onclick="cFileClick(event);">
+<tbody>
+<tr class="ccode" id="SurfDetect_cu.html#fcn_SurfDetect_kernel1"><td class="ccode"><a href="#fcn_SurfDetect_kernel1">SurfDetect_kernel1</a></td></tr>
+<tr class="ccode" id="SurfDetect_cu.html#fcn_SurfDetect_kernel2"><td class="ccode"><a href="#fcn_SurfDetect_kernel2">SurfDetect_kernel2</a></td></tr>
+<tr class="ccode" id="SurfDetect_cu.html#fcn_SurfDetect_kernel3"><td class="ccode"><a href="#fcn_SurfDetect_kernel3">SurfDetect_kernel3</a></td></tr>
+<tr class="ccode" id="SurfDetect_cu.html#fcn_SurfDetect_kernel4"><td class="ccode"><a href="#fcn_SurfDetect_kernel4">SurfDetect_kernel4</a></td></tr>
+<tr class="ccode" id="SurfDetect_cu.html#fcn_SurfDetect_kernel5"><td class="ccode"><a href="#fcn_SurfDetect_kernel5">SurfDetect_kernel5</a></td></tr>
+<tr class="ccode" id="SurfDetect_cu.html#fcn_SurfDetect_kernel6"><td class="ccode"><a href="#fcn_SurfDetect_kernel6">SurfDetect_kernel6</a></td></tr>
+<tr class="ccode" id="SurfDetect_cu.html#fcn_SurfDetect_kernel7"><td class="ccode"><a href="#fcn_SurfDetect_kernel7">SurfDetect_kernel7</a></td></tr>
+<tr class="ccode" id="SurfDetect_cu.html#fcn_SurfDetect_kernel8"><td class="ccode"><a href="#fcn_SurfDetect_kernel8">SurfDetect_kernel8</a></td></tr>
+<tr class="ccode" id="SurfDetect_cu.html#fcn_SurfDetect_kernel9"><td class="ccode"><a href="#fcn_SurfDetect_kernel9">SurfDetect_kernel9</a></td></tr>
+<tr class="ccode" id="SurfDetect_cu.html#fcn_SurfDetect_kernel10"><td class="ccode"><a href="#fcn_SurfDetect_kernel10">SurfDetect_kernel10</a></td></tr>
+<tr class="ccode" id="SurfDetect_cu.html#fcn_SurfDetect_kernel11"><td class="ccode"><a href="#fcn_SurfDetect_kernel11">SurfDetect_kernel11</a></td></tr>
+<tr class="ccode" id="SurfDetect_cu.html#fcn_SurfDetect_kernel12"><td class="ccode"><a href="#fcn_SurfDetect_kernel12">SurfDetect_kernel12</a></td></tr>
+<tr class="ccode" id="SurfDetect_cu.html#fcn_SurfDetect_kernel13"><td class="ccode"><a href="#fcn_SurfDetect_kernel13">SurfDetect_kernel13</a></td></tr>
+<tr class="ccode" id="SurfDetect_cu.html#fcn_SurfDetect_kernel14"><td class="ccode"><a href="#fcn_SurfDetect_kernel14">SurfDetect_kernel14</a></td></tr>
+<tr class="ccode" id="SurfDetect_cu.html#fcn_SurfDetect_kernel15"><td class="ccode"><a href="#fcn_SurfDetect_kernel15">SurfDetect_kernel15</a></td></tr>
+<tr class="ccode" id="SurfDetect_cu.html#fcn_SurfDetect_kernel16"><td class="ccode"><a href="#fcn_SurfDetect_kernel16">SurfDetect_kernel16</a></td></tr>
+<tr class="ccode" id="SurfDetect_cu.html#fcn_SurfDetect_kernel17"><td class="ccode"><a href="#fcn_SurfDetect_kernel17">SurfDetect_kernel17</a></td></tr>
+<tr class="ccode" id="SurfDetect_cu.html#fcn_SurfDetect_kernel18"><td class="ccode"><a href="#fcn_SurfDetect_kernel18">SurfDetect_kernel18</a></td></tr>
+<tr class="ccode" id="SurfDetect_cu.html#fcn_SurfDetect_kernel19"><td class="ccode"><a href="#fcn_SurfDetect_kernel19">SurfDetect_kernel19</a></td></tr>
+<tr class="ccode" id="SurfDetect_cu.html#fcn_SurfDetect_kernel20"><td class="ccode"><a href="#fcn_SurfDetect_kernel20">SurfDetect_kernel20</a></td></tr>
+<tr class="ccode" id="SurfDetect_cu.html#fcn_SurfDetect_kernel21"><td class="ccode"><a href="#fcn_SurfDetect_kernel21">SurfDetect_kernel21</a></td></tr>
+<tr class="ccode" id="SurfDetect_cu.html#fcn_SurfDetect_kernel22"><td class="ccode"><a href="#fcn_SurfDetect_kernel22">SurfDetect_kernel22</a></td></tr>
+<tr class="ccode" id="SurfDetect_cu.html#fcn_SurfDetect_kernel23"><td class="ccode"><a href="#fcn_SurfDetect_kernel23">SurfDetect_kernel23</a></td></tr>
+<tr class="ccode" id="SurfDetect_cu.html#fcn_SurfDetect_kernel24"><td class="ccode"><a href="#fcn_SurfDetect_kernel24">SurfDetect_kernel24</a></td></tr>
+<tr class="ccode" id="SurfDetect_cu.html#fcn_SurfDetect_kernel25"><td class="ccode"><a href="#fcn_SurfDetect_kernel25">SurfDetect_kernel25</a></td></tr>
+<tr class="ccode" id="SurfDetect_cu.html#fcn_SurfDetect_kernel26"><td class="ccode"><a href="#fcn_SurfDetect_kernel26">SurfDetect_kernel26</a></td></tr>
+<tr class="ccode" id="SurfDetect_cu.html#fcn_SurfDetect_kernel27"><td class="ccode"><a href="#fcn_SurfDetect_kernel27">SurfDetect_kernel27</a></td></tr>
+<tr class="ccode" id="SurfDetect_cu.html#fcn_SurfDetect_kernel28"><td class="ccode"><a href="#fcn_SurfDetect_kernel28">SurfDetect_kernel28</a></td></tr>
+<tr class="ccode" id="SurfDetect_cu.html#fcn_SurfDetect_kernel29"><td class="ccode"><a href="#fcn_SurfDetect_kernel29">SurfDetect_kernel29</a></td></tr>
+<tr class="ccode" id="SurfDetect_cu.html#fcn_SurfDetect_kernel30"><td class="ccode"><a href="#fcn_SurfDetect_kernel30">SurfDetect_kernel30</a></td></tr>
+<tr class="ccode" id="SurfDetect_cu.html#fcn_SurfDetect_kernel31"><td class="ccode"><a href="#fcn_SurfDetect_kernel31">SurfDetect_kernel31</a></td></tr>
+<tr class="ccode" id="SurfDetect_cu.html#fcn_SurfDetect_kernel32"><td class="ccode"><a href="#fcn_SurfDetect_kernel32">SurfDetect_kernel32</a></td></tr>
+<tr class="ccode" id="SurfDetect_cu.html#fcn_SurfDetect_kernel33"><td class="ccode"><a href="#fcn_SurfDetect_kernel33">SurfDetect_kernel33</a></td></tr>
+<tr class="ccode" id="SurfDetect_cu.html#fcn_SurfDetect_kernel34"><td class="ccode"><a href="#fcn_SurfDetect_kernel34">SurfDetect_kernel34</a></td></tr>
+<tr class="ccode" id="SurfDetect_cu.html#fcn_SurfDetect_kernel35"><td class="ccode"><a href="#fcn_SurfDetect_kernel35">SurfDetect_kernel35</a></td></tr>
+<tr class="ccode" id="SurfDetect_cu.html#fcn_SurfDetect_kernel36"><td class="ccode"><a href="#fcn_SurfDetect_kernel36">SurfDetect_kernel36</a></td></tr>
+<tr class="ccode" id="SurfDetect_cu.html#fcn_SurfDetect_kernel37"><td class="ccode"><a href="#fcn_SurfDetect_kernel37">SurfDetect_kernel37</a></td></tr>
+<tr class="ccode" id="SurfDetect_cu.html#fcn_SurfDetect_kernel38"><td class="ccode"><a href="#fcn_SurfDetect_kernel38">SurfDetect_kernel38</a></td></tr>
+<tr class="ccode" id="SurfDetect_cu.html#fcn_SurfDetect_kernel39"><td class="ccode"><a href="#fcn_SurfDetect_kernel39">SurfDetect_kernel39</a></td></tr>
+<tr class="ccode" id="SurfDetect_cu.html#fcn_SurfDetect_kernel40"><td class="ccode"><a href="#fcn_SurfDetect_kernel40">SurfDetect_kernel40</a></td></tr>
+<tr class="ccode" id="SurfDetect_cu.html#fcn_SurfDetect_kernel41"><td class="ccode"><a href="#fcn_SurfDetect_kernel41">SurfDetect_kernel41</a></td></tr>
+<tr class="ccode" id="SurfDetect_cu.html#fcn_SurfDetect_kernel42"><td class="ccode"><a href="#fcn_SurfDetect_kernel42">SurfDetect_kernel42</a></td></tr>
+<tr class="ccode" id="SurfDetect_cu.html#fcn_SurfDetect_kernel43"><td class="ccode"><a href="#fcn_SurfDetect_kernel43">SurfDetect_kernel43</a></td></tr>
+<tr class="ccode" id="SurfDetect_cu.html#fcn_SurfDetect_kernel44"><td class="ccode"><a href="#fcn_SurfDetect_kernel44">SurfDetect_kernel44</a></td></tr>
+<tr class="ccode" id="SurfDetect_cu.html#fcn_SurfDetect_kernel45"><td class="ccode"><a href="#fcn_SurfDetect_kernel45">SurfDetect_kernel45</a></td></tr>
+<tr class="ccode" id="SurfDetect_cu.html#fcn_SurfDetect_kernel46"><td class="ccode"><a href="#fcn_SurfDetect_kernel46">SurfDetect_kernel46</a></td></tr>
+<tr class="ccode" id="SurfDetect_cu.html#fcn_SurfDetect_kernel47"><td class="ccode"><a href="#fcn_SurfDetect_kernel47">SurfDetect_kernel47</a></td></tr>
+<tr class="ccode" id="SurfDetect_cu.html#fcn_SurfDetect_kernel48"><td class="ccode"><a href="#fcn_SurfDetect_kernel48">SurfDetect_kernel48</a></td></tr>
+<tr class="ccode" id="SurfDetect_cu.html#fcn_SurfDetect_kernel49"><td class="ccode"><a href="#fcn_SurfDetect_kernel49">SurfDetect_kernel49</a></td></tr>
+<tr class="ccode" id="SurfDetect_cu.html#fcn_SurfDetect_kernel50"><td class="ccode"><a href="#fcn_SurfDetect_kernel50">SurfDetect_kernel50</a></td></tr>
+<tr class="ccode" id="SurfDetect_cu.html#fcn_SurfDetect_kernel51"><td class="ccode"><a href="#fcn_SurfDetect_kernel51">SurfDetect_kernel51</a></td></tr>
+<tr class="ccode" id="SurfDetect_cu.html#fcn_SurfDetect_kernel52"><td class="ccode"><a href="#fcn_SurfDetect_kernel52">SurfDetect_kernel52</a></td></tr>
+<tr class="ccode" id="SurfDetect_cu.html#fcn_SurfDetect_kernel53"><td class="ccode"><a href="#fcn_SurfDetect_kernel53">SurfDetect_kernel53</a></td></tr>
+<tr class="ccode" id="SurfDetect_cu.html#fcn_SurfDetect_kernel54"><td class="ccode"><a href="#fcn_SurfDetect_kernel54">SurfDetect_kernel54</a></td></tr>
+<tr class="ccode" id="SurfDetect_cu.html#fcn_SurfDetect_kernel55"><td class="ccode"><a href="#fcn_SurfDetect_kernel55">SurfDetect_kernel55</a></td></tr>
+<tr class="ccode" id="SurfDetect_cu.html#fcn_SurfDetect_kernel56"><td class="ccode"><a href="#fcn_SurfDetect_kernel56">SurfDetect_kernel56</a></td></tr>
+<tr class="ccode" id="SurfDetect_cu.html#fcn_SurfDetect_kernel57"><td class="ccode"><a href="#fcn_SurfDetect_kernel57">SurfDetect_kernel57</a></td></tr>
+<tr class="ccode" id="SurfDetect_cu.html#fcn_SurfDetect_kernel58"><td class="ccode"><a href="#fcn_SurfDetect_kernel58">SurfDetect_kernel58</a></td></tr>
+<tr class="ccode" id="SurfDetect_cu.html#fcn_SurfDetect_kernel59"><td class="ccode"><a href="#fcn_SurfDetect_kernel59">SurfDetect_kernel59</a></td></tr>
+<tr class="ccode" id="SurfDetect_cu.html#fcn_SurfDetect_kernel60"><td class="ccode"><a href="#fcn_SurfDetect_kernel60">SurfDetect_kernel60</a></td></tr>
+<tr class="ccode" id="SurfDetect_cu.html#fcn_SurfDetect_kernel61"><td class="ccode"><a href="#fcn_SurfDetect_kernel61">SurfDetect_kernel61</a></td></tr>
+<tr class="ccode" id="SurfDetect_cu.html#fcn_SurfDetect_kernel62"><td class="ccode"><a href="#fcn_SurfDetect_kernel62">SurfDetect_kernel62</a></td></tr>
+<tr class="ccode" id="SurfDetect_cu.html#fcn_SurfDetect_kernel63"><td class="ccode"><a href="#fcn_SurfDetect_kernel63">SurfDetect_kernel63</a></td></tr>
+<tr class="ccode" id="SurfDetect_cu.html#fcn_SurfDetect_kernel64"><td class="ccode"><a href="#fcn_SurfDetect_kernel64">SurfDetect_kernel64</a></td></tr>
+<tr class="ccode" id="SurfDetect_cu.html#fcn_SurfDetect_kernel65"><td class="ccode"><a href="#fcn_SurfDetect_kernel65">SurfDetect_kernel65</a></td></tr>
+<tr class="ccode" id="SurfDetect_cu.html#fcn_SurfDetect_kernel66"><td class="ccode"><a href="#fcn_SurfDetect_kernel66">SurfDetect_kernel66</a></td></tr>
+<tr class="ccode" id="SurfDetect_cu.html#fcn_SurfDetect_kernel67"><td class="ccode"><a href="#fcn_SurfDetect_kernel67">SurfDetect_kernel67</a></td></tr>
+<tr class="ccode" id="SurfDetect_cu.html#fcn_SurfDetect_kernel68"><td class="ccode"><a href="#fcn_SurfDetect_kernel68">SurfDetect_kernel68</a></td></tr>
+<tr class="ccode" id="SurfDetect_cu.html#fcn_SurfDetect_kernel69"><td class="ccode"><a href="#fcn_SurfDetect_kernel69">SurfDetect_kernel69</a></td></tr>
+<tr class="ccode" id="SurfDetect_cu.html#fcn_SurfDetect_kernel70"><td class="ccode"><a href="#fcn_SurfDetect_kernel70">SurfDetect_kernel70</a></td></tr>
+<tr class="ccode" id="SurfDetect_cu.html#fcn_SurfDetect_kernel71"><td class="ccode"><a href="#fcn_SurfDetect_kernel71">SurfDetect_kernel71</a></td></tr>
+<tr class="ccode" id="SurfDetect_cu.html#fcn_SurfDetect_kernel72"><td class="ccode"><a href="#fcn_SurfDetect_kernel72">SurfDetect_kernel72</a></td></tr>
+<tr class="ccode" id="SurfDetect_cu.html#fcn_SurfDetect_kernel73"><td class="ccode"><a href="#fcn_SurfDetect_kernel73">SurfDetect_kernel73</a></td></tr>
+<tr class="ccode" id="SurfDetect_cu.html#fcn_SurfDetect_kernel74"><td class="ccode"><a href="#fcn_SurfDetect_kernel74">SurfDetect_kernel74</a></td></tr>
+<tr class="ccode" id="SurfDetect_cu.html#fcn_SurfDetect_kernel75"><td class="ccode"><a href="#fcn_SurfDetect_kernel75">SurfDetect_kernel75</a></td></tr>
+<tr class="ccode" id="SurfDetect_cu.html#fcn_SurfDetect_kernel76"><td class="ccode"><a href="#fcn_SurfDetect_kernel76">SurfDetect_kernel76</a></td></tr>
+<tr class="ccode" id="SurfDetect_cu.html#fcn_SurfDetect_kernel77"><td class="ccode"><a href="#fcn_SurfDetect_kernel77">SurfDetect_kernel77</a></td></tr>
+<tr class="ccode" id="SurfDetect_cu.html#fcn_SurfDetect_kernel78"><td class="ccode"><a href="#fcn_SurfDetect_kernel78">SurfDetect_kernel78</a></td></tr>
+<tr class="ccode" id="SurfDetect_cu.html#fcn_SurfDetect_kernel79"><td class="ccode"><a href="#fcn_SurfDetect_kernel79">SurfDetect_kernel79</a></td></tr>
+<tr class="ccode" id="SurfDetect_cu.html#fcn_SurfDetect_kernel80"><td class="ccode"><a href="#fcn_SurfDetect_kernel80">SurfDetect_kernel80</a></td></tr>
+<tr class="ccode" id="SurfDetect_cu.html#fcn_SurfDetect_kernel81"><td class="ccode"><a href="#fcn_SurfDetect_kernel81">SurfDetect_kernel81</a></td></tr>
+<tr class="ccode" id="SurfDetect_cu.html#fcn_SurfDetect_kernel82"><td class="ccode"><a href="#fcn_SurfDetect_kernel82">SurfDetect_kernel82</a></td></tr>
+<tr class="ccode" id="SurfDetect_cu.html#fcn_SurfDetect_kernel83"><td class="ccode"><a href="#fcn_SurfDetect_kernel83">SurfDetect_kernel83</a></td></tr>
+<tr class="ccode" id="SurfDetect_cu.html#fcn_SurfDetect_kernel84"><td class="ccode"><a href="#fcn_SurfDetect_kernel84">SurfDetect_kernel84</a></td></tr>
+<tr class="ccode" id="SurfDetect_cu.html#fcn_SurfDetect_kernel85"><td class="ccode"><a href="#fcn_SurfDetect_kernel85">SurfDetect_kernel85</a></td></tr>
+<tr class="ccode" id="SurfDetect_cu.html#fcn_SurfDetect_kernel86"><td class="ccode"><a href="#fcn_SurfDetect_kernel86">SurfDetect_kernel86</a></td></tr>
+<tr class="ccode" id="SurfDetect_cu.html#fcn_SurfDetect_kernel87"><td class="ccode"><a href="#fcn_SurfDetect_kernel87">SurfDetect_kernel87</a></td></tr>
+<tr class="ccode" id="SurfDetect_cu.html#fcn_SurfDetect_kernel88"><td class="ccode"><a href="#fcn_SurfDetect_kernel88">SurfDetect_kernel88</a></td></tr>
+<tr class="ccode" id="SurfDetect_cu.html#fcn_SurfDetect_kernel89"><td class="ccode"><a href="#fcn_SurfDetect_kernel89">SurfDetect_kernel89</a></td></tr>
+<tr class="ccode" id="SurfDetect_cu.html#fcn_SurfDetect_kernel90"><td class="ccode"><a href="#fcn_SurfDetect_kernel90">SurfDetect_kernel90</a></td></tr>
+<tr class="ccode" id="SurfDetect_cu.html#fcn_SurfDetect_kernel91"><td class="ccode"><a href="#fcn_SurfDetect_kernel91">SurfDetect_kernel91</a></td></tr>
+<tr class="ccode" id="SurfDetect_cu.html#fcn_SurfDetect_kernel92"><td class="ccode"><a href="#fcn_SurfDetect_kernel92">SurfDetect_kernel92</a></td></tr>
+<tr class="ccode" id="SurfDetect_cu.html#fcn_SurfDetect_kernel93"><td class="ccode"><a href="#fcn_SurfDetect_kernel93">SurfDetect_kernel93</a></td></tr>
+<tr class="ccode" id="SurfDetect_cu.html#fcn_SurfDetect_kernel94"><td class="ccode"><a href="#fcn_SurfDetect_kernel94">SurfDetect_kernel94</a></td></tr>
+<tr class="ccode" id="SurfDetect_cu.html#fcn_SurfDetect_kernel95"><td class="ccode"><a href="#fcn_SurfDetect_kernel95">SurfDetect_kernel95</a></td></tr>
+<tr class="ccode" id="SurfDetect_cu.html#fcn_SurfDetect_kernel96"><td class="ccode"><a href="#fcn_SurfDetect_kernel96">SurfDetect_kernel96</a></td></tr>
+<tr class="ccode" id="SurfDetect_cu.html#fcn_SurfDetect_kernel97"><td class="ccode"><a href="#fcn_SurfDetect_kernel97">SurfDetect_kernel97</a></td></tr>
+<tr class="ccode" id="SurfDetect_cu.html#fcn_SurfDetect_kernel98"><td class="ccode"><a href="#fcn_SurfDetect_kernel98">SurfDetect_kernel98</a></td></tr>
+</tbody>
+</table>
+</div>
+<!-- End GPU Kernel List -->
+<div class="grayline methodset" onclick="ccodeClick(event,2);">
+<a class="expanded">Example Source Files</a>
+</div>
+<!-- Begin C Code List -->
+<div id="ccodelistbody2" class="visible">
+<table class="myfunc-list" cellspacing="0" cellpadding="0" onclick="cFileClick(event);">
+<tbody>
+<tr class="ccode" id="main_cu.html"><td class="ccode"><a href="#">main.cu</a></td></tr>
+<tr class="ccode" id="main_h.html"><td class="ccode"><a href="#">main.h</a></td></tr>
+</tbody>
+</table>
+</div>
+<!-- End C Code List -->
+</div>
+<!-- End C Code -->
+</div>
+<!-- Tooltips -->
+<div class="aux hidden">
+<div class="tooltips">
+<div class="tooltip" id="TT1"><table class="tooltip"><tr><th>Size</th><td>1 x <b>:</b>2000</td></tr><tr><th>Class</th><td>struct</td></tr></table></div>
+<div class="tooltip" id="TT2"><table class="tooltip"><tr><th>Size</th><td>1 x 1</td></tr><tr><th>Class</th><td>single</td></tr><tr><th>Complex</th><td>No</td></tr></table></div>
+<div class="tooltip" id="TT3"><table class="tooltip"><tr><th>Size</th><td>1 x 1</td></tr><tr><th>Class</th><td>int32</td></tr><tr><th>Complex</th><td>No</td></tr></table></div>
+<div class="tooltip" id="TT4"><table class="tooltip"><tr><th>Size</th><td>384 x 512 x 3</td></tr><tr><th>Class</th><td>uint8</td></tr><tr><th>Complex</th><td>No</td></tr></table></div>
+<div class="tooltip" id="TT5"><table class="tooltip"><tr><th>Size</th><td>384 x 512</td></tr><tr><th>Class</th><td>single</td></tr><tr><th>Complex</th><td>No</td></tr></table></div>
+<div class="tooltip" id="TT6"><table class="tooltip"><tr><th>Size</th><td>1 x 12</td></tr><tr><th>Class</th><td>struct</td></tr></table></div>
+<div class="tooltip" id="TT7"><table class="tooltip"><tr><th>Size</th><td>1 x 1</td></tr><tr><th>Class</th><td>double</td></tr><tr><th>Complex</th><td>No</td></tr></table></div>
+<div class="tooltip" id="TT8"><table class="tooltip"><tr><th>Size</th><td><b>:</b>192 x <b>:</b>256</td></tr><tr><th>Class</th><td>single</td></tr><tr><th>Complex</th><td>No</td></tr></table></div>
+<div class="tooltip" id="TT9"><table class="tooltip"><tr><th>Size</th><td><b>:</b>192 x <b>:</b>256</td></tr><tr><th>Class</th><td>uint8</td></tr><tr><th>Complex</th><td>No</td></tr></table></div>
+<div class="tooltip" id="TT10"><table class="tooltip"><tr><th>Size</th><td>1 x 1</td></tr><tr><th>Class</th><td>mxArray</td></tr></table></div>
+<div class="tooltip" id="TT11"><table class="tooltip"><tr><th>Size</th><td>1 x 1</td></tr><tr><th>Class</th><td>logical</td></tr></table></div>
+<div class="tooltip" id="TT12"><table class="tooltip"><tr><th>Size</th><td>1 x 5</td></tr><tr><th>Class</th><td>char</td></tr></table></div>
+<div class="tooltip" id="TT13"><table class="tooltip"><tr><th>Size</th><td>1 x 1</td></tr><tr><th>Class</th><td>function_handle</td></tr></table></div>
+<div class="tooltip" id="TT14"><table class="tooltip"><tr><th>Size</th><td>1 x 0</td></tr><tr><th>Class</th><td>cell</td></tr></table></div>
+<div class="tooltip" id="TT15"><table class="tooltip"><tr><th>Size</th><td>1 x 4</td></tr><tr><th>Class</th><td>cell</td></tr></table></div>
+<div class="tooltip" id="TT16"><table class="tooltip"><tr><th>Size</th><td>1 x 6</td></tr><tr><th>Class</th><td>char</td></tr></table></div>
+<div class="tooltip" id="TT17"><table class="tooltip"><tr><th>Size</th><td>1 x 4</td></tr><tr><th>Class</th><td>cell</td></tr></table></div>
+<div class="tooltip" id="TT18"><table class="tooltip"><tr><th>Size</th><td>1 x 4</td></tr><tr><th>Class</th><td>cell</td></tr></table></div>
+<div class="tooltip" id="TT19"><table class="tooltip"><tr><th>Size</th><td>1 x 4</td></tr><tr><th>Class</th><td>cell</td></tr></table></div>
+<div class="tooltip" id="TT20"><table class="tooltip"><tr><th>Size</th><td>1 x 1</td></tr><tr><th>Class</th><td>cell</td></tr></table></div>
+<div class="tooltip" id="TT21"><table class="tooltip"><tr><th>Size</th><td>1 x 4</td></tr><tr><th>Class</th><td>char</td></tr></table></div>
+<div class="tooltip" id="TT22"><table class="tooltip"><tr><th>Size</th><td>1 x 1</td></tr><tr><th>Class</th><td>cell</td></tr></table></div>
+<div class="tooltip" id="TT23"><table class="tooltip"><tr><th>Size</th><td>1 x 4</td></tr><tr><th>Class</th><td>cell</td></tr></table></div>
+<div class="tooltip" id="TT24"><table class="tooltip"><tr><th>Size</th><td>1 x 1</td></tr><tr><th>Class</th><td>cell</td></tr></table></div>
+<div class="tooltip" id="TT25"><table class="tooltip"><tr><th>Size</th><td>1 x 1</td></tr><tr><th>Class</th><td>cell</td></tr></table></div>
+<div class="tooltip" id="TT26"><table class="tooltip"><tr><th>Size</th><td>1 x 8</td></tr><tr><th>Class</th><td>char</td></tr></table></div>
+<div class="tooltip" id="TT27"><table class="tooltip"><tr><th>Size</th><td>1 x 3</td></tr><tr><th>Class</th><td>char</td></tr></table></div>
+<div class="tooltip" id="TT28"><table class="tooltip"><tr><th>Size</th><td>3 x 3</td></tr><tr><th>Class</th><td>double</td></tr><tr><th>Complex</th><td>No</td></tr></table></div>
+<div class="tooltip" id="TT29"><table class="tooltip"><tr><th>Size</th><td>0 x 0</td></tr><tr><th>Class</th><td>double</td></tr><tr><th>Complex</th><td>No</td></tr></table></div>
+<div class="tooltip" id="TT30"><table class="tooltip"><tr><th>Size</th><td>1 x 1</td></tr><tr><th>Class</th><td>function_handle</td></tr></table></div>
+<div class="tooltip" id="TT31"><table class="tooltip"><tr><th>Size</th><td>1 x 1</td></tr><tr><th>Class</th><td>double</td></tr><tr><th>Complex</th><td>No</td></tr></table></div>
+<div class="tooltip" id="TT32"><table class="tooltip"><tr><th>Size</th><td>1 x 1</td></tr><tr><th>Class</th><td>function_handle</td></tr></table></div>
+<div class="tooltip" id="TT33"><table class="tooltip"><tr><th>Size</th><td>1 x 1</td></tr><tr><th>Class</th><td>function_handle</td></tr></table></div>
+<div class="tooltip" id="TT34"><table class="tooltip"><tr><th>Size</th><td>1 x 27</td></tr><tr><th>Class</th><td>char</td></tr></table></div>
+<div class="tooltip" id="TT35"><table class="tooltip"><tr><th>Size</th><td>1 x 33</td></tr><tr><th>Class</th><td>char</td></tr></table></div>
+<div class="tooltip" id="TT36"><table class="tooltip"><tr><th>Size</th><td>1 x 7</td></tr><tr><th>Class</th><td>char</td></tr></table></div>
+<div class="tooltip" id="TT37"><table class="tooltip"><tr><th>Size</th><td>0 x 0</td></tr><tr><th>Class</th><td>char</td></tr></table></div>
+<div class="tooltip" id="TT38"><table class="tooltip"><tr><th>Size</th><td>1 x 3</td></tr><tr><th>Class</th><td>double</td></tr><tr><th>Complex</th><td>No</td></tr></table></div>
+<div class="tooltip" id="TT39"><table class="tooltip"><tr><th>Size</th><td>3 x 1</td></tr><tr><th>Class</th><td>double</td></tr><tr><th>Complex</th><td>No</td></tr></table></div>
+<div class="tooltip" id="TT40"><table class="tooltip"><tr><th>Size</th><td>1 x 2</td></tr><tr><th>Class</th><td>cell</td></tr></table></div>
+<div class="tooltip" id="TT41"><table class="tooltip"><tr><th>Size</th><td>1 x 23</td></tr><tr><th>Class</th><td>char</td></tr></table></div>
+<div class="tooltip" id="TT42"><table class="tooltip"><tr><th>Size</th><td>1 x 1</td></tr><tr><th>Class</th><td>char</td></tr></table></div>
+<div class="tooltip" id="TT43"><table class="tooltip"><tr><th>Size</th><td>384 x 512</td></tr><tr><th>Class</th><td>uint8</td></tr><tr><th>Complex</th><td>No</td></tr></table></div>
+<div class="tooltip" id="TT44"><table class="tooltip"><tr><th>Size</th><td>1 x 2</td></tr><tr><th>Class</th><td>double</td></tr><tr><th>Complex</th><td>No</td></tr></table></div>
+<div class="tooltip" id="TT45"><table class="tooltip"><tr><th>Size</th><td>1 x 1</td></tr><tr><th>Class</th><td>uint8</td></tr><tr><th>Complex</th><td>No</td></tr></table></div>
+<div class="tooltip" id="TT46"><table class="tooltip"><tr><th>Size</th><td>1 x 3</td></tr><tr><th>Class</th><td>uint8</td></tr><tr><th>Complex</th><td>No</td></tr></table></div>
+<div class="tooltip" id="TT47"><table class="tooltip"><tr><th>Size</th><td>0 x 0</td></tr><tr><th>Class</th><td>single</td></tr><tr><th>Complex</th><td>No</td></tr></table></div>
+<div class="tooltip" id="TT48"><table class="tooltip"><tr><th>Size</th><td>1 x 1</td></tr><tr><th>Class</th><td>function_handle</td></tr></table></div>
+<div class="tooltip" id="TT49"><table class="tooltip"><tr><th>Size</th><td>192 x 256</td></tr><tr><th>Class</th><td>single</td></tr><tr><th>Complex</th><td>No</td></tr></table></div>
+<div class="tooltip" id="TT50"><table class="tooltip"><tr><th>Size</th><td>192 x 256</td></tr><tr><th>Class</th><td>uint8</td></tr><tr><th>Complex</th><td>No</td></tr></table></div>
+<div class="tooltip" id="TT51"><table class="tooltip"><tr><th>Size</th><td>96 x 128</td></tr><tr><th>Class</th><td>single</td></tr><tr><th>Complex</th><td>No</td></tr></table></div>
+<div class="tooltip" id="TT52"><table class="tooltip"><tr><th>Size</th><td>96 x 128</td></tr><tr><th>Class</th><td>uint8</td></tr><tr><th>Complex</th><td>No</td></tr></table></div>
+<div class="tooltip" id="TT53"><table class="tooltip"><tr><th>Size</th><td>48 x 64</td></tr><tr><th>Class</th><td>single</td></tr><tr><th>Complex</th><td>No</td></tr></table></div>
+<div class="tooltip" id="TT54"><table class="tooltip"><tr><th>Size</th><td>48 x 64</td></tr><tr><th>Class</th><td>uint8</td></tr><tr><th>Complex</th><td>No</td></tr></table></div>
+<div class="tooltip" id="TT55"><table class="tooltip"><tr><th>Size</th><td>24 x 32</td></tr><tr><th>Class</th><td>single</td></tr><tr><th>Complex</th><td>No</td></tr></table></div>
+<div class="tooltip" id="TT56"><table class="tooltip"><tr><th>Size</th><td>24 x 32</td></tr><tr><th>Class</th><td>uint8</td></tr><tr><th>Complex</th><td>No</td></tr></table></div>
+<div class="tooltip" id="TT57"><table class="tooltip"><tr><th>Size</th><td>12 x 16</td></tr><tr><th>Class</th><td>single</td></tr><tr><th>Complex</th><td>No</td></tr></table></div>
+<div class="tooltip" id="TT58"><table class="tooltip"><tr><th>Size</th><td>12 x 16</td></tr><tr><th>Class</th><td>uint8</td></tr><tr><th>Complex</th><td>No</td></tr></table></div>
+<div class="tooltip" id="TT59"><table class="tooltip"><tr><th>Size</th><td>1 x 1</td></tr><tr><th>Class</th><td>struct</td></tr></table></div>
+<div class="tooltip" id="TT60"><table class="tooltip"><tr><th>Size</th><td>1 x 5</td></tr><tr><th>Class</th><td>double</td></tr><tr><th>Complex</th><td>No</td></tr></table></div>
+<div class="tooltip" id="TT61"><table class="tooltip"><tr><th>Size</th><td>1 x 1</td></tr><tr><th>Class</th><td>function_handle</td></tr></table></div>
+<div class="tooltip" id="TT62"><table class="tooltip"><tr><th>Size</th><td>1 x 3</td></tr><tr><th>Class</th><td>cell</td></tr></table></div>
+<div class="tooltip" id="TT63"><table class="tooltip"><tr><th>Size</th><td>1 x 2000</td></tr><tr><th>Class</th><td>struct</td></tr></table></div>
+<div class="tooltip" id="TT64"><table class="tooltip"><tr><th>Size</th><td>1 x 1</td></tr><tr><th>Class</th><td>struct</td></tr></table></div>
+<div class="tooltip" id="TT65"><table class="tooltip"><tr><th>Size</th><td>1 x 2000</td></tr><tr><th>Class</th><td>logical</td></tr></table></div>
+<div class="tooltip" id="TT66"><table class="tooltip"><tr><th>Size</th><td>1 x 2</td></tr><tr><th>Class</th><td>double</td></tr><tr><th>Complex</th><td>No</td></tr></table></div>
+<div class="tooltip" id="TT67"><table class="tooltip"><tr><th>Size</th><td>1 x 19</td></tr><tr><th>Class</th><td>char</td></tr></table></div>
+<div class="tooltip" id="TT68"><table class="tooltip"><tr><th>Size</th><td>3 x 3</td></tr><tr><th>Class</th><td>single</td></tr><tr><th>Complex</th><td>No</td></tr></table></div>
+<div class="tooltip" id="TT69"><table class="tooltip"><tr><th>Size</th><td>3 x 1</td></tr><tr><th>Class</th><td>single</td></tr><tr><th>Complex</th><td>No</td></tr></table></div>
+<div class="tooltip" id="TT70"><table class="tooltip"><tr><th>Size</th><td>1 x 3</td></tr><tr><th>Class</th><td>single</td></tr><tr><th>Complex</th><td>No</td></tr></table></div>
+<div class="tooltip" id="TT71"><table class="tooltip"><tr><th>Size</th><td>5 x 4</td></tr><tr><th>Class</th><td>double</td></tr><tr><th>Complex</th><td>No</td></tr></table></div>
+<div class="tooltip" id="TT72"><table class="tooltip"><tr><th>Size</th><td>1 x <b>:</b>1999</td></tr><tr><th>Class</th><td>struct</td></tr></table></div>
+<div class="tooltip" id="TT73"><table class="tooltip"><tr><th>Size</th><td>1 x <b>:</b>1999</td></tr><tr><th>Class</th><td>int32</td></tr><tr><th>Complex</th><td>No</td></tr></table></div>
+<div class="tooltip" id="TT74"><table class="tooltip"><tr><th>Size</th><td>1 x 1</td></tr><tr><th>Class</th><td>function_handle</td></tr></table></div>
+<div class="tooltip" id="TT75"><table class="tooltip"><tr><th>Size</th><td>1 x 1</td></tr><tr><th>Class</th><td>function_handle</td></tr></table></div>
+<div class="tooltip" id="TT76"><table class="tooltip"><tr><th>Size</th><td>7 x 7</td></tr><tr><th>Class</th><td>double</td></tr><tr><th>Complex</th><td>No</td></tr></table></div>
+<div class="tooltip" id="TT77"><table class="tooltip"><tr><th>Size</th><td>1 x 13</td></tr><tr><th>Class</th><td>double</td></tr><tr><th>Complex</th><td>No</td></tr></table></div>
+<div class="tooltip" id="TT78"><table class="tooltip"><tr><th>Size</th><td>1 x 109</td></tr><tr><th>Class</th><td>double</td></tr><tr><th>Complex</th><td>No</td></tr></table></div>
+<div class="tooltip" id="V1"><table class="tooltip"><tr><th>Value</th><td>   192</br></td></tr></table></div>
+<div class="tooltip" id="V2"><table class="tooltip"><tr><th>Value</th><td>   256</br></td></tr></table></div>
+<div class="tooltip" id="V3"><table class="tooltip"><tr><th>Value</th><td>    96</br></td></tr></table></div>
+<div class="tooltip" id="V4"><table class="tooltip"><tr><th>Value</th><td>   128</br></td></tr></table></div>
+<div class="tooltip" id="V5"><table class="tooltip"><tr><th>Value</th><td>    48</br></td></tr></table></div>
+<div class="tooltip" id="V6"><table class="tooltip"><tr><th>Value</th><td>    64</br></td></tr></table></div>
+<div class="tooltip" id="V7"><table class="tooltip"><tr><th>Value</th><td>    24</br></td></tr></table></div>
+<div class="tooltip" id="V8"><table class="tooltip"><tr><th>Value</th><td>    32</br></td></tr></table></div>
+<div class="tooltip" id="V9"><table class="tooltip"><tr><th>Value</th><td>    12</br></td></tr></table></div>
+<div class="tooltip" id="V10"><table class="tooltip"><tr><th>Value</th><td>    16</br></td></tr></table></div>
+</div>
+</div>
+<!-- End Tooltips -->
+
+<div class="south">
+<ul class="ui-tabs-nav">
+<li class="ui-tabs-nav-item ui-tabs-selected"><span class="tab-link" id="summary"><span>Summary</span></span></li>
+<li class="ui-tabs-nav-item"><span class="tab-link" id="messages"><span>All Messages (13)</span></span></li>
+<li class="ui-tabs-nav-item"><span class="tab-link" id="potentialDifferences"><span>Potential Differences</span></span></li>
+<li class="ui-tabs-nav-item"><span class="tab-link" id="watchlist"><span>Variables</span></span></li>
+<li class="ui-tabs-nav-item hidden"><span class="tab-link" id="watchload"><span>Variables</span></span></li>
+<li class="ui-tabs-nav-item"><span class="tab-link" id="buildlog1"><span>Build Log</span></span></li>
+</ul>
+
+<!-- Compilation Summary -->
+<div id="summarybody" class="ui-tabs-panel">
+<table cellpadding="1" cellspacing="4">
+<tr><td>C source code generated on:</td><td>23-Jan-2018 10:00:09</td></tr>
+<tr><td>Coding target:</td><td>Static Library</td></tr>
+<tr><td>Number of errors:</td><td><a href="javascript:selectMessagesTab();">0</a></td></tr>
+<tr><td>Number of warnings:</td><td><a href="javascript:selectMessagesTab();">0</a></td></tr>
+<tr><td>Number of notices:</td><td><a href="javascript:selectMessagesTab();">13</a></td></tr>
+<tr><td>Number of potential differences:</td><td><a href="javascript:selectPotentialDifferencesTab();">3</a></td></tr>
+</table>
+<p/><p/><table>
+<tr><td><b>Tell Us What You Think</b></td></tr>
+<tr><td>We value your feedback. Please take a few minutes to answer this short questionnaire regarding the Code Generation Report.</td></tr>
+<tr><td><a href="matlab: emlcprivate('launchReportSurvey');">&gt;&gt;Provide Feedback</a></td></tr>
+</table>
+</div>
+
+<!-- Message Table -->
+<div id="messagesbody" class="ui-tabs-panel hidden">
+<table class="grid" summary="This table lists the messages produced during code generation." cellspacing="0" cellpadding="6">
+<thead>
+<tr>
+<th id="msgorder" scope="col"><div class="d1"><div class="d2"><a href="#">Order</a></div></div></th>
+<th id="msgtype" scope="col"><div class="d1"><div class="d2"><a href="#">Type</a></div></div></th>
+<th id="function" scope="col"><div class="d1"><div class="d2"><a href="#">Function</a></div></div></th>
+<th id="location" scope="col"><div class="d1"><div class="d2"><a href="#">Line</a></div></div></th>
+<th id="text" scope="col"><div class="d1"><div class="d2"><a href="#">Description</a></div></div></th>
+</tr>
+</thead>
+<tbody onmouseover="messagesMouseOver(event);" onmouseout="messagesMouseOut(event);" onclick="messagesClick(event);">
+<tr class="message info" id="M1F219">
+<td class="msgorder" headers="msgorder"><a href="#">1</a></td>
+<td class="info" headers="msgtype"></td>
+<td class="function" headers="function"><div>OrientationCalc</div></td>
+<td class="location" headers="location"><div>14</div></td>
+<td class="text" headers="text"><div>Loop is not perfectly nested. Some loops in the loop-nest will not be parallelized.</div></td>
+</tr>
+<tr class="message info" id="M2F185">
+<td class="msgorder" headers="msgorder"><a href="#">2</a></td>
+<td class="info" headers="msgtype"></td>
+<td class="function" headers="function"><div>NonMaxCalc</div></td>
+<td class="location" headers="location"><div>17</div></td>
+<td class="text" headers="text"><div>Loop is not perfectly nested. Some loops in the loop-nest will not be parallelized.</div></td>
+</tr>
+<tr class="message info" id="M3F185">
+<td class="msgorder" headers="msgorder"><a href="#">3</a></td>
+<td class="info" headers="msgtype"></td>
+<td class="function" headers="function"><div>NonMaxCalc</div></td>
+<td class="location" headers="location"><div>17</div></td>
+<td class="text" headers="text"><div>Loop is not perfectly nested. Some loops in the loop-nest will not be parallelized.</div></td>
+</tr>
+<tr class="message info" id="M4F185">
+<td class="msgorder" headers="msgorder"><a href="#">4</a></td>
+<td class="info" headers="msgtype"></td>
+<td class="function" headers="function"><div>NonMaxCalc</div></td>
+<td class="location" headers="location"><div>17</div></td>
+<td class="text" headers="text"><div>Loop is not perfectly nested. Some loops in the loop-nest will not be parallelized.</div></td>
+</tr>
+<tr class="message info" id="M5F185">
+<td class="msgorder" headers="msgorder"><a href="#">5</a></td>
+<td class="info" headers="msgtype"></td>
+<td class="function" headers="function"><div>NonMaxCalc</div></td>
+<td class="location" headers="location"><div>17</div></td>
+<td class="text" headers="text"><div>Loop is not perfectly nested. Some loops in the loop-nest will not be parallelized.</div></td>
+</tr>
+<tr class="message info" id="M6F185">
+<td class="msgorder" headers="msgorder"><a href="#">6</a></td>
+<td class="info" headers="msgtype"></td>
+<td class="function" headers="function"><div>NonMaxCalc</div></td>
+<td class="location" headers="location"><div>17</div></td>
+<td class="text" headers="text"><div>Loop is not perfectly nested. Some loops in the loop-nest will not be parallelized.</div></td>
+</tr>
+<tr class="message info" id="M7F185">
+<td class="msgorder" headers="msgorder"><a href="#">7</a></td>
+<td class="info" headers="msgtype"></td>
+<td class="function" headers="function"><div>NonMaxCalc</div></td>
+<td class="location" headers="location"><div>17</div></td>
+<td class="text" headers="text"><div>Loop is not perfectly nested. Some loops in the loop-nest will not be parallelized.</div></td>
+</tr>
+<tr class="message info" id="M8F185">
+<td class="msgorder" headers="msgorder"><a href="#">8</a></td>
+<td class="info" headers="msgtype"></td>
+<td class="function" headers="function"><div>NonMaxCalc</div></td>
+<td class="location" headers="location"><div>17</div></td>
+<td class="text" headers="text"><div>Loop is not perfectly nested. Some loops in the loop-nest will not be parallelized.</div></td>
+</tr>
+<tr class="message info" id="M9F185">
+<td class="msgorder" headers="msgorder"><a href="#">9</a></td>
+<td class="info" headers="msgtype"></td>
+<td class="function" headers="function"><div>NonMaxCalc</div></td>
+<td class="location" headers="location"><div>17</div></td>
+<td class="text" headers="text"><div>Loop is not perfectly nested. Some loops in the loop-nest will not be parallelized.</div></td>
+</tr>
+<tr class="message info" id="M10F185">
+<td class="msgorder" headers="msgorder"><a href="#">10</a></td>
+<td class="info" headers="msgtype"></td>
+<td class="function" headers="function"><div>NonMaxCalc</div></td>
+<td class="location" headers="location"><div>17</div></td>
+<td class="text" headers="text"><div>Loop is not perfectly nested. Some loops in the loop-nest will not be parallelized.</div></td>
+</tr>
+<tr class="message info" id="M11F185">
+<td class="msgorder" headers="msgorder"><a href="#">11</a></td>
+<td class="info" headers="msgtype"></td>
+<td class="function" headers="function"><div>NonMaxCalc</div></td>
+<td class="location" headers="location"><div>17</div></td>
+<td class="text" headers="text"><div>Loop is not perfectly nested. Some loops in the loop-nest will not be parallelized.</div></td>
+</tr>
+<tr class="message info" id="M12F112">
+<td class="msgorder" headers="msgorder"><a href="#">12</a></td>
+<td class="info" headers="msgtype"></td>
+<td class="function" headers="function"><div>MyIntegralImage</div></td>
+<td class="location" headers="location"><div>29</div></td>
+<td class="text" headers="text"><div>Non-coalesced access to variable intImage detected.  Consider transposing variable or interchanging the surrounding loops, if possible.</div></td>
+</tr>
+<tr class="message info" id="M13F112">
+<td class="msgorder" headers="msgorder"><a href="#">13</a></td>
+<td class="info" headers="msgtype"></td>
+<td class="function" headers="function"><div>MyIntegralImage</div></td>
+<td class="location" headers="location"><div>30</div></td>
+<td class="text" headers="text"><div>Non-coalesced access to variable intImage detected.  Consider transposing variable or interchanging the surrounding loops, if possible.</div></td>
+</tr>
+</tbody>
+</table>
+</div>
+<!-- Watchlist Table -->
+<div id="watchlistbody" class="ui-tabs-panel hidden">
+</div>
+<div id="watchloadbody" class="ui-tabs-panel hidden">
+Loading Variables table ...
+</div>
+
+<!-- Build Log -->
+<div id="buildlog1body" class="ui-tabs-panel hidden">
+<div class="grayline"></div>
+<table cellpadding="4" cellspacing="1"><tr>
+<td align="left" class="td-linebottomrt-gray" colspan="2">Build Parameters</td>
+</tr>
+<tr><td align="left" valign="top" class="td-linebottomrt">Build directory</td>
+<td align="left" valign="top" class="td-linebottomrt-link"><a href="matlab: cd('C:\Sumpurn\Projects\GPU\gpucoderdemo_feature_extraction\sumpurn\codegen\embed\lib\normal\SurfDetect')">C:\Sumpurn\Projects\GPU\gpucoderdemo_feature_extraction\sumpurn\codegen\embed\lib\normal\SurfDetect</a></td></tr>
+<tr><td align="left" valign="top" class="td-linebottomrt">Make wrapper</td>
+<td align="left" valign="top" class="td-linebottomrt-link">.\SurfDetect_rtw.bat</td></tr>
+<tr><td align="left" valign="top" class="td-linebottomrt">Make command</td>
+<td align="left" valign="top" class="td-linebottomrt-link">nmake  -f SurfDetect_rtw.mk all</td></tr>
+</table>
+<br/>
+<table border="1" cellpadding="4" cellspacing="1" width="100%">
+<tr><td align="left" class="td-linebottomrt-gray">Build Log</td></tr>
+<tr><td valign="top" class="td-script">
+<pre>
+<span class="td-line-number">    1   </span><span class="td-line-normal">Compilation suppressed: generating code only.</span>
+</pre>
+</td></tr></table>
+
+</div>
+
+<!-- Potential Differences -->
+<div id="potentialDifferencesBody" class="ui-tabs-panel hidden">
+<div id="potentialDifferencesBanner">The following differences from MATLAB may be encountered while executing the generated code.
+<a href="matlab:helpview('C:/Program Files/MATLAB/R2017b/help/coder/helptargets.map','msginfo_Coder_reportGen_potentialDifferencesBannerText');">More information</a></div>
+<table class="grid" summary="This table lists the messages produced during code generation." cellspacing="0" cellpadding="6">
+<thead>
+<tr>
+<th id="msgorder" scope="col"><div class="d1"><div class="d2"><a href="#">Order</a></div></div></th>
+<th id="text" scope="col"><div class="d1"><div class="d2"><a href="#">Description</a></div></div></th>
+</tr>
+</thead>
+<tbody onmouseover="messagesMouseOver(event);" onmouseout="messagesMouseOut(event);" onclick="clickPotentialDifferenceMessage(event);">
+<tr class="message potentialdiff" id="PD1">
+<td class="msgorder" headers="msgorder"><a href="#">1</a></td>
+<td class="text" headers="text"><div>The generated code assumes that the index is within the array bounds. If the index exceeds the bounds, the array will not grow. To grow the array, consider preallocating memory or using concatenation. For example, [X A].</div></td>
+</tr>
+<tr class="message potentialdiff" id="PD2">
+<td class="msgorder" headers="msgorder"><a href="#">2</a></td>
+<td class="text" headers="text"><div>The generated code assumes that the array operations will be within the upper bounds of each dimension.</div></td>
+</tr>
+<tr class="message potentialdiff" id="PD3">
+<td class="msgorder" headers="msgorder"><a href="#">3</a></td>
+<td class="text" headers="text"><div>The generated code assumes that the input is representable using the C type 'int'.</div></td>
+</tr>
+</tbody>
+</table>
+</div>
+
+</div>
+<!-- Begin MATLAB Code Panel -->
+<div class="center">
+<div class="center-title">
+<div class="ui-tabs-nav-item ui-tabs-selected">
+<span class="functiontitle">
+</span>
+<!-- Begin Call Sites -->
+<span id="callsiteselecttable" class="call-sites-tbl">
+<span id="callsiteselectlabel" class="filtered">Calls:</span>
+<select id="callsiteselect" onchange="callSiteChange(event)">
+<option value="callsiteprompt">Select a function call:</option>
+</select>
+</span>
+<!-- End Call Sites -->
+</div>
+</div>
+<div class="ui-tabs-panel">
+<iframe id="hiddenCodeFrame"></iframe>
+<div class="code" onmouseover="mcodeMouseOver(event);" onmouseout="mcodeMouseOut(event);"onclick="mcodeClick(event);">
+</div>
+</div>
+</div>
+<!-- End MATLAB Code Panel -->
+</body>
+</html>
